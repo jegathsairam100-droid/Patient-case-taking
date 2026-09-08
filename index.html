@@ -3,697 +3,264 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>CareFlow | Smart Patient Case-Taking System</title>
+<title>CareFlow India</title>
 
 <style>
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Arial, sans-serif;
 }
 
 body{
-    background:#f4f7fb;
-    color:#172033;
+    background:#f1f7f8;
+    color:#1f2937;
 }
 
-button,input,select,textarea{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-.hidden{
-    display:none !important;
-}
-
-/* ================= LANDING ================= */
-
-#landing{
-    min-height:100vh;
-    padding:45px 25px;
-    background:linear-gradient(135deg,#eef7ff,#f7fbff,#eefcf8);
-}
-
-.logo-area{
-    text-align:center;
-    margin-bottom:45px;
+header{
+    background:#087f73;
+    color:white;
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 8px #aaa;
 }
 
 .logo{
-    width:70px;
-    height:70px;
-    margin:auto;
-    border-radius:20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#087ea4;
-    color:white;
-    font-size:42px;
+    font-size:26px;
     font-weight:bold;
-    box-shadow:0 12px 30px rgba(8,126,164,.25);
 }
 
-.logo-area h1{
-    margin-top:18px;
-    font-size:42px;
-}
-
-.logo-area p{
-    color:#64748b;
-    margin-top:8px;
-    font-size:17px;
-}
-
-.role-container{
-    max-width:1100px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:28px;
-}
-
-.role-card{
+header button{
     background:white;
-    border-radius:24px;
-    padding:35px;
-    box-shadow:0 15px 45px rgba(31,48,74,.12);
-    border:1px solid #e6edf5;
-    transition:.25s;
-}
-
-.role-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 20px 50px rgba(31,48,74,.18);
-}
-
-.role-icon{
-    width:60px;
-    height:60px;
-    border-radius:16px;
-    background:#eef6ff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:30px;
-    margin-bottom:22px;
-}
-
-.role-card h2{
-    font-size:27px;
-    margin-bottom:10px;
-}
-
-.role-card p{
-    color:#64748b;
-    line-height:1.6;
-    margin-bottom:20px;
-}
-
-.role-card ul{
-    list-style:none;
-    margin-bottom:28px;
-}
-
-.role-card li{
-    margin:13px 0;
-    color:#475569;
-}
-
-.role-card li::before{
-    content:"✓";
-    color:#119b70;
-    font-weight:bold;
-    margin-right:10px;
-}
-
-.primary-btn{
-    width:100%;
-    padding:14px 18px;
+    color:#087f73;
     border:none;
-    border-radius:10px;
-    background:#0868d9;
-    color:white;
-    font-weight:bold;
-    transition:.2s;
-}
-
-.primary-btn:hover{
-    background:#0757b7;
-    transform:translateY(-1px);
-}
-
-/* ================= LOGIN ================= */
-
-.login-screen{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:25px;
-    background:linear-gradient(135deg,#eef7ff,#f7fbff);
-}
-
-.login-box{
-    width:100%;
-    max-width:460px;
-    background:white;
-    padding:38px;
-    border-radius:22px;
-    box-shadow:0 15px 45px rgba(31,48,74,.13);
-}
-
-.login-box h2{
-    margin-bottom:8px;
-    font-size:29px;
-}
-
-.login-box .subtitle{
-    color:#64748b;
-    margin-bottom:28px;
-}
-
-.form-group{
-    margin-bottom:18px;
-}
-
-.form-group label{
-    display:block;
-    font-size:14px;
-    font-weight:bold;
-    margin-bottom:7px;
-    color:#334155;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea{
-    width:100%;
-    padding:12px 13px;
-    border:1px solid #d9e2ec;
-    border-radius:9px;
-    outline:none;
-    background:#fff;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-    border-color:#1688d5;
-    box-shadow:0 0 0 3px rgba(22,136,213,.08);
-}
-
-.back-btn{
-    border:none;
-    background:none;
-    color:#0868d9;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-/* ================= APP ================= */
-
-#app{
-    min-height:100vh;
-}
-
-.sidebar{
-    width:255px;
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-    background:#10253d;
-    color:white;
-    padding:24px 15px;
-    z-index:100;
-}
-
-.side-logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:0 12px 25px;
-    font-size:23px;
-    font-weight:bold;
-}
-
-.side-logo span{
-    width:38px;
-    height:38px;
-    border-radius:11px;
-    background:#087ea4;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.user-mini{
-    padding:15px;
-    background:rgba(255,255,255,.07);
-    border-radius:14px;
-    margin-bottom:22px;
-}
-
-.user-mini strong{
-    display:block;
-    margin-bottom:5px;
-}
-
-.user-mini small{
-    color:#b8c5d4;
-}
-
-.nav-title{
-    color:#91a4b8;
-    font-size:11px;
-    text-transform:uppercase;
-    padding:12px;
-    letter-spacing:1px;
-}
-
-.nav-btn{
-    width:100%;
-    text-align:left;
-    border:none;
-    background:transparent;
-    color:#dce6ef;
-    padding:12px;
-    border-radius:9px;
-    margin:2px 0;
-}
-
-.nav-btn:hover,
-.nav-btn.active{
-    background:#1c4567;
-    color:white;
-}
-
-.logout-btn{
-    position:absolute;
-    bottom:20px;
-    left:15px;
-    right:15px;
-    width:calc(100% - 30px);
-    padding:11px;
-    border:1px solid rgba(255,255,255,.2);
-    background:transparent;
-    color:#fff;
-    border-radius:9px;
-}
-
-.main{
-    margin-left:255px;
-    min-height:100vh;
-}
-
-.topbar{
-    height:72px;
-    background:white;
-    border-bottom:1px solid #e7edf4;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 30px;
-    position:sticky;
-    top:0;
-    z-index:50;
-}
-
-.menu-btn{
-    display:none;
-    border:none;
-    background:#eef5fb;
-    padding:8px 12px;
+    padding:9px 16px;
     border-radius:8px;
+    cursor:pointer;
 }
 
-.topbar h3{
-    font-size:20px;
-}
-
-.top-profile{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.avatar{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:#dcefff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.content{
-    padding:30px;
-    max-width:1500px;
-    margin:auto;
-}
-
-.page{
-    display:none;
-}
-
-.page.active{
-    display:block;
-}
-
-.welcome{
-    margin-bottom:25px;
-}
-
-.welcome h1{
-    font-size:30px;
-    margin-bottom:7px;
-}
-
-.muted{
-    color:#64748b;
-}
-
-/* ================= CARDS ================= */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-    margin-bottom:25px;
-}
-
-.stat-card{
-    background:white;
-    border:1px solid #e6edf5;
-    border-radius:15px;
-    padding:22px;
-    box-shadow:0 5px 20px rgba(30,50,80,.05);
-}
-
-.stat-card .number{
-    font-size:30px;
-    font-weight:bold;
-    margin:8px 0;
-}
-
-.stat-card .label{
-    color:#64748b;
-    font-size:14px;
-}
-
-.grid-2{
-    display:grid;
-    grid-template-columns:1.4fr 1fr;
-    gap:20px;
+.container{
+    max-width:1100px;
+    margin:30px auto;
+    padding:20px;
 }
 
 .card{
     background:white;
-    border:1px solid #e6edf5;
     border-radius:16px;
-    padding:22px;
+    padding:25px;
     margin-bottom:20px;
-    box-shadow:0 5px 20px rgba(30,50,80,.05);
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
-.card h2{
-    font-size:19px;
-    margin-bottom:17px;
+.hidden{
+    display:none!important;
 }
 
-.card h3{
-    margin-bottom:10px;
+h1,h2,h3{
+    margin-bottom:15px;
 }
 
-.appointment{
-    padding:16px;
-    border:1px solid #e3eaf2;
-    border-radius:12px;
-    margin-bottom:12px;
+.subtitle{
+    color:#64748b;
+    margin-bottom:20px;
+}
+
+.role-container{
     display:flex;
-    justify-content:space-between;
-    align-items:center;
+    justify-content:center;
+    gap:25px;
+    margin-top:40px;
 }
 
-.badge{
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:20px;
-    font-size:12px;
-    background:#e8f7ef;
-    color:#087a4d;
-    font-weight:bold;
+.role-card{
+    width:320px;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
 }
 
-.small-btn{
+.role-card:hover{
+    transform:translateY(-5px);
+}
+
+.role-icon{
+    font-size:65px;
+    margin-bottom:15px;
+}
+
+button{
+    background:#087f73;
+    color:white;
     border:none;
-    padding:8px 12px;
+    padding:12px 20px;
     border-radius:8px;
-    background:#e9f3ff;
-    color:#0763c9;
+    cursor:pointer;
+    font-size:15px;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.secondary{
+    background:#64748b;
+}
+
+.danger{
+    background:#dc2626;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    margin:8px 0 15px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    font-size:15px;
+}
+
+textarea{
+    resize:vertical;
+}
+
+label{
     font-weight:bold;
 }
 
-.danger-btn{
-    background:#fff0f0;
-    color:#c53636;
-}
-
-.success-btn{
-    background:#e8f8ef;
-    color:#087a4d;
-}
-
-/* ================= CASE FORM ================= */
-
-.case-grid{
+.grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
 }
 
-.full{
-    grid-column:1/-1;
-}
-
-.voice-row{
+.nav-buttons{
     display:flex;
-    gap:8px;
-    align-items:stretch;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
 }
 
-.voice-row textarea{
-    flex:1;
-    min-height:100px;
+.nav-buttons button{
+    background:#dff5f2;
+    color:#087f73;
 }
 
-.mic-btn{
-    width:48px;
-    height:48px;
-    margin-top:0;
-    border:none;
-    border-radius:9px;
-    background:#e9f5ff;
-    font-size:21px;
-    align-self:flex-start;
+.nav-buttons button.active{
+    background:#087f73;
+    color:white;
 }
 
-.mic-btn:hover{
-    background:#d6ecff;
+.voice-box{
+    background:#ecfeff;
+    border:2px dashed #087f73;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    margin-top:10px;
 }
 
-.mic-btn.listening{
-    background:#ffe6e6;
+.mic-button{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    padding:0;
+    font-size:30px;
+    margin:10px;
+}
+
+.mic-button.recording{
+    background:#dc2626;
     animation:pulse 1s infinite;
 }
 
 @keyframes pulse{
-    50%{transform:scale(1.06);}
+    0%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+    100%{transform:scale(1)}
 }
 
-.voice-panel{
-    padding:16px;
-    border-radius:13px;
-    background:#f4f9ff;
-    border:1px solid #dbeaf7;
-    margin-bottom:20px;
-}
-
-.voice-controls{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    align-items:center;
-}
-
-.voice-controls select{
-    padding:10px;
-    border-radius:8px;
-    border:1px solid #ccd9e6;
-}
-
-.voice-status{
+.status{
     margin-top:10px;
-    font-size:13px;
-    color:#64748b;
-}
-
-.case-actions{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
-    flex-wrap:wrap;
-}
-
-.case-actions button{
-    border:none;
-    border-radius:9px;
-    padding:12px 18px;
     font-weight:bold;
 }
 
-.generate-btn{
-    background:#0868d9;
-    color:white;
+.success{
+    color:#15803d;
 }
 
-.save-btn{
-    background:#087a56;
-    color:white;
+.error{
+    color:#dc2626;
 }
 
-.clear-btn{
-    background:#edf1f5;
-    color:#334155;
-}
-
-/* ================= SUMMARY ================= */
-
-.summary-box{
-    background:#f8fbff;
-    border:1px solid #dceaf6;
-    border-radius:14px;
-    padding:20px;
-    white-space:pre-wrap;
-    line-height:1.7;
-    margin-top:20px;
-}
-
-.summary-actions{
-    display:flex;
-    gap:10px;
-    margin-top:12px;
-}
-
-/* ================= TABLE ================= */
-
-.table-wrap{
-    overflow-x:auto;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
-    padding:13px;
-    border-bottom:1px solid #e8edf2;
-    text-align:left;
-    font-size:14px;
-}
-
-th{
+.summary{
     background:#f8fafc;
+    border-left:5px solid #087f73;
+    padding:18px;
+    margin-top:20px;
+    white-space:pre-line;
+    border-radius:8px;
 }
 
-/* ================= SEARCH ================= */
-
-.search-box{
-    width:100%;
-    padding:12px;
-    border:1px solid #d8e1eb;
-    border-radius:9px;
-    margin-bottom:15px;
+.appointment{
+    background:#f0fdfa;
+    border-left:5px solid #087f73;
+    padding:18px;
+    border-radius:10px;
+    margin:12px 0;
 }
 
-/* ================= MOBILE ================= */
+.patient-card{
+    background:#f8fafc;
+    border-left:5px solid #087f73;
+    padding:18px;
+    border-radius:10px;
+    margin:12px 0;
+}
 
-@media(max-width:900px){
+.badge{
+    display:inline-block;
+    background:#dcfce7;
+    color:#166534;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:13px;
+    margin:5px 0;
+}
+
+.step{
+    background:#e0f2f1;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#64748b;
+}
+
+@media(max-width:700px){
 
     .role-container{
-        grid-template-columns:1fr;
-    }
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .grid-2{
-        grid-template-columns:1fr;
-    }
-
-    .sidebar{
-        transform:translateX(-100%);
-        transition:.25s;
-    }
-
-    .sidebar.open{
-        transform:translateX(0);
-    }
-
-    .main{
-        margin-left:0;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-
-    .topbar{
-        padding:0 15px;
-    }
-
-    .content{
-        padding:18px;
-    }
-}
-
-@media(max-width:600px){
-
-    .logo-area h1{
-        font-size:32px;
+        flex-direction:column;
+        align-items:center;
     }
 
     .role-card{
-        padding:25px;
+        width:90%;
     }
 
-    .stats{
-        grid-template-columns:1fr;
+    header{
+        padding:15px;
     }
 
-    .case-grid{
-        grid-template-columns:1fr;
-    }
-
-    .full{
-        grid-column:auto;
-    }
-
-    .appointment{
-        display:block;
-    }
-
-    .appointment button{
-        margin-top:10px;
+    .logo{
+        font-size:21px;
     }
 }
 </style>
@@ -701,2849 +268,2008 @@ th{
 
 <body>
 
-<!-- =========================================================
-     LANDING PAGE
-========================================================= -->
+<header>
 
-<section id="landing">
+<div class="logo">
+❤️ CareFlow India
+</div>
 
-    <div class="logo-area">
+<button id="logoutBtn"
+        class="hidden"
+        onclick="logout()">
+Logout
+</button>
 
-        <div class="logo">+</div>
-
-        <h1>CareFlow.</h1>
-
-        <p>Smart Patient Case-Taking & Consultation System</p>
-
-    </div>
-
-    <div class="role-container">
-
-        <!-- PATIENT -->
-
-        <div class="role-card">
-
-            <div class="role-icon">👤</div>
-
-            <h2>Patient</h2>
-
-            <p>
-                Access your appointments, digital case-taking,
-                reports and medical information.
-            </p>
-
-            <ul>
-                <li>Start digital case-taking</li>
-                <li>Multilingual voice input</li>
-                <li>View appointments</li>
-                <li>View reports and history</li>
-            </ul>
-
-            <button
-                type="button"
-                class="primary-btn"
-                onclick="showPatientLogin()">
-                Continue as Patient →
-            </button>
-
-        </div>
+</header>
 
 
-        <!-- DOCTOR -->
+<!-- ================= HOME ================= -->
 
-        <div class="role-card">
+<section id="home" class="container">
 
-            <div class="role-icon">🧑‍⚕️</div>
+<div class="card" style="text-align:center">
 
-            <h2>Doctor</h2>
+<h1>🇮🇳 Welcome to CareFlow India</h1>
 
-            <p>
-                Review patient cases, appointments,
-                summaries and clinical information.
-            </p>
+<p class="subtitle">
+Smart Patient Case-Taking, Hospital Selection,
+Doctor Appointment & Patient Access Platform
+</p>
 
-            <ul>
-                <li>View today's appointments</li>
-                <li>Review patient cases</li>
-                <li>Read structured summaries</li>
-                <li>Manage consultation notes</li>
-            </ul>
+<div class="grid">
 
-            <button
-                type="button"
-                class="primary-btn"
-                onclick="showDoctorLogin()">
-                Continue as Doctor →
-            </button>
+<div class="step">
+<b>1</b>
+<p>Select State</p>
+</div>
 
-        </div>
+<div class="step">
+<b>2</b>
+<p>Select City</p>
+</div>
 
-    </div>
+<div class="step">
+<b>3</b>
+<p>Select Hospital</p>
+</div>
 
-</section>
+<div class="step">
+<b>4</b>
+<p>Select Department</p>
+</div>
+
+<div class="step">
+<b>5</b>
+<p>Select Doctor</p>
+</div>
+
+<div class="step">
+<b>6</b>
+<p>Book Appointment</p>
+</div>
+
+</div>
+
+<div class="role-container">
+
+<div class="card role-card"
+     onclick="showPatientLogin()">
+
+<div class="role-icon">👤</div>
+
+<h2>Patient</h2>
+
+<p>
+Create your case, use voice input,
+select hospital and book an appointment.
+</p>
+
+<br>
+
+<button>
+Patient Dashboard
+</button>
+
+</div>
 
 
-<!-- =========================================================
-     PATIENT LOGIN
-========================================================= -->
+<div class="card role-card"
+     onclick="showDoctorLogin()">
 
-<section id="patientLogin" class="login-screen hidden">
+<div class="role-icon">👨‍⚕️</div>
 
-    <div class="login-box">
+<h2>Doctor</h2>
 
-        <button class="back-btn" onclick="backToRoles()">
-            ← Back
-        </button>
+<p>
+View appointments and access
+patient case information.
+</p>
 
-        <h2>Patient Login</h2>
+<br>
 
-        <p class="subtitle">
-            Enter your details to access your patient dashboard.
-        </p>
+<button>
+Doctor Dashboard
+</button>
 
-        <div class="form-group">
-            <label>Patient Name</label>
-            <input
-                id="patientLoginName"
-                type="text"
-                placeholder="Enter your name">
-        </div>
+</div>
 
-        <div class="form-group">
-            <label>Mobile Number</label>
-            <input
-                id="patientLoginMobile"
-                type="tel"
-                placeholder="Enter mobile number">
-        </div>
+</div>
 
-        <button
-            class="primary-btn"
-            onclick="loginPatient()">
-            Login as Patient
-        </button>
-
-        <p class="muted" style="margin-top:15px;font-size:13px;">
-            Demo prototype — any sample name and mobile number can be used.
-        </p>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- =========================================================
-     DOCTOR LOGIN
-========================================================= -->
+<!-- ================= PATIENT LOGIN ================= -->
 
-<section id="doctorLogin" class="login-screen hidden">
+<section id="patientLogin"
+         class="container hidden">
 
-    <div class="login-box">
+<div class="card">
 
-        <button class="back-btn" onclick="backToRoles()">
-            ← Back
-        </button>
+<h2>👤 Patient Login</h2>
 
-        <h2>Doctor Login</h2>
+<label>Patient Name</label>
 
-        <p class="subtitle">
-            Access the clinical dashboard.
-        </p>
+<input id="patientName"
+       placeholder="Enter patient name">
 
-        <div class="form-group">
-            <label>Doctor Email</label>
 
-            <input
-                id="doctorEmail"
-                type="email"
-                placeholder="doctor@example.com">
-        </div>
+<label>Mobile Number</label>
 
-        <div class="form-group">
-            <label>Password</label>
+<input id="patientMobile"
+       type="tel"
+       placeholder="Enter mobile number">
 
-            <input
-                id="doctorPassword"
-                type="password"
-                placeholder="Enter password">
-        </div>
 
-        <button
-            class="primary-btn"
-            onclick="loginDoctor()">
-            Login as Doctor
-        </button>
+<button onclick="patientLogin()">
+Login
+</button>
 
-        <p class="muted" style="margin-top:15px;font-size:13px;">
-            Demo prototype — any email and password can be used.
-        </p>
+<button class="secondary"
+        onclick="goHome()">
+Back
+</button>
 
-    </div>
+</div>
 
 </section>
 
 
-<!-- =========================================================
-     MAIN APPLICATION
-========================================================= -->
+<!-- ================= DOCTOR LOGIN ================= -->
 
-<section id="app" class="hidden">
+<section id="doctorLogin"
+         class="container hidden">
 
-    <!-- SIDEBAR -->
+<div class="card">
 
-    <aside class="sidebar" id="sidebar">
+<h2>👨‍⚕️ Doctor Login</h2>
 
-        <div class="side-logo">
-            <span>+</span>
-            CareFlow
-        </div>
+<label>Doctor Name</label>
 
-        <div class="user-mini">
+<input id="doctorName"
+       placeholder="Enter doctor name">
 
-            <strong id="sideUserName">
-                Demo User
-            </strong>
 
-            <small id="sideUserRole">
-                Patient
-            </small>
+<label>Doctor ID</label>
 
-        </div>
+<input id="doctorId"
+       placeholder="Example: DOC001">
 
 
-        <!-- PATIENT NAVIGATION -->
+<button onclick="doctorLogin()">
+Login
+</button>
 
-        <div id="patientNav">
+<button class="secondary"
+        onclick="goHome()">
+Back
+</button>
 
-            <div class="nav-title">Patient</div>
-
-            <button class="nav-btn active"
-                    onclick="showPage('patientOverview',this)">
-                🏠 Overview
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('newCase',this)">
-                📝 New Case
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('patientAppointments',this)">
-                📅 Appointments
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('patientHistory',this)">
-                📋 Medical History
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('patientReports',this)">
-                📊 Reports
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('patientMessages',this)">
-                💬 Messages
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('patientProfile',this)">
-                👤 My Profile
-            </button>
-
-        </div>
-
-
-        <!-- DOCTOR NAVIGATION -->
-
-        <div id="doctorNav" class="hidden">
-
-            <div class="nav-title">Doctor</div>
-
-            <button class="nav-btn active"
-                    onclick="showPage('doctorOverview',this)">
-                🏠 Overview
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('doctorAppointments',this)">
-                📅 Appointments
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('doctorCases',this)">
-                📋 Patient Cases
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('doctorPatients',this)">
-                👥 Patients
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('doctorNotes',this)">
-                📝 Clinical Notes
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('doctorReports',this)">
-                📊 Reports
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('doctorMessages',this)">
-                💬 Messages
-            </button>
-
-            <button class="nav-btn"
-                    onclick="showPage('doctorProfile',this)">
-                👨‍⚕️ Doctor Profile
-            </button>
-
-        </div>
-
-
-        <button
-            class="logout-btn"
-            onclick="logout()">
-            ⇥ Logout
-        </button>
-
-    </aside>
-
-
-    <!-- MAIN AREA -->
-
-    <main class="main">
-
-        <header class="topbar">
-
-            <div style="display:flex;align-items:center;gap:12px;">
-
-                <button
-                    class="menu-btn"
-                    onclick="toggleSidebar()">
-                    ☰
-                </button>
-
-                <h3 id="pageTitle">
-                    Dashboard
-                </h3>
-
-            </div>
-
-            <div class="top-profile">
-
-                <div class="avatar" id="topAvatar">
-                    👤
-                </div>
-
-                <span id="topUserName">
-                    Demo User
-                </span>
-
-            </div>
-
-        </header>
-
-
-        <div class="content">
-
-
-<!-- =========================================================
-     PATIENT OVERVIEW
-========================================================= -->
-
-<section id="patientOverview" class="page active">
-
-    <div class="welcome">
-
-        <h1 id="patientWelcome">
-            Welcome back 👋
-        </h1>
-
-        <p class="muted">
-            Manage your case information and appointments.
-        </p>
-
-    </div>
-
-    <div class="stats">
-
-        <div class="stat-card">
-            <div>📅</div>
-            <div class="number">2</div>
-            <div class="label">Upcoming Appointments</div>
-        </div>
-
-        <div class="stat-card">
-            <div>📋</div>
-            <div class="number">4</div>
-            <div class="label">Medical Records</div>
-        </div>
-
-        <div class="stat-card">
-            <div>📊</div>
-            <div class="number">3</div>
-            <div class="label">Reports</div>
-        </div>
-
-        <div class="stat-card">
-            <div>💬</div>
-            <div class="number">1</div>
-            <div class="label">New Message</div>
-        </div>
-
-    </div>
-
-
-    <div class="grid-2">
-
-        <div class="card">
-
-            <h2>Next Appointment</h2>
-
-            <div class="appointment">
-
-                <div>
-                    <strong>General Consultation</strong>
-
-                    <p class="muted">
-                        Dr. Demo Doctor
-                    </p>
-
-                    <small>
-                        Tomorrow • 10:30 AM
-                    </small>
-                </div>
-
-                <span class="badge">
-                    Confirmed
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <h2>Quick Actions</h2>
-
-            <button
-                class="primary-btn"
-                onclick="showPageById('newCase')"
-                style="margin-bottom:10px;">
-                📝 Start New Case
-            </button>
-
-            <button
-                class="small-btn"
-                style="width:100%;"
-                onclick="showPageById('patientAppointments')">
-                📅 View Appointments
-            </button>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- =========================================================
-     NEW CASE
-========================================================= -->
+<!-- ================= PATIENT DASHBOARD ================= -->
 
-<section id="newCase" class="page">
+<section id="patientDashboard"
+         class="container hidden">
 
-    <div class="welcome">
+<div class="card">
 
-        <h1>Digital Case Taking</h1>
+<h2>👤 Patient Dashboard</h2>
 
-        <p class="muted">
-            Enter patient information using typing or voice input.
-        </p>
+<p id="welcomePatient"></p>
 
-    </div>
+</div>
 
 
-    <!-- VOICE PANEL -->
+<div class="nav-buttons">
 
-    <div class="voice-panel">
+<button onclick="patientSection('newCase')">
+📝 New Patient Case
+</button>
 
-        <strong>🎤 Multilingual Voice Input</strong>
+<button onclick="patientSection('appointmentSection')">
+📅 My Appointments
+</button>
 
-        <p class="muted" style="margin:7px 0 13px;">
-            Select a language and press the microphone beside a field.
-        </p>
+<button onclick="patientSection('historySection')">
+🩺 Medical History
+</button>
 
-        <div class="voice-controls">
+</div>
 
-            <select id="voiceLanguage">
 
-                <option value="en-IN">
-                    English (India)
-                </option>
+<!-- NEW CASE -->
 
-                <option value="ta-IN">
-                    தமிழ் — Tamil
-                </option>
+<div id="newCase"
+     class="card dashboard-section">
 
-                <option value="te-IN">
-                    తెలుగు — Telugu
-                </option>
+<h2>📝 Create New Patient Case</h2>
 
-                <option value="hi-IN">
-                    हिन्दी — Hindi
-                </option>
 
-                <option value="ml-IN">
-                    മലയാളം — Malayalam
-                </option>
+<!-- STATE -->
 
-                <option value="kn-IN">
-                    ಕನ್ನಡ — Kannada
-                </option>
+<label>🇮🇳 Indian State</label>
 
-                <option value="bn-IN">
-                    বাংলা — Bengali
-                </option>
+<select id="state"
+        onchange="loadCities()">
 
-                <option value="mr-IN">
-                    मराठी — Marathi
-                </option>
+<option value="">
+Select State
+</option>
 
-                <option value="gu-IN">
-                    ગુજરાતી — Gujarati
-                </option>
+</select>
 
-                <option value="pa-IN">
-                    ਪੰਜਾਬੀ — Punjabi
-                </option>
 
-            </select>
+<!-- CITY -->
 
+<label>🏙️ City</label>
 
-            <button
-                class="small-btn"
-                onclick="testVoice()">
-                🎤 Test Voice
-            </button>
+<select id="city"
+        onchange="loadHospitals()">
 
-            <button
-                class="small-btn danger-btn"
-                onclick="stopVoice()">
-                ■ Stop
-            </button>
+<option value="">
+Select City
+</option>
 
-        </div>
+</select>
 
-        <div
-            id="voiceStatus"
-            class="voice-status">
-            Voice ready. Select a language and use a microphone.
-        </div>
 
-    </div>
+<!-- HOSPITAL -->
 
+<label>🏥 Hospital</label>
 
-    <div class="card">
+<select id="hospital"
+        onchange="loadDepartments()">
 
-        <h2>Patient Information</h2>
+<option value="">
+Select Hospital
+</option>
 
-        <div class="case-grid">
+</select>
 
-            <div class="form-group">
-                <label>Patient Name *</label>
 
-                <input
-                    id="patientName"
-                    placeholder="Patient name">
-            </div>
+<!-- DEPARTMENT -->
 
+<label>🩺 Medical Department</label>
 
-            <div class="form-group">
-                <label>Mobile Number</label>
+<select id="department"
+        onchange="loadDoctors()">
 
-                <input
-                    id="mobile"
-                    placeholder="Mobile number">
-            </div>
+<option value="">
+Select Department
+</option>
 
+</select>
 
-            <div class="form-group">
-                <label>Date of Birth</label>
 
-                <input
-                    id="dob"
-                    type="date">
-            </div>
+<!-- DOCTOR -->
 
+<label>👨‍⚕️ Doctor</label>
 
-            <div class="form-group">
-                <label>Age</label>
+<select id="doctor">
 
-                <input
-                    id="age"
-                    type="number"
-                    placeholder="Age">
-            </div>
+<option value="">
+Select Doctor
+</option>
 
+</select>
 
-            <div class="form-group">
-                <label>Sex</label>
 
-                <select id="sex">
+<!-- SYMPTOMS -->
 
-                    <option value="">
-                        Select
-                    </option>
+<label>
+Patient Symptoms / Complaint
+</label>
 
-                    <option>
-                        Male
-                    </option>
+<textarea id="symptoms"
+          rows="6"
+          placeholder="Describe your symptoms...">
+</textarea>
 
-                    <option>
-                        Female
-                    </option>
 
-                    <option>
-                        Other
-                    </option>
+<!-- MICROPHONE -->
 
-                </select>
+<div class="voice-box">
 
-            </div>
+<h3>🎤 Voice Input</h3>
 
+<p>
+Speak your symptoms instead of typing.
+</p>
 
-            <div class="form-group">
-                <label>Blood Group</label>
 
-                <select id="blood">
+<label>Voice Language</label>
 
-                    <option value="">
-                        Select
-                    </option>
+<select id="language">
 
-                    <option>A+</option>
-                    <option>A-</option>
-                    <option>B+</option>
-                    <option>B-</option>
-                    <option>O+</option>
-                    <option>O-</option>
-                    <option>AB+</option>
-                    <option>AB-</option>
+<option value="en-IN">
+English
+</option>
 
-                </select>
+<option value="ta-IN">
+தமிழ் - Tamil
+</option>
 
-            </div>
+<option value="hi-IN">
+हिन्दी - Hindi
+</option>
 
+<option value="te-IN">
+తెలుగు - Telugu
+</option>
 
-            <div class="form-group full">
+<option value="ml-IN">
+മലയാളം - Malayalam
+</option>
 
-                <label>Address</label>
+<option value="kn-IN">
+ಕನ್ನಡ - Kannada
+</option>
 
-                <div class="voice-row">
+<option value="mr-IN">
+मराठी - Marathi
+</option>
 
-                    <textarea
-                        id="address"
-                        placeholder="Patient address"></textarea>
+<option value="bn-IN">
+বাংলা - Bengali
+</option>
 
-                    <button
-                        class="mic-btn"
-                        onclick="startVoice('address')">
-                        🎤
-                    </button>
+</select>
 
-                </div>
 
-            </div>
+<button id="micButton"
+        class="mic-button"
+        onclick="toggleMicrophone()">
 
+🎤
 
-            <div class="form-group">
+</button>
 
-                <label>Visit Date</label>
 
-                <input
-                    id="visitDate"
-                    type="date">
+<div id="micStatus"
+     class="status">
 
-            </div>
+Click microphone and start speaking.
 
+</div>
 
-            <div class="form-group">
+</div>
 
-                <label>Temperature</label>
 
-                <input
-                    id="temperature"
-                    placeholder="e.g. 98.6 °F">
+<br>
 
-            </div>
 
+<button onclick="generateSummary()">
+✨ Generate Case Summary
+</button>
 
-            <div class="form-group">
 
-                <label>Weight</label>
+<div id="caseSummary"
+     class="summary hidden">
+</div>
 
-                <input
-                    id="weight"
-                    placeholder="e.g. 65 kg">
 
-            </div>
+<br>
 
-        </div>
 
-    </div>
+<button onclick="bookAppointment()">
+📅 Book Doctor Appointment
+</button>
 
+</div>
 
-    <!-- CASE DETAILS -->
 
-    <div class="card">
+<!-- APPOINTMENTS -->
 
-        <h2>Clinical Information</h2>
+<div id="appointmentSection"
+     class="card dashboard-section hidden">
 
-        <div class="case-grid">
+<h2>📅 My Appointments</h2>
 
+<div id="patientAppointments">
 
-            <div class="form-group full">
+No appointments yet.
 
-                <label>Main Complaint *</label>
+</div>
 
-                <div class="voice-row">
+</div>
 
-                    <textarea
-                        id="complaint"
-                        placeholder="Describe the main complaint"></textarea>
 
-                    <button
-                        class="mic-btn"
-                        onclick="startVoice('complaint')">
-                        🎤
-                    </button>
+<!-- HISTORY -->
 
-                </div>
+<div id="historySection"
+     class="card dashboard-section hidden">
 
-            </div>
+<h2>🩺 Medical History</h2>
 
+<div id="medicalHistory">
 
-            <div class="form-group full">
+No medical history available.
 
-                <label>Symptoms</label>
+</div>
 
-                <div class="voice-row">
-
-                    <textarea
-                        id="symptoms"
-                        placeholder="Describe symptoms"></textarea>
-
-                    <button
-                        class="mic-btn"
-                        onclick="startVoice('symptoms')">
-                        🎤
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>History of Present Illness</label>
-
-                <div class="voice-row">
-
-                    <textarea
-                        id="history"
-                        placeholder="Describe how the problem started and progressed"></textarea>
-
-                    <button
-                        class="mic-btn"
-                        onclick="startVoice('history')">
-                        🎤
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>Previous Medical History</label>
-
-                <div class="voice-row">
-
-                    <textarea
-                        id="medicalHistory"
-                        placeholder="Previous diseases or medical history"></textarea>
-
-                    <button
-                        class="mic-btn"
-                        onclick="startVoice('medicalHistory')">
-                        🎤
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>Previous Surgery</label>
-
-                <div class="voice-row">
-
-                    <textarea
-                        id="surgery"
-                        placeholder="Previous surgery details"></textarea>
-
-                    <button
-                        class="mic-btn"
-                        onclick="startVoice('surgery')">
-                        🎤
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>Current Medications</label>
-
-                <div class="voice-row">
-
-                    <textarea
-                        id="medications"
-                        placeholder="Current medicines"></textarea>
-
-                    <button
-                        class="mic-btn"
-                        onclick="startVoice('medications')">
-                        🎤
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>Allergies</label>
-
-                <div class="voice-row">
-
-                    <textarea
-                        id="allergies"
-                        placeholder="Known allergies"></textarea>
-
-                    <button
-                        class="mic-btn"
-                        onclick="startVoice('allergies')">
-                        🎤
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="case-actions">
-
-            <button
-                class="generate-btn"
-                onclick="generateSummary()">
-                ✨ Generate Case Summary
-            </button>
-
-            <button
-                class="save-btn"
-                onclick="saveCase()">
-                💾 Save Case
-            </button>
-
-            <button
-                class="clear-btn"
-                onclick="clearCase()">
-                Clear Form
-            </button>
-
-        </div>
-
-
-        <div
-            id="summaryArea"
-            class="hidden">
-
-            <h2 style="margin-top:25px;">
-                Structured Case Summary
-            </h2>
-
-            <div
-                id="summary"
-                class="summary-box">
-            </div>
-
-            <div class="summary-actions">
-
-                <button
-                    class="small-btn"
-                    onclick="copySummary()">
-                    📋 Copy Summary
-                </button>
-
-                <button
-                    class="small-btn"
-                    onclick="window.print()">
-                    🖨 Print
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- =========================================================
-     PATIENT APPOINTMENTS
-========================================================= -->
+<!-- ================= DOCTOR DASHBOARD ================= -->
 
-<section id="patientAppointments" class="page">
+<section id="doctorDashboard"
+         class="container hidden">
 
-    <div class="welcome">
+<div class="card">
 
-        <h1>Appointments</h1>
+<h2>👨‍⚕️ Doctor Dashboard</h2>
 
-        <p class="muted">
-            View your upcoming and previous appointments.
-        </p>
+<p id="welcomeDoctor"></p>
 
-    </div>
-
-    <div class="card">
-
-        <h2>Upcoming</h2>
-
-        <div class="appointment">
-
-            <div>
-                <strong>General Consultation</strong>
-                <p class="muted">Dr. Demo Doctor</p>
-                <small>Tomorrow • 10:30 AM</small>
-            </div>
-
-            <span class="badge">Confirmed</span>
-
-        </div>
+</div>
 
 
-        <div class="appointment">
+<div class="nav-buttons">
 
-            <div>
-                <strong>Follow-up Consultation</strong>
-                <p class="muted">Dr. Demo Doctor</p>
-                <small>18 September • 3:00 PM</small>
-            </div>
+<button onclick="doctorSection('doctorPatients')">
+👥 Patient Cases
+</button>
 
-            <span class="badge">Scheduled</span>
+<button onclick="doctorSection('doctorAppointments')">
+📅 Appointments
+</button>
 
-        </div>
-
-    </div>
-
-</section>
+</div>
 
 
-<!-- =========================================================
-     PATIENT HISTORY
-========================================================= -->
+<!-- PATIENT CASES -->
 
-<section id="patientHistory" class="page">
+<div id="doctorPatients"
+     class="card doctor-section">
 
-    <div class="welcome">
+<h2>👥 Patient Cases</h2>
 
-        <h1>Medical History</h1>
+<p>
+Patients who have booked an appointment with you.
+</p>
 
-        <p class="muted">
-            Previous case information stored in this demo.
-        </p>
+<div id="doctorPatientList">
 
-    </div>
+No patient cases available.
 
-    <div class="card">
+</div>
 
-        <h2>Demo History</h2>
+</div>
 
-        <div class="appointment">
 
-            <div>
-                <strong>General Consultation</strong>
-                <p class="muted">
-                    Case recorded for demonstration.
-                </p>
-            </div>
+<!-- DOCTOR APPOINTMENTS -->
 
-            <span>2026</span>
+<div id="doctorAppointments"
+     class="card doctor-section hidden">
 
-        </div>
+<h2>📅 Doctor Appointments</h2>
 
-        <div class="appointment">
+<div id="doctorAppointmentList">
 
-            <div>
-                <strong>Follow-up Visit</strong>
-                <p class="muted">
-                    Follow-up record.
-                </p>
-            </div>
+No appointments available.
 
-            <span>2026</span>
+</div>
 
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- =========================================================
-     PATIENT REPORTS
-========================================================= -->
+<footer>
 
-<section id="patientReports" class="page">
+❤️ CareFlow India © 2026
 
-    <div class="welcome">
+<br>
 
-        <h1>Reports</h1>
+Smart Healthcare Prototype
 
-        <p class="muted">
-            View available reports in this prototype.
-        </p>
+</footer>
 
-    </div>
-
-    <div class="card">
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>Report</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>General Health Report</td>
-                        <td>05 Sep 2026</td>
-                        <td><span class="badge">Available</span></td>
-                        <td>
-                            <button class="small-btn"
-                                    onclick="demoAction('Opening report')">
-                                View
-                            </button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Laboratory Report</td>
-                        <td>02 Sep 2026</td>
-                        <td><span class="badge">Available</span></td>
-                        <td>
-                            <button class="small-btn"
-                                    onclick="demoAction('Opening laboratory report')">
-                                View
-                            </button>
-                        </td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     PATIENT MESSAGES
-========================================================= -->
-
-<section id="patientMessages" class="page">
-
-    <div class="welcome">
-
-        <h1>Messages</h1>
-
-        <p class="muted">
-            Communication area for the prototype.
-        </p>
-
-    </div>
-
-    <div class="card">
-
-        <div class="appointment">
-
-            <div>
-
-                <strong>Dr. Demo Doctor</strong>
-
-                <p class="muted">
-                    Your appointment is confirmed for tomorrow.
-                </p>
-
-            </div>
-
-            <small>Today</small>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     PATIENT PROFILE
-========================================================= -->
-
-<section id="patientProfile" class="page">
-
-    <div class="welcome">
-
-        <h1>My Profile</h1>
-
-    </div>
-
-    <div class="card">
-
-        <div class="form-group">
-            <label>Name</label>
-            <input id="profileName" value="">
-        </div>
-
-        <div class="form-group">
-            <label>Mobile</label>
-            <input id="profileMobile" value="">
-        </div>
-
-        <button
-            class="primary-btn"
-            onclick="saveProfile()">
-            Save Profile
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     DOCTOR OVERVIEW
-========================================================= -->
-
-<section id="doctorOverview" class="page">
-
-    <div class="welcome">
-
-        <h1>Doctor Dashboard</h1>
-
-        <p class="muted">
-            Review patient cases and today's clinical workflow.
-        </p>
-
-    </div>
-
-
-    <div class="stats">
-
-        <div class="stat-card">
-            <div>📅</div>
-            <div class="number">8</div>
-            <div class="label">Today's Appointments</div>
-        </div>
-
-        <div class="stat-card">
-            <div>👥</div>
-            <div class="number">42</div>
-            <div class="label">Patients</div>
-        </div>
-
-        <div class="stat-card">
-            <div>📋</div>
-            <div class="number">5</div>
-            <div class="label">Pending Cases</div>
-        </div>
-
-        <div class="stat-card">
-            <div>🧪</div>
-            <div class="number">3</div>
-            <div class="label">Lab Reports</div>
-        </div>
-
-    </div>
-
-
-    <div class="grid-2">
-
-        <div class="card">
-
-            <h2>Today's Schedule</h2>
-
-            <div class="appointment">
-
-                <div>
-                    <strong>10:00 AM — Demo Patient</strong>
-                    <p class="muted">
-                        General Consultation
-                    </p>
-                </div>
-
-                <button
-                    class="small-btn"
-                    onclick="showPageById('doctorCases')">
-                    Open
-                </button>
-
-            </div>
-
-
-            <div class="appointment">
-
-                <div>
-                    <strong>11:30 AM — Sample Patient</strong>
-                    <p class="muted">
-                        Follow-up
-                    </p>
-                </div>
-
-                <button
-                    class="small-btn"
-                    onclick="showPageById('doctorCases')">
-                    Open
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <h2>Quick Actions</h2>
-
-            <button
-                class="primary-btn"
-                onclick="showPageById('doctorCases')"
-                style="margin-bottom:10px;">
-                📋 Review Patient Cases
-            </button>
-
-            <button
-                class="small-btn"
-                style="width:100%;"
-                onclick="showPageById('doctorPatients')">
-                👥 Search Patients
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     DOCTOR APPOINTMENTS
-========================================================= -->
-
-<section id="doctorAppointments" class="page">
-
-    <div class="welcome">
-
-        <h1>Today's Appointments</h1>
-
-        <p class="muted">
-            Manage the consultation schedule.
-        </p>
-
-    </div>
-
-    <div class="card">
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Patient</th>
-                        <th>Type</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>10:00 AM</td>
-                        <td>Demo Patient</td>
-                        <td>Consultation</td>
-                        <td>
-                            <span class="badge">Confirmed</span>
-                        </td>
-                        <td>
-                            <button
-                                class="small-btn"
-                                onclick="showPageById('doctorCases')">
-                                Open Case
-                            </button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>11:30 AM</td>
-                        <td>Sample Patient</td>
-                        <td>Follow-up</td>
-                        <td>
-                            <span class="badge">Confirmed</span>
-                        </td>
-                        <td>
-                            <button
-                                class="small-btn"
-                                onclick="showPageById('doctorCases')">
-                                Open Case
-                            </button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>02:00 PM</td>
-                        <td>Demo Patient 2</td>
-                        <td>Review</td>
-                        <td>
-                            <span class="badge">Scheduled</span>
-                        </td>
-                        <td>
-                            <button
-                                class="small-btn"
-                                onclick="showPageById('doctorCases')">
-                                Open Case
-                            </button>
-                        </td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     DOCTOR CASES
-========================================================= -->
-
-<section id="doctorCases" class="page">
-
-    <div class="welcome">
-
-        <h1>Patient Cases</h1>
-
-        <p class="muted">
-            Review structured information submitted by patients.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <input
-            class="search-box"
-            id="caseSearch"
-            onkeyup="searchCases()"
-            placeholder="Search patient cases...">
-
-
-        <div class="table-wrap">
-
-            <table id="casesTable">
-
-                <thead>
-
-                    <tr>
-                        <th>Patient</th>
-                        <th>Age</th>
-                        <th>Complaint</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td>Demo Patient</td>
-                        <td>35</td>
-                        <td>General consultation</td>
-                        <td>08 Sep 2026</td>
-
-                        <td>
-                            <button
-                                class="small-btn"
-                                onclick="openDemoCase()">
-                                Review
-                            </button>
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>Sample Patient</td>
-                        <td>42</td>
-                        <td>Follow-up</td>
-                        <td>08 Sep 2026</td>
-
-                        <td>
-                            <button
-                                class="small-btn"
-                                onclick="openDemoCase()">
-                                Review
-                            </button>
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-
-    <div
-        id="doctorCaseViewer"
-        class="card hidden">
-
-        <h2>Structured Patient Case</h2>
-
-        <div
-            id="doctorCaseContent"
-            class="summary-box">
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     DOCTOR PATIENTS
-========================================================= -->
-
-<section id="doctorPatients" class="page">
-
-    <div class="welcome">
-
-        <h1>Patients</h1>
-
-        <p class="muted">
-            Search and review registered demo patients.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <input
-            class="search-box"
-            id="patientSearch"
-            onkeyup="searchPatients()"
-            placeholder="Search patient...">
-
-
-        <div class="table-wrap">
-
-            <table id="patientsTable">
-
-                <thead>
-
-                    <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Last Visit</th>
-                        <th>Status</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>Demo Patient</td>
-                        <td>35</td>
-                        <td>08 Sep 2026</td>
-                        <td>
-                            <span class="badge">Active</span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Sample Patient</td>
-                        <td>42</td>
-                        <td>07 Sep 2026</td>
-                        <td>
-                            <span class="badge">Active</span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Demo Patient 2</td>
-                        <td>29</td>
-                        <td>06 Sep 2026</td>
-                        <td>
-                            <span class="badge">Active</span>
-                        </td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     DOCTOR NOTES
-========================================================= -->
-
-<section id="doctorNotes" class="page">
-
-    <div class="welcome">
-
-        <h1>Clinical Notes</h1>
-
-        <p class="muted">
-            Prototype area for consultation documentation.
-        </p>
-
-    </div>
-
-    <div class="card">
-
-        <div class="form-group">
-
-            <label>Patient</label>
-
-            <select>
-
-                <option>Demo Patient</option>
-                <option>Sample Patient</option>
-
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Consultation Note</label>
-
-            <textarea
-                id="doctorNote"
-                rows="7"
-                placeholder="Enter demonstration clinical note..."></textarea>
-
-        </div>
-
-
-        <button
-            class="primary-btn"
-            onclick="saveDoctorNote()">
-            Save Note
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     DOCTOR REPORTS
-========================================================= -->
-
-<section id="doctorReports" class="page">
-
-    <div class="welcome">
-
-        <h1>Reports</h1>
-
-        <p class="muted">
-            Overview of clinical activity.
-        </p>
-
-    </div>
-
-
-    <div class="stats">
-
-        <div class="stat-card">
-            <div class="number">128</div>
-            <div class="label">Cases Reviewed</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="number">96%</div>
-            <div class="label">Documentation Completion</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="number">34</div>
-            <div class="label">Reports Generated</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="number">18 min</div>
-            <div class="label">Average Consultation</div>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     DOCTOR MESSAGES
-========================================================= -->
-
-<section id="doctorMessages" class="page">
-
-    <div class="welcome">
-
-        <h1>Messages</h1>
-
-        <p class="muted">
-            Communication center.
-        </p>
-
-    </div>
-
-    <div class="card">
-
-        <div class="appointment">
-
-            <div>
-
-                <strong>Demo Patient</strong>
-
-                <p class="muted">
-                    Case information has been submitted.
-                </p>
-
-            </div>
-
-            <small>Today</small>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     DOCTOR PROFILE
-========================================================= -->
-
-<section id="doctorProfile" class="page">
-
-    <div class="welcome">
-
-        <h1>Doctor Profile</h1>
-
-    </div>
-
-    <div class="card">
-
-        <div class="form-group">
-            <label>Name</label>
-            <input value="Dr. Demo Doctor">
-        </div>
-
-        <div class="form-group">
-            <label>Specialization</label>
-            <input value="General Medicine">
-        </div>
-
-        <div class="form-group">
-            <label>Hospital</label>
-            <input value="CareFlow Demo Hospital">
-        </div>
-
-        <button
-            class="primary-btn"
-            onclick="demoAction('Doctor profile saved')">
-            Save Profile
-        </button>
-
-    </div>
-
-</section>
-
-
-        </div>
-
-    </main>
-
-</section>
-
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
 
 <script>
 
-/* =========================================================
-   GLOBAL VARIABLES
-========================================================= */
+/* =====================================================
+   INDIA DATA
+===================================================== */
 
-let currentRole = "";
-let recognition = null;
-let activeVoiceField = null;
+const indiaData = {
+
+" Tamil Nadu": {
+"Chennai":[
+"Apollo Hospitals Chennai",
+"MIOT International",
+"Sri Ramachandra Medical Centre",
+"Government General Hospital",
+"Fortis Malar Hospital"
+],
+"Coimbatore":[
+"KMCH - Kovai Medical Center and Hospital",
+"PSG Hospitals",
+"Ganga Hospital",
+"Government Coimbatore Medical College Hospital"
+],
+"Madurai":[
+"Meenakshi Mission Hospital",
+"Apollo Speciality Hospital Madurai",
+"Government Rajaji Hospital"
+],
+"Trichy":[
+"Kauvery Hospital Trichy",
+"Apollo Speciality Hospital Trichy",
+"Mahatma Gandhi Memorial Government Hospital"
+],
+"Salem":[
+"Manipal Hospitals Salem",
+"SKS Hospital",
+"Government Mohan Kumaramangalam Medical College Hospital"
+],
+"Tirunelveli":[
+"Government Medical College Hospital Tirunelveli"
+]
+},
+
+"Karnataka":{
+"Bengaluru":[
+"Manipal Hospital",
+"Narayana Health City",
+"Apollo Hospitals Bengaluru",
+"Bangalore Baptist Hospital"
+],
+"Mysuru":[
+"Apollo BGS Hospitals",
+"Columbia Asia Hospital Mysore",
+"JSS Hospital"
+],
+"Mangaluru":[
+"KMC Hospital",
+"AJ Hospital and Research Centre"
+]
+},
+
+"Kerala":{
+"Kochi":[
+"Amrita Hospital",
+"Aster Medcity",
+"Lakeshore Hospital"
+],
+"Thiruvananthapuram":[
+"KIMSHEALTH",
+"Government Medical College Hospital",
+"Sree Chitra Tirunal Institute"
+],
+"Kozhikode":[
+"Aster MIMS Hospital",
+"Government Medical College Kozhikode"
+]
+},
+
+"Andhra Pradesh":{
+"Visakhapatnam":[
+"Apollo Hospitals Visakhapatnam",
+"CARE Hospitals Visakhapatnam",
+"King George Hospital"
+],
+"Vijayawada":[
+"Manipal Hospitals Vijayawada",
+"Andhra Hospitals",
+"Government General Hospital Vijayawada"
+],
+"Tirupati":[
+"Sri Venkateswara Institute of Medical Sciences",
+"Apollo Hospitals Tirupati"
+]
+},
+
+"Telangana":{
+"Hyderabad":[
+"Apollo Hospitals Hyderabad",
+"Yashoda Hospitals",
+"KIMS Hospitals",
+"CARE Hospitals Hyderabad",
+"Nizam's Institute of Medical Sciences"
+],
+"Warangal":[
+"Kakatiya Medical College Hospital",
+"Government MGM Hospital"
+]
+},
+
+"Maharashtra":{
+"Mumbai":[
+"Kokilaben Dhirubhai Ambani Hospital",
+"Lilavati Hospital",
+"Tata Memorial Hospital",
+"Nanavati Max Hospital"
+],
+"Pune":[
+"Ruby Hall Clinic",
+"Jehangir Hospital",
+"Deenanath Mangeshkar Hospital"
+],
+"Nagpur":[
+"Wockhardt Hospitals Nagpur",
+"Government Medical College Nagpur"
+]
+},
+
+"Delhi":{
+"New Delhi":[
+"AIIMS New Delhi",
+"Safdarjung Hospital",
+"Sir Ganga Ram Hospital",
+"Max Super Speciality Hospital"
+]
+},
+
+"West Bengal":{
+"Kolkata":[
+"Apollo Multispeciality Hospitals",
+"AMRI Hospitals",
+"Fortis Hospital Anandapur",
+"SSKM Hospital"
+]
+},
+
+"Gujarat":{
+"Ahmedabad":[
+"Apollo Hospitals Ahmedabad",
+"Zydus Hospitals",
+"Civil Hospital Ahmedabad"
+],
+"Surat":[
+"Kiran Hospital",
+"Civil Hospital Surat"
+]
+},
+
+"Rajasthan":{
+"Jaipur":[
+"Fortis Escorts Hospital Jaipur",
+"Manipal Hospital Jaipur",
+"SMS Hospital Jaipur"
+],
+"Jodhpur":[
+"AIIMS Jodhpur",
+"Mathura Das Mathur Hospital"
+]
+},
+
+"Uttar Pradesh":{
+"Lucknow":[
+"Apollo Medics International Lifesciences",
+"King George's Medical University",
+"SGPGIMS"
+],
+"Noida":[
+"Fortis Hospital Noida",
+"Jaypee Hospital"
+],
+"Kanpur":[
+"Regency Hospital",
+"GSVM Medical College Hospital"
+]
+},
+
+"Madhya Pradesh":{
+"Bhopal":[
+"AIIMS Bhopal",
+"Bansal Hospital",
+"Hamidia Hospital"
+],
+"Indore":[
+"Bombay Hospital Indore",
+"Choithram Hospital",
+"AIIMS Indore"
+]
+},
+
+"Bihar":{
+"Patna":[
+"AIIMS Patna",
+"Indira Gandhi Institute of Medical Sciences",
+"PMCH Patna"
+]
+},
+
+"Odisha":{
+"Bhubaneswar":[
+"AIIMS Bhubaneswar",
+"Apollo Hospitals Bhubaneswar",
+"SUM Hospital"
+]
+},
+
+"Punjab":{
+"Chandigarh":[
+"PGIMER Chandigarh",
+"Government Multi-Speciality Hospital"
+],
+"Amritsar":[
+"Fortis Hospital Amritsar",
+"Government Medical College Amritsar"
+]
+},
+
+"Jharkhand":{
+"Ranchi":[
+"Rajendra Institute of Medical Sciences",
+"Medica Hospital Ranchi"
+]
+},
+
+"Chhattisgarh":{
+"Raipur":[
+"AIIMS Raipur",
+"Balco Medical Centre",
+"Government Medical College Hospital"
+]
+},
+
+"Uttarakhand":{
+"Dehradun":[
+"Max Super Speciality Hospital Dehradun",
+"Government Doon Medical College Hospital"
+]
+},
+
+"Goa":{
+"Panaji":[
+"Goa Medical College and Hospital",
+"Manipal Hospital Goa"
+]
+},
+
+"Assam":{
+"Guwahati":[
+"Gauhati Medical College and Hospital",
+"GNRC Hospitals",
+"Apollo Excelcare Hospital"
+]
+}
+
+};
 
 
-/* =========================================================
-   ROLE SCREEN
-========================================================= */
+/* =====================================================
+   DEPARTMENT + DOCTOR DATA
+===================================================== */
+
+const departments = {
+
+"General Medicine":[
+"Dr. Arun Kumar",
+"Dr. Priya Sharma"
+],
+
+"Cardiology":[
+"Dr. Rajesh Kumar",
+"Dr. Meena Ravi"
+],
+
+"Pediatrics":[
+"Dr. Anitha",
+"Dr. Karthik"
+],
+
+"Orthopedics":[
+"Dr. Suresh",
+"Dr. Vivek"
+],
+
+"Dermatology":[
+"Dr. Divya",
+"Dr. Lakshmi"
+],
+
+"Neurology":[
+"Dr. Naveen",
+"Dr. Sanjay"
+],
+
+"ENT":[
+"Dr. Ramesh",
+"Dr. Swetha"
+],
+
+"Gynecology":[
+"Dr. Kavitha",
+"Dr. Priyanka"
+],
+
+"Ophthalmology":[
+"Dr. Hari",
+"Dr. Deepa"
+],
+
+"Psychiatry":[
+"Dr. Anand",
+"Dr. Rekha"
+]
+
+};
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let currentPatient=null;
+let currentDoctor=null;
+
+let appointments=[];
+let patientCases=[];
+
+let recognition=null;
+let isRecording=false;
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function hideAll(){
+
+document.querySelectorAll("section")
+.forEach(section=>{
+section.classList.add("hidden");
+});
+
+}
+
+
+function goHome(){
+
+hideAll();
+
+document.getElementById("home")
+.classList.remove("hidden");
+
+document.getElementById("logoutBtn")
+.classList.add("hidden");
+
+}
+
 
 function showPatientLogin(){
 
-    document.getElementById("landing").classList.add("hidden");
+hideAll();
 
-    document.getElementById("doctorLogin").classList.add("hidden");
+document.getElementById("patientLogin")
+.classList.remove("hidden");
 
-    document.getElementById("patientLogin").classList.remove("hidden");
 }
 
 
 function showDoctorLogin(){
 
-    document.getElementById("landing").classList.add("hidden");
+hideAll();
 
-    document.getElementById("patientLogin").classList.add("hidden");
+document.getElementById("doctorLogin")
+.classList.remove("hidden");
 
-    document.getElementById("doctorLogin").classList.remove("hidden");
 }
 
 
-function backToRoles(){
-
-    document.getElementById("patientLogin").classList.add("hidden");
-
-    document.getElementById("doctorLogin").classList.add("hidden");
-
-    document.getElementById("landing").classList.remove("hidden");
-}
-
-
-/* =========================================================
+/* =====================================================
    PATIENT LOGIN
-========================================================= */
+===================================================== */
 
-function loginPatient(){
+function patientLogin(){
 
-    const name =
-        document.getElementById("patientLoginName").value.trim();
+const name=
+document.getElementById("patientName")
+.value.trim();
 
-    const mobile =
-        document.getElementById("patientLoginMobile").value.trim();
+const mobile=
+document.getElementById("patientMobile")
+.value.trim();
 
+if(!name || !mobile){
 
-    if(!name){
+alert("Please enter patient name and mobile number.");
 
-        alert("Please enter patient name.");
+return;
 
-        return;
-    }
+}
 
+currentPatient={
+name:name,
+mobile:mobile
+};
 
-    currentRole = "patient";
+hideAll();
 
+document.getElementById("patientDashboard")
+.classList.remove("hidden");
 
-    document.getElementById("landing").classList.add("hidden");
+document.getElementById("logoutBtn")
+.classList.remove("hidden");
 
-    document.getElementById("patientLogin").classList.add("hidden");
-
-    document.getElementById("doctorLogin").classList.add("hidden");
-
-    document.getElementById("app").classList.remove("hidden");
-
-
-    document.getElementById("sideUserName").textContent = name;
-
-    document.getElementById("sideUserRole").textContent =
-        "Patient";
-
-    document.getElementById("topUserName").textContent =
-        name;
-
-    document.getElementById("patientWelcome").textContent =
-        "Welcome back, " + name + " 👋";
-
-
-    document.getElementById("profileName").value = name;
-
-    document.getElementById("profileMobile").value = mobile;
-
-
-    document.getElementById("patientNav").classList.remove("hidden");
-
-    document.getElementById("doctorNav").classList.add("hidden");
-
-
-    showPageById("patientOverview");
+document.getElementById("welcomePatient")
+.innerText=
+"Welcome, "+name+"!";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    DOCTOR LOGIN
-========================================================= */
+===================================================== */
 
-function loginDoctor(){
+function doctorLogin(){
 
-    const email =
-        document.getElementById("doctorEmail").value.trim();
+const name=
+document.getElementById("doctorName")
+.value.trim();
 
-    const password =
-        document.getElementById("doctorPassword").value.trim();
+const id=
+document.getElementById("doctorId")
+.value.trim();
 
+if(!name || !id){
 
-    if(!email || !password){
+alert("Please enter doctor name and ID.");
 
-        alert("Please enter email and password.");
+return;
 
-        return;
-    }
+}
 
+currentDoctor={
+name:name,
+id:id
+};
 
-    currentRole = "doctor";
+hideAll();
 
+document.getElementById("doctorDashboard")
+.classList.remove("hidden");
 
-    document.getElementById("landing").classList.add("hidden");
+document.getElementById("logoutBtn")
+.classList.remove("hidden");
 
-    document.getElementById("patientLogin").classList.add("hidden");
+document.getElementById("welcomeDoctor")
+.innerText=
+"Welcome Dr. "+name+"!";
 
-    document.getElementById("doctorLogin").classList.add("hidden");
-
-    document.getElementById("app").classList.remove("hidden");
-
-
-    document.getElementById("sideUserName").textContent =
-        "Dr. Demo Doctor";
-
-    document.getElementById("sideUserRole").textContent =
-        "Doctor";
-
-    document.getElementById("topUserName").textContent =
-        "Dr. Demo Doctor";
-
-
-    document.getElementById("patientNav").classList.add("hidden");
-
-    document.getElementById("doctorNav").classList.remove("hidden");
-
-
-    showPageById("doctorOverview");
+loadDoctorPatients();
+loadDoctorAppointments();
 
 }
 
 
-/* =========================================================
-   LOGOUT
-========================================================= */
+/* =====================================================
+   STATE LOADING
+===================================================== */
 
-function logout(){
+function loadStates(){
 
-    stopVoice();
+const state=
+document.getElementById("state");
 
-    currentRole = "";
+state.innerHTML=
+'<option value="">Select State</option>';
 
-    document.getElementById("app").classList.add("hidden");
+Object.keys(indiaData).forEach(stateName=>{
 
-    document.getElementById("patientLogin").classList.add("hidden");
+const option=
+document.createElement("option");
 
-    document.getElementById("doctorLogin").classList.add("hidden");
+option.value=stateName;
 
-    document.getElementById("landing").classList.remove("hidden");
+option.textContent=
+stateName.trim();
 
-}
+state.appendChild(option);
 
-
-/* =========================================================
-   PAGE NAVIGATION
-========================================================= */
-
-function showPage(pageId, button){
-
-    const pages =
-        document.querySelectorAll(".page");
-
-
-    pages.forEach(function(page){
-
-        page.classList.remove("active");
-
-    });
-
-
-    const target =
-        document.getElementById(pageId);
-
-
-    if(target){
-
-        target.classList.add("active");
-
-    }
-
-
-    document.querySelectorAll(".nav-btn")
-        .forEach(function(btn){
-
-            btn.classList.remove("active");
-
-        });
-
-
-    if(button){
-
-        button.classList.add("active");
-
-    }
-
-
-    updatePageTitle(pageId);
-
-    closeSidebar();
+});
 
 }
 
 
-function showPageById(pageId){
+/* =====================================================
+   STATE → CITY
+===================================================== */
 
-    const target =
-        document.getElementById(pageId);
+function loadCities(){
 
+const state=
+document.getElementById("state").value;
 
-    if(!target){
+const city=
+document.getElementById("city");
 
-        console.error("Page not found:", pageId);
+const hospital=
+document.getElementById("hospital");
 
-        return;
-    }
+const department=
+document.getElementById("department");
 
+const doctor=
+document.getElementById("doctor");
 
-    document.querySelectorAll(".page")
-        .forEach(function(page){
+city.innerHTML=
+'<option value="">Select City</option>';
 
-            page.classList.remove("active");
+hospital.innerHTML=
+'<option value="">Select Hospital</option>';
 
-        });
+department.innerHTML=
+'<option value="">Select Department</option>';
 
+doctor.innerHTML=
+'<option value="">Select Doctor</option>';
 
-    target.classList.add("active");
+if(!state) return;
 
+Object.keys(indiaData[state])
+.forEach(cityName=>{
 
-    document.querySelectorAll(".nav-btn")
-        .forEach(function(btn){
+const option=
+document.createElement("option");
 
-            btn.classList.remove("active");
+option.value=cityName;
 
-        });
+option.textContent=cityName;
 
+city.appendChild(option);
 
-    updatePageTitle(pageId);
-
-    closeSidebar();
-
-}
-
-
-function updatePageTitle(pageId){
-
-    const titles = {
-
-        patientOverview:"Patient Dashboard",
-
-        newCase:"Digital Case Taking",
-
-        patientAppointments:"Appointments",
-
-        patientHistory:"Medical History",
-
-        patientReports:"Reports",
-
-        patientMessages:"Messages",
-
-        patientProfile:"My Profile",
-
-        doctorOverview:"Doctor Dashboard",
-
-        doctorAppointments:"Appointments",
-
-        doctorCases:"Patient Cases",
-
-        doctorPatients:"Patients",
-
-        doctorNotes:"Clinical Notes",
-
-        doctorReports:"Reports",
-
-        doctorMessages:"Messages",
-
-        doctorProfile:"Doctor Profile"
-
-    };
-
-
-    document.getElementById("pageTitle").textContent =
-        titles[pageId] || "CareFlow";
+});
 
 }
 
 
-/* =========================================================
-   SIDEBAR
-========================================================= */
+/* =====================================================
+   CITY → HOSPITAL
+===================================================== */
 
-function toggleSidebar(){
+function loadHospitals(){
 
-    document.getElementById("sidebar")
-        .classList.toggle("open");
+const state=
+document.getElementById("state").value;
+
+const city=
+document.getElementById("city").value;
+
+const hospital=
+document.getElementById("hospital");
+
+hospital.innerHTML=
+'<option value="">Select Hospital</option>';
+
+if(!state || !city) return;
+
+indiaData[state][city]
+.forEach(hospitalName=>{
+
+const option=
+document.createElement("option");
+
+option.value=hospitalName;
+
+option.textContent=hospitalName;
+
+hospital.appendChild(option);
+
+});
 
 }
 
 
-function closeSidebar(){
+/* =====================================================
+   HOSPITAL → DEPARTMENT
+===================================================== */
 
-    document.getElementById("sidebar")
-        .classList.remove("open");
+function loadDepartments(){
+
+const department=
+document.getElementById("department");
+
+department.innerHTML=
+'<option value="">Select Department</option>';
+
+document.getElementById("doctor")
+.innerHTML=
+'<option value="">Select Doctor</option>';
+
+Object.keys(departments)
+.forEach(departmentName=>{
+
+const option=
+document.createElement("option");
+
+option.value=departmentName;
+
+option.textContent=departmentName;
+
+department.appendChild(option);
+
+});
 
 }
 
 
-/* =========================================================
-   VOICE RECOGNITION
-========================================================= */
+/* =====================================================
+   DEPARTMENT → DOCTOR
+===================================================== */
 
-function getSpeechRecognition(){
+function loadDoctors(){
 
-    return window.SpeechRecognition ||
-           window.webkitSpeechRecognition ||
-           null;
+const dep=
+document.getElementById("department")
+.value;
+
+const doctor=
+document.getElementById("doctor");
+
+doctor.innerHTML=
+'<option value="">Select Doctor</option>';
+
+if(!dep) return;
+
+departments[dep]
+.forEach(doctorName=>{
+
+const option=
+document.createElement("option");
+
+option.value=doctorName;
+
+option.textContent=doctorName;
+
+doctor.appendChild(option);
+
+});
 
 }
 
 
-function startVoice(fieldId){
+/* =====================================================
+   MICROPHONE
+===================================================== */
 
-    const SpeechRecognitionAPI =
-        getSpeechRecognition();
+function toggleMicrophone(){
 
+const SpeechRecognition=
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
 
-    if(!SpeechRecognitionAPI){
+if(!SpeechRecognition){
 
-        alert(
-            "Voice recognition is not supported in this browser. " +
-            "Please use Google Chrome or Microsoft Edge."
-        );
+showMicError(
+"Speech recognition is not supported. Please use Google Chrome or Microsoft Edge."
+);
 
-        setVoiceStatus(
-            "Voice recognition is not supported by this browser."
-        );
+return;
 
-        return;
-    }
+}
 
+if(isRecording){
 
-    stopVoice();
+stopMicrophone();
 
+}else{
 
-    activeVoiceField = fieldId;
+startMicrophone(SpeechRecognition);
 
-
-    recognition =
-        new SpeechRecognitionAPI();
-
-
-    recognition.lang =
-        document.getElementById("voiceLanguage").value;
-
-
-    recognition.continuous = false;
-
-    recognition.interimResults = true;
-
-    recognition.maxAlternatives = 1;
-
-
-    const field =
-        document.getElementById(fieldId);
-
-
-    const micButton =
-        field.closest(".voice-row")
-             ?.querySelector(".mic-btn");
-
-
-    if(micButton){
-
-        micButton.classList.add("listening");
-
-    }
-
-
-    setVoiceStatus(
-        "🎤 Listening... Speak now."
-    );
-
-
-    recognition.onstart = function(){
-
-        setVoiceStatus(
-            "🎤 Listening in " +
-            recognition.lang +
-            "..."
-        );
-
-    };
-
-
-    recognition.onresult = function(event){
-
-        let finalText = "";
-
-        let interimText = "";
-
-
-        for(
-            let i = event.resultIndex;
-            i < event.results.length;
-            i++
-        ){
-
-            const text =
-                event.results[i][0].transcript;
-
-
-            if(event.results[i].isFinal){
-
-                finalText += text + " ";
-
-            }else{
-
-                interimText += text;
-
-            }
-
-        }
-
-
-        if(finalText){
-
-            const oldText =
-                field.value.trim();
-
-
-            if(oldText){
-
-                field.value =
-                    oldText + " " + finalText.trim();
-
-            }else{
-
-                field.value =
-                    finalText.trim();
-
-            }
-
-
-            setVoiceStatus(
-                "✓ Voice input received."
-            );
-
-        }else if(interimText){
-
-            setVoiceStatus(
-                "Listening: " + interimText
-            );
-
-        }
-
-    };
-
-
-    recognition.onerror = function(event){
-
-        let message =
-            "Voice input error.";
-
-
-        if(event.error === "not-allowed"){
-
-            message =
-                "Microphone permission was denied. Allow microphone access and try again.";
-
-        }
-
-        else if(event.error === "no-speech"){
-
-            message =
-                "No speech detected. Please speak closer to the microphone.";
-
-        }
-
-        else if(event.error === "audio-capture"){
-
-            message =
-                "No microphone was detected.";
-
-        }
-
-        else if(event.error === "network"){
-
-            message =
-                "Network error. Check your internet connection.";
-
-        }
-
-        else if(event.error === "aborted"){
-
-            message =
-                "Voice input stopped.";
-
-        }
-
-
-        setVoiceStatus(message);
-
-    };
-
-
-    recognition.onend = function(){
-
-        if(micButton){
-
-            micButton.classList.remove("listening");
-
-        }
-
-
-        recognition = null;
-
-    };
-
-
-    try{
-
-        recognition.start();
-
-    }catch(error){
-
-        setVoiceStatus(
-            "Unable to start voice recognition. Please try again."
-        );
-
-    }
+}
 
 }
 
 
-function stopVoice(){
+function startMicrophone(SpeechRecognition){
 
-    if(recognition){
+try{
 
-        try{
+recognition=
+new SpeechRecognition();
 
-            recognition.stop();
+recognition.continuous=true;
 
-        }catch(error){}
+recognition.interimResults=true;
 
-        recognition = null;
-
-    }
-
-
-    document.querySelectorAll(".mic-btn")
-        .forEach(function(btn){
-
-            btn.classList.remove("listening");
-
-        });
+recognition.lang=
+document.getElementById("language").value;
 
 
-    activeVoiceField = null;
+recognition.onstart=function(){
+
+isRecording=true;
+
+const button=
+document.getElementById("micButton");
+
+button.classList.add("recording");
+
+button.innerText="⏹️";
+
+const status=
+document.getElementById("micStatus");
+
+status.innerText=
+"🎙️ Listening... Speak now.";
+
+status.className=
+"status success";
+
+};
+
+
+recognition.onresult=function(event){
+
+let text="";
+
+for(
+let i=event.resultIndex;
+i<event.results.length;
+i++
+){
+
+if(event.results[i].isFinal){
+
+text+=
+event.results[i][0].transcript+" ";
+
+}
+
+}
+
+if(text){
+
+const textarea=
+document.getElementById("symptoms");
+
+textarea.value+=text;
+
+}
+
+};
+
+
+recognition.onerror=function(event){
+
+let message=
+"Microphone error: "+event.error;
+
+if(event.error==="not-allowed"){
+
+message=
+"❌ Microphone permission denied. Allow microphone access in your browser.";
+
+}
+
+else if(event.error==="no-speech"){
+
+message=
+"⚠️ No speech detected. Please speak clearly.";
+
+}
+
+showMicError(message);
+
+stopMicrophone(false);
+
+};
+
+
+recognition.onend=function(){
+
+if(isRecording){
+
+try{
+
+recognition.start();
+
+}catch(error){}
+
+}
+
+};
+
+
+recognition.start();
+
+}
+
+catch(error){
+
+showMicError(
+"Unable to start microphone. Please check browser permissions."
+);
+
+}
 
 }
 
 
-function testVoice(){
+function stopMicrophone(showMessage=true){
 
-    startVoice("complaint");
+isRecording=false;
+
+if(recognition){
+
+try{
+
+recognition.stop();
+
+}catch(error){}
+
+}
+
+const button=
+document.getElementById("micButton");
+
+button.classList.remove("recording");
+
+button.innerText="🎤";
+
+if(showMessage){
+
+document.getElementById("micStatus")
+.innerText=
+"Microphone stopped.";
+
+}
 
 }
 
 
-function setVoiceStatus(message){
+function showMicError(message){
 
-    const status =
-        document.getElementById("voiceStatus");
+const status=
+document.getElementById("micStatus");
 
+status.innerText=message;
 
-    if(status){
-
-        status.textContent = message;
-
-    }
+status.className=
+"status error";
 
 }
 
 
-/* =========================================================
-   GENERATE CASE SUMMARY
-========================================================= */
-
-function value(id){
-
-    const element =
-        document.getElementById(id);
-
-
-    return element
-        ? element.value.trim()
-        : "";
-
-}
-
+/* =====================================================
+   CASE SUMMARY
+===================================================== */
 
 function generateSummary(){
 
-    const name = value("patientName");
+const state=
+document.getElementById("state").value;
 
-    const complaint = value("complaint");
+const city=
+document.getElementById("city").value;
 
+const hospital=
+document.getElementById("hospital").value;
 
-    if(!name){
+const department=
+document.getElementById("department").value;
 
-        alert("Please enter the patient name.");
+const doctor=
+document.getElementById("doctor").value;
 
-        return;
-    }
+const symptoms=
+document.getElementById("symptoms").value.trim();
 
+if(!symptoms){
 
-    if(!complaint){
+alert(
+"Please enter symptoms using typing or microphone."
+);
 
-        alert("Please enter the main complaint.");
-
-        return;
-    }
-
-
-    const summary =
-
-`PATIENT CASE SUMMARY
-=====================
-
-Patient Name: ${name || "Not provided"}
-Mobile: ${value("mobile") || "Not provided"}
-Date of Birth: ${value("dob") || "Not provided"}
-Age: ${value("age") || "Not provided"}
-Sex: ${value("sex") || "Not provided"}
-Blood Group: ${value("blood") || "Not provided"}
-
-Address:
-${value("address") || "Not provided"}
-
-Visit Date:
-${value("visitDate") || "Not provided"}
-
-Vital Information:
-Temperature: ${value("temperature") || "Not provided"}
-Weight: ${value("weight") || "Not provided"}
-
-MAIN COMPLAINT
---------------
-${complaint}
-
-SYMPTOMS
---------
-${value("symptoms") || "Not provided"}
-
-HISTORY OF PRESENT ILLNESS
---------------------------
-${value("history") || "Not provided"}
-
-PREVIOUS MEDICAL HISTORY
-------------------------
-${value("medicalHistory") || "Not provided"}
-
-PREVIOUS SURGERY
-----------------
-${value("surgery") || "Not provided"}
-
-CURRENT MEDICATIONS
--------------------
-${value("medications") || "Not provided"}
-
-ALLERGIES
----------
-${value("allergies") || "Not provided"}
-
-
-Note:
-This prototype organizes information entered by the user.
-It does not provide a medical diagnosis.`;
-
-
-
-    document.getElementById("summary")
-        .textContent = summary;
-
-
-    document.getElementById("summaryArea")
-        .classList.remove("hidden");
-
-
-    localStorage.setItem(
-        "careflowLastSummary",
-        summary
-    );
+return;
 
 }
 
+const summary=`
 
-/* =========================================================
-   COPY SUMMARY
-========================================================= */
+PATIENT CASE SUMMARY
 
-function copySummary(){
+Patient:
+${currentPatient.name}
 
-    const text =
-        document.getElementById("summary")
-            .textContent;
+Mobile:
+${currentPatient.mobile}
 
+State:
+${state}
 
-    if(!text){
+City:
+${city}
 
-        return;
+Hospital:
+${hospital}
 
-    }
+Department:
+${department}
 
-
-    navigator.clipboard.writeText(text)
-        .then(function(){
-
-            alert("Case summary copied.");
-
-        })
-        .catch(function(){
-
-            alert("Unable to copy. Please select and copy manually.");
-
-        });
-
-}
-
-
-/* =========================================================
-   SAVE CASE
-========================================================= */
-
-function saveCase(){
-
-    const name =
-        value("patientName");
-
-
-    if(!name){
-
-        alert("Please enter patient name before saving.");
-
-        return;
-    }
-
-
-    const caseData = {
-
-        name:name,
-
-        mobile:value("mobile"),
-
-        age:value("age"),
-
-        sex:value("sex"),
-
-        complaint:value("complaint"),
-
-        symptoms:value("symptoms"),
-
-        history:value("history"),
-
-        medicalHistory:value("medicalHistory"),
-
-        surgery:value("surgery"),
-
-        medications:value("medications"),
-
-        allergies:value("allergies"),
-
-        savedAt:new Date().toISOString()
-
-    };
-
-
-    localStorage.setItem(
-        "careflowCase",
-        JSON.stringify(caseData)
-    );
-
-
-    alert(
-        "Case saved successfully in this browser prototype."
-    );
-
-}
-
-
-/* =========================================================
-   CLEAR CASE
-========================================================= */
-
-function clearCase(){
-
-    const fields = [
-
-        "patientName",
-        "mobile",
-        "dob",
-        "age",
-        "address",
-        "visitDate",
-        "temperature",
-        "weight",
-        "complaint",
-        "symptoms",
-        "history",
-        "medicalHistory",
-        "surgery",
-        "medications",
-        "allergies"
-
-    ];
-
-
-    fields.forEach(function(id){
-
-        const element =
-            document.getElementById(id);
-
-
-        if(element){
-
-            element.value = "";
-
-        }
-
-    });
-
-
-    document.getElementById("sex").value = "";
-
-    document.getElementById("blood").value = "";
-
-
-    document.getElementById("summaryArea")
-        .classList.add("hidden");
-
-
-    setVoiceStatus(
-        "Form cleared. Voice input ready."
-    );
-
-}
-
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-function saveProfile(){
-
-    const name =
-        document.getElementById("profileName").value.trim();
-
-
-    if(name){
-
-        document.getElementById("sideUserName").textContent =
-            name;
-
-        document.getElementById("topUserName").textContent =
-            name;
-
-        document.getElementById("patientWelcome").textContent =
-            "Welcome back, " + name + " 👋";
-
-    }
-
-
-    alert("Profile saved in this prototype.");
-
-}
-
-
-/* =========================================================
-   DOCTOR CASE VIEW
-========================================================= */
-
-function openDemoCase(){
-
-    const viewer =
-        document.getElementById("doctorCaseViewer");
-
-
-    const content =
-        document.getElementById("doctorCaseContent");
-
-
-    content.textContent =
-
-`PATIENT CASE
-
-Patient Name: Demo Patient
-Age: 35
-Sex: Male
-
-Main Complaint:
-General consultation
+Doctor:
+${doctor}
 
 Symptoms:
-Demo symptom information entered by patient.
+${symptoms}
 
-History:
-Demo history information.
+--------------------------------
 
-Previous Medical History:
-No demo information provided.
+The patient case has been prepared
+for review by the selected doctor.
+`;
 
-Previous Surgery:
-No demo information provided.
+const box=
+document.getElementById("caseSummary");
 
-Current Medications:
-Demo medication information.
+box.innerText=summary;
 
-Allergies:
-No known allergies recorded in this demo.
+box.classList.remove("hidden");
+
+}
+
+
+/* =====================================================
+   BOOK APPOINTMENT
+===================================================== */
+
+function bookAppointment(){
+
+const state=
+document.getElementById("state").value;
+
+const city=
+document.getElementById("city").value;
+
+const hospital=
+document.getElementById("hospital").value;
+
+const department=
+document.getElementById("department").value;
+
+const doctor=
+document.getElementById("doctor").value;
+
+const symptoms=
+document.getElementById("symptoms").value.trim();
+
+
+if(
+!state ||
+!city ||
+!hospital ||
+!department ||
+!doctor
+){
+
+alert(
+"Please select State, City, Hospital, Department and Doctor."
+);
+
+return;
+
+}
+
+if(!symptoms){
+
+alert("Please enter patient symptoms.");
+
+return;
+
+}
+
+
+const appointment={
+
+id:Date.now(),
+
+patient:currentPatient.name,
+
+mobile:currentPatient.mobile,
+
+state:state,
+
+city:city,
+
+hospital:hospital,
+
+department:department,
+
+doctor:doctor,
+
+symptoms:symptoms,
+
+date:new Date().toLocaleDateString("en-IN"),
+
+time:new Date().toLocaleTimeString("en-IN"),
+
+status:"Booked"
+
+};
+
+
+appointments.push(appointment);
+
+patientCases.push(appointment);
+
+
+alert(
+"✅ Appointment successfully booked with "+
+doctor
+);
+
+
+loadPatientAppointments();
+
+loadMedicalHistory();
+
+}
+
+
+/* =====================================================
+   PATIENT APPOINTMENTS
+===================================================== */
+
+function loadPatientAppointments(){
+
+const container=
+document.getElementById("patientAppointments");
+
+const list=
+appointments.filter(
+appointment=>
+currentPatient &&
+appointment.patient===
+currentPatient.name
+);
+
+
+if(!list.length){
+
+container.innerHTML=
+"No appointments yet.";
+
+return;
+
+}
+
+
+container.innerHTML="";
+
+
+list.forEach(a=>{
+
+container.innerHTML+=`
+
+<div class="appointment">
+
+<h3>👨‍⚕️ ${a.doctor}</h3>
+
+<span class="badge">
+${a.status}
+</span>
+
+<p>
+<b>🏥 Hospital:</b>
+${a.hospital}
+</p>
+
+<p>
+<b>🇮🇳 State:</b>
+${a.state}
+</p>
+
+<p>
+<b>🏙️ City:</b>
+${a.city}
+</p>
+
+<p>
+<b>🩺 Department:</b>
+${a.department}
+</p>
+
+<p>
+<b>📅 Date:</b>
+${a.date}
+</p>
+
+<p>
+<b>⏰ Time:</b>
+${a.time}
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =====================================================
+   MEDICAL HISTORY
+===================================================== */
+
+function loadMedicalHistory(){
+
+const container=
+document.getElementById("medicalHistory");
+
+const list=
+patientCases.filter(
+p=>
+currentPatient &&
+p.patient===
+currentPatient.name
+);
+
+
+if(!list.length){
+
+container.innerHTML=
+"No medical history available.";
+
+return;
+
+}
+
+
+container.innerHTML="";
+
+
+list.forEach(p=>{
+
+container.innerHTML+=`
+
+<div class="patient-card">
+
+<h3>🩺 ${p.department}</h3>
+
+<p>
+<b>Hospital:</b>
+${p.hospital}
+</p>
+
+<p>
+<b>Doctor:</b>
+${p.doctor}
+</p>
+
+<p>
+<b>Symptoms:</b>
+${p.symptoms}
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =====================================================
+   DOCTOR PATIENT ACCESS
+===================================================== */
+
+function loadDoctorPatients(){
+
+const container=
+document.getElementById("doctorPatientList");
+
+if(!currentDoctor) return;
+
+
+const list=
+patientCases.filter(
+p=>
+p.doctor===
+currentDoctor.name
+);
+
+
+if(!list.length){
+
+container.innerHTML=
+"No patient cases assigned to you.";
+
+return;
+
+}
+
+
+container.innerHTML="";
+
+
+list.forEach((p,index)=>{
+
+container.innerHTML+=`
+
+<div class="patient-card">
+
+<h3>
+👤 Patient Case ${index+1}
+</h3>
+
+<p>
+<b>Patient:</b>
+${p.patient}
+</p>
+
+<p>
+<b>Mobile:</b>
+${p.mobile}
+</p>
+
+<p>
+<b>State:</b>
+${p.state}
+</p>
+
+<p>
+<b>City:</b>
+${p.city}
+</p>
+
+<p>
+<b>Hospital:</b>
+${p.hospital}
+</p>
+
+<p>
+<b>Department:</b>
+${p.department}
+</p>
+
+<p>
+<b>Symptoms:</b>
+${p.symptoms}
+</p>
+
+<br>
+
+<button
+onclick="viewPatientCase(${p.id})">
+
+🔍 Access Full Patient Case
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =====================================================
+   VIEW FULL PATIENT CASE
+===================================================== */
+
+function viewPatientCase(id){
+
+const patient=
+patientCases.find(
+p=>p.id===id
+);
+
+if(!patient) return;
+
+
+alert(`
+
+PATIENT CASE
+
+Patient:
+${patient.patient}
+
+Mobile:
+${patient.mobile}
+
+State:
+${patient.state}
+
+City:
+${patient.city}
+
+Hospital:
+${patient.hospital}
+
+Department:
+${patient.department}
+
+Doctor:
+${patient.doctor}
+
+Symptoms:
+${patient.symptoms}
+
+Appointment:
+${patient.date} ${patient.time}
 
 Status:
-Ready for doctor review.
+${patient.status}
 
-This is demonstration data only.`;
-
-
-
-    viewer.classList.remove("hidden");
+`);
 
 }
 
 
-/* =========================================================
-   CASE SEARCH
-========================================================= */
+/* =====================================================
+   DOCTOR APPOINTMENTS
+===================================================== */
 
-function searchCases(){
+function loadDoctorAppointments(){
 
-    const input =
-        document.getElementById("caseSearch")
-            .value.toLowerCase();
+const container=
+document.getElementById("doctorAppointmentList");
 
-
-    const rows =
-        document.querySelectorAll(
-            "#casesTable tbody tr"
-        );
+if(!currentDoctor) return;
 
 
-    rows.forEach(function(row){
-
-        row.style.display =
-            row.textContent
-                .toLowerCase()
-                .includes(input)
-                ? ""
-                : "none";
-
-    });
-
-}
-
-
-/* =========================================================
-   PATIENT SEARCH
-========================================================= */
-
-function searchPatients(){
-
-    const input =
-        document.getElementById("patientSearch")
-            .value.toLowerCase();
-
-
-    const rows =
-        document.querySelectorAll(
-            "#patientsTable tbody tr"
-        );
-
-
-    rows.forEach(function(row){
-
-        row.style.display =
-            row.textContent
-                .toLowerCase()
-                .includes(input)
-                ? ""
-                : "none";
-
-    });
-
-}
-
-
-/* =========================================================
-   DOCTOR NOTE
-========================================================= */
-
-function saveDoctorNote(){
-
-    const note =
-        document.getElementById("doctorNote").value.trim();
-
-
-    if(!note){
-
-        alert("Please enter a note.");
-
-        return;
-
-    }
-
-
-    localStorage.setItem(
-        "careflowDoctorNote",
-        note
-    );
-
-
-    alert(
-        "Clinical note saved in this prototype."
-    );
-
-}
-
-
-/* =========================================================
-   DEMO ACTION
-========================================================= */
-
-function demoAction(message){
-
-    alert(message + ".");
-
-}
-
-
-/* =========================================================
-   DATE DEFAULT
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        const date =
-            document.getElementById("visitDate");
-
-
-        if(date){
-
-            const today =
-                new Date();
-
-
-            const year =
-                today.getFullYear();
-
-
-            const month =
-                String(today.getMonth()+1)
-                    .padStart(2,"0");
-
-
-            const day =
-                String(today.getDate())
-                    .padStart(2,"0");
-
-
-            date.value =
-                `${year}-${month}-${day}`;
-
-        }
-
-    }
+const list=
+appointments.filter(
+a=>
+a.doctor===
+currentDoctor.name
 );
+
+
+if(!list.length){
+
+container.innerHTML=
+"No appointments available.";
+
+return;
+
+}
+
+
+container.innerHTML="";
+
+
+list.forEach(a=>{
+
+container.innerHTML+=`
+
+<div class="appointment">
+
+<h3>👤 ${a.patient}</h3>
+
+<span class="badge">
+${a.status}
+</span>
+
+<p>
+<b>🏥 Hospital:</b>
+${a.hospital}
+</p>
+
+<p>
+<b>🏙️ City:</b>
+${a.city}
+</p>
+
+<p>
+<b>🩺 Department:</b>
+${a.department}
+</p>
+
+<p>
+<b>📅 Date:</b>
+${a.date}
+</p>
+
+<p>
+<b>⏰ Time:</b>
+${a.time}
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =====================================================
+   PATIENT SECTIONS
+===================================================== */
+
+function patientSection(id){
+
+document
+.querySelectorAll(".dashboard-section")
+.forEach(x=>
+x.classList.add("hidden")
+);
+
+
+document
+.getElementById(id)
+.classList.remove("hidden");
+
+
+if(id==="appointmentSection"){
+
+loadPatientAppointments();
+
+}
+
+
+if(id==="historySection"){
+
+loadMedicalHistory();
+
+}
+
+}
+
+
+/* =====================================================
+   DOCTOR SECTIONS
+===================================================== */
+
+function doctorSection(id){
+
+document
+.querySelectorAll(".doctor-section")
+.forEach(x=>
+x.classList.add("hidden")
+);
+
+
+document
+.getElementById(id)
+.classList.remove("hidden");
+
+
+loadDoctorPatients();
+
+loadDoctorAppointments();
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+if(isRecording){
+
+stopMicrophone(false);
+
+}
+
+currentPatient=null;
+
+currentDoctor=null;
+
+goHome();
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+window.onload=function(){
+
+loadStates();
+
+};
 
 </script>
 
