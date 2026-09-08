@@ -3,115 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>CareFlow | Smart Healthcare</title>
+<title>CareFlow | Smart Patient Case-Taking System</title>
 
 <style>
-
-/* =====================================================
-   GLOBAL
-===================================================== */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:"Segoe UI",Arial,sans-serif;
-}
-
-html{
-    scroll-behavior:smooth;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#f4f8fc;
+    background:#f4f7fb;
     color:#172033;
-    overflow-x:hidden;
 }
 
-button,
-input,
-select,
-textarea{
-    font:inherit;
-}
+/* ================= LANDING ================= */
 
-button{
-    cursor:pointer;
-}
-
-.hidden{
-    display:none!important;
-}
-
-
-/* =====================================================
-   ANIMATED BACKGROUND
-===================================================== */
-
-.bg-circle{
-    position:fixed;
-    border-radius:50%;
-    filter:blur(2px);
-    opacity:.18;
-    z-index:-1;
-    animation:float 7s ease-in-out infinite;
-}
-
-.bg1{
-    width:350px;
-    height:350px;
-    background:#22c55e;
-    top:-100px;
-    left:-100px;
-}
-
-.bg2{
-    width:400px;
-    height:400px;
-    background:#3b82f6;
-    right:-120px;
-    bottom:-100px;
-    animation-delay:2s;
-}
-
-@keyframes float{
-    0%,100%{
-        transform:translateY(0) rotate(0);
-    }
-
-    50%{
-        transform:translateY(-30px) rotate(10deg);
-    }
-}
-
-
-/* =====================================================
-   LANDING PAGE
-===================================================== */
-
-#landing{
+.landing{
     min-height:100vh;
-    background:
-        radial-gradient(circle at 10% 20%,rgba(34,197,94,.18),transparent 30%),
-        radial-gradient(circle at 90% 80%,rgba(59,130,246,.2),transparent 30%),
-        linear-gradient(135deg,#ecfdf5,#eff6ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#0f766e,#2563eb);
+    padding:20px;
 }
 
-.navbar{
-    height:75px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 7%;
-    background:rgba(255,255,255,.75);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid rgba(255,255,255,.5);
+.landing-box{
+    width:100%;
+    max-width:1000px;
+    background:white;
+    border-radius:25px;
+    padding:45px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
 .logo{
-    font-size:28px;
-    font-weight:900;
+    font-size:48px;
+    font-weight:800;
     color:#0f766e;
 }
 
@@ -119,281 +49,69 @@ button{
     color:#2563eb;
 }
 
-.nav-links{
-    display:flex;
+.subtitle{
+    margin:12px 0 35px;
+    color:#64748b;
+    font-size:18px;
+}
+
+.role-container{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
     gap:25px;
 }
 
-.nav-links a{
-    text-decoration:none;
-    color:#334155;
-    font-weight:600;
-}
-
-.hero{
-    min-height:calc(100vh - 75px);
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    align-items:center;
-    gap:40px;
-    padding:60px 8%;
-}
-
-.hero-content{
-    animation:slideLeft 1s ease;
-}
-
-@keyframes slideLeft{
-    from{
-        opacity:0;
-        transform:translateX(-50px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
-
-.hero-badge{
-    display:inline-block;
-    padding:8px 15px;
-    border-radius:30px;
-    background:#dcfce7;
-    color:#166534;
-    font-weight:700;
-    margin-bottom:20px;
-}
-
-.hero h1{
-    font-size:clamp(45px,6vw,75px);
-    line-height:1;
-    margin-bottom:20px;
-}
-
-.hero h1 span{
-    background:linear-gradient(90deg,#0f766e,#2563eb);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.hero p{
-    color:#64748b;
-    font-size:19px;
-    line-height:1.7;
-    max-width:650px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:15px;
-    margin-top:30px;
-    flex-wrap:wrap;
-}
-
-.hero-visual{
-    position:relative;
-    animation:slideRight 1s ease;
-}
-
-@keyframes slideRight{
-    from{
-        opacity:0;
-        transform:translateX(50px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
-
-.doctor-illustration{
-    width:100%;
-    min-height:470px;
-    border-radius:35px;
-    background:linear-gradient(145deg,#dbeafe,#ccfbf1);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    box-shadow:0 30px 70px rgba(37,99,235,.15);
-}
-
-.doctor-circle{
-    width:260px;
-    height:260px;
-    border-radius:50%;
-    background:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:130px;
-    box-shadow:0 20px 50px rgba(0,0,0,.12);
-}
-
-.floating-card{
-    position:absolute;
-    background:white;
-    padding:16px 20px;
-    border-radius:15px;
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
-    animation:floatCard 4s ease-in-out infinite;
-}
-
-.card1{
-    left:-30px;
-    top:70px;
-}
-
-.card2{
-    right:-25px;
-    bottom:80px;
-    animation-delay:1s;
-}
-
-@keyframes floatCard{
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-15px);
-    }
-}
-
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.btn{
-    border:0;
-    padding:13px 22px;
-    border-radius:12px;
-    font-weight:700;
-    transition:.25s;
-}
-
-.btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-.primary{
-    color:white;
-    background:linear-gradient(135deg,#2563eb,#0f766e);
-}
-
-.green{
-    background:#16a34a;
-    color:white;
-}
-
-.white{
-    background:white;
-    color:#2563eb;
-}
-
-.gray{
-    background:#e2e8f0;
-}
-
-.red{
-    background:#dc2626;
-    color:white;
-}
-
-
-/* =====================================================
-   FEATURES
-===================================================== */
-
-.features{
-    padding:80px 8%;
-    background:white;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:45px;
-}
-
-.section-title h2{
-    font-size:40px;
-    margin-bottom:10px;
-}
-
-.section-title p{
-    color:#64748b;
-}
-
-.feature-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.feature{
-    padding:30px;
+.role-card{
+    border:2px solid #e2e8f0;
     border-radius:20px;
-    border:1px solid #e2e8f0;
+    padding:35px 20px;
+    cursor:pointer;
     transition:.3s;
 }
 
-.feature:hover{
-    transform:translateY(-8px);
-    box-shadow:0 20px 40px rgba(0,0,0,.08);
+.role-card:hover{
+    transform:translateY(-6px);
+    border-color:#2563eb;
+    box-shadow:0 12px 30px rgba(37,99,235,.15);
 }
 
-.feature-icon{
-    font-size:40px;
-    margin-bottom:15px;
+.role-icon{
+    font-size:55px;
 }
 
-.feature p{
+.role-card h2{
+    margin:15px 0 8px;
+}
+
+.role-card p{
     color:#64748b;
-    margin-top:8px;
-    line-height:1.6;
 }
 
+/* ================= LOGIN ================= */
 
-/* =====================================================
-   LOGIN
-===================================================== */
-
-#login{
-    display:none;
+.login-screen{
     min-height:100vh;
+    display:none;
     align-items:center;
     justify-content:center;
+    background:#eef5ff;
     padding:20px;
-    background:linear-gradient(135deg,#eff6ff,#ecfdf5);
 }
 
-.login-card{
+.login-box{
+    background:white;
     width:100%;
-    max-width:430px;
-    padding:40px;
-    background:rgba(255,255,255,.9);
-    backdrop-filter:blur(20px);
-    border-radius:25px;
-    box-shadow:0 25px 70px rgba(0,0,0,.12);
+    max-width:450px;
+    padding:35px;
+    border-radius:22px;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
 }
 
-.login-icon{
-    text-align:center;
-    font-size:60px;
-    margin-bottom:15px;
+.login-box h2{
+    margin-bottom:10px;
 }
 
-.login-card h2{
-    text-align:center;
-    margin-bottom:8px;
-}
-
-.login-card>p{
-    text-align:center;
+.login-box p{
     color:#64748b;
     margin-bottom:25px;
 }
@@ -402,20 +120,19 @@ button{
     margin-bottom:18px;
 }
 
-label{
+.form-group label{
     display:block;
-    font-weight:700;
     margin-bottom:7px;
+    font-weight:600;
 }
 
-input,
-select,
-textarea{
+input,select,textarea{
     width:100%;
+    padding:12px 14px;
     border:1px solid #cbd5e1;
-    border-radius:11px;
-    padding:13px;
+    border-radius:10px;
     outline:none;
+    font-size:15px;
     background:white;
 }
 
@@ -427,98 +144,152 @@ textarea:focus{
 }
 
 textarea{
-    min-height:100px;
     resize:vertical;
+    min-height:100px;
 }
 
+.btn{
+    border:none;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:14px;
+    transition:.2s;
+}
 
-/* =====================================================
-   APP
-===================================================== */
+.btn:hover{
+    transform:translateY(-1px);
+}
 
-#app{
+.btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-success{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-danger{
+    background:#dc2626;
+    color:white;
+}
+
+.btn-secondary{
+    background:#e2e8f0;
+    color:#172033;
+}
+
+.btn-teal{
+    background:#0f766e;
+    color:white;
+}
+
+.btn-block{
+    width:100%;
+}
+
+.back-btn{
+    margin-bottom:20px;
+}
+
+/* ================= APP ================= */
+
+.app{
     display:none;
     min-height:100vh;
 }
 
 .sidebar{
+    width:260px;
+    background:#0f172a;
+    color:white;
     position:fixed;
     left:0;
     top:0;
     bottom:0;
-    width:265px;
-    background:#0f172a;
-    color:white;
-    z-index:1000;
     overflow-y:auto;
-    transition:.3s;
+    z-index:1000;
 }
 
-.sidebar-brand{
-    padding:25px;
-    font-size:27px;
-    font-weight:900;
+.brand{
+    padding:25px 20px;
+    font-size:25px;
+    font-weight:800;
     border-bottom:1px solid rgba(255,255,255,.1);
 }
 
-.sidebar-brand span{
+.brand span{
     color:#38bdf8;
 }
 
-.user{
-    padding:20px 25px;
+.user-box{
+    padding:20px;
     border-bottom:1px solid rgba(255,255,255,.1);
 }
 
-.user small{
+.user-box small{
     color:#94a3b8;
 }
 
 .nav{
-    padding:15px;
+    padding:15px 10px;
 }
 
-.nav button{
+.nav-btn{
     width:100%;
-    border:0;
     background:transparent;
+    border:none;
     color:#cbd5e1;
-    padding:13px;
     text-align:left;
-    border-radius:10px;
+    padding:13px 15px;
+    border-radius:9px;
+    cursor:pointer;
     margin-bottom:5px;
+    font-size:14px;
 }
 
-.nav button:hover,
-.nav button.active{
+.nav-btn:hover,
+.nav-btn.active{
     background:#1e293b;
     color:white;
 }
 
+.logout-btn{
+    margin:20px;
+    width:calc(100% - 40px);
+}
+
 .main{
-    margin-left:265px;
+    margin-left:260px;
+    min-height:100vh;
 }
 
 .topbar{
     height:75px;
-    background:rgba(255,255,255,.9);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid #e2e8f0;
+    background:white;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:0 30px;
+    border-bottom:1px solid #e2e8f0;
     position:sticky;
     top:0;
     z-index:500;
 }
 
-.menu{
+.topbar h2{
+    font-size:22px;
+}
+
+.menu-toggle{
     display:none;
-    border:0;
-    padding:10px;
+    border:none;
     background:#2563eb;
     color:white;
+    padding:10px;
     border-radius:8px;
 }
 
@@ -528,97 +299,60 @@ textarea{
 
 .page{
     display:none;
-    animation:fade .4s ease;
 }
 
 .page.active{
     display:block;
 }
 
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(10px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
+/* ================= DASHBOARD ================= */
 
 .welcome{
-    padding:35px;
-    border-radius:22px;
-    color:white;
     background:linear-gradient(135deg,#2563eb,#0f766e);
-    position:relative;
-    overflow:hidden;
+    color:white;
+    border-radius:18px;
+    padding:30px;
     margin-bottom:25px;
 }
 
-.welcome:after{
-    content:"";
-    position:absolute;
-    width:250px;
-    height:250px;
-    border-radius:50%;
-    background:rgba(255,255,255,.1);
-    right:-70px;
-    top:-100px;
-}
-
 .welcome h1{
-    font-size:32px;
     margin-bottom:8px;
 }
 
-.welcome p{
-    opacity:.9;
-}
-
-.stats{
+.cards{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:18px;
     margin-bottom:25px;
 }
 
-.stat{
+.stat-card{
     background:white;
-    border:1px solid #e2e8f0;
+    border-radius:15px;
     padding:22px;
-    border-radius:17px;
-    transition:.3s;
-}
-
-.stat:hover{
-    transform:translateY(-5px);
+    border:1px solid #e2e8f0;
 }
 
 .stat-icon{
-    font-size:32px;
-}
-
-.stat h3{
     font-size:30px;
-    margin:8px 0;
 }
 
-.stat p{
+.stat-card h3{
+    font-size:27px;
+    margin:10px 0 5px;
+}
+
+.stat-card p{
     color:#64748b;
 }
 
+/* ================= PANELS ================= */
+
 .panel{
     background:white;
-    border:1px solid #e2e8f0;
-    border-radius:18px;
+    border-radius:16px;
     padding:25px;
+    border:1px solid #e2e8f0;
     margin-bottom:22px;
 }
 
@@ -626,109 +360,130 @@ textarea{
     margin-bottom:20px;
 }
 
-.quick{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.quick-card{
-    padding:25px;
-    border-radius:15px;
-    background:#f8fafc;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.quick-card:hover{
-    background:#eff6ff;
-    transform:scale(1.02);
-}
-
-.quick-card strong{
-    display:block;
-    margin:10px 0 5px;
-}
-
-.quick-card span{
-    color:#64748b;
-    font-size:14px;
-}
-
-
-/* =====================================================
-   APPOINTMENT MODULE
-===================================================== */
-
-.appointment-banner{
-    padding:25px;
-    border-radius:17px;
-    background:linear-gradient(135deg,#ecfdf5,#eff6ff);
-    margin-bottom:25px;
-}
-
-.appointment-banner h2{
-    color:#0f766e;
-}
-
-.selection-grid{
+.grid-2{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:20px;
+    gap:18px;
 }
 
-.step{
-    position:relative;
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.grid-4{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.button-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+/* ================= VOICE ================= */
+
+.voice-row{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.voice-row input,
+.voice-row textarea{
+    flex:1;
+}
+
+.mic-btn{
+    min-width:48px;
+    height:45px;
+    border:none;
+    border-radius:10px;
+    background:#ef4444;
+    color:white;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.mic-btn.listening{
+    animation:pulse 1s infinite;
+    background:#dc2626;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+    100%{transform:scale(1)}
+}
+
+.voice-status{
+    margin-top:8px;
+    font-size:13px;
+    color:#64748b;
+}
+
+.voice-panel{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:20px;
+}
+
+/* ================= APPOINTMENT ================= */
+
+.appointment-module{
+    border:2px solid #dbeafe;
+    background:linear-gradient(180deg,#ffffff,#f8fbff);
+}
+
+.step-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
 }
 
 .step-number{
-    display:inline-flex;
-    width:30px;
-    height:30px;
+    width:32px;
+    height:32px;
+    display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:50%;
     background:#2563eb;
     color:white;
+    border-radius:50%;
     font-weight:bold;
-    margin-right:8px;
 }
 
-.preview{
-    display:none;
+.appointment-preview{
     background:#f8fafc;
-    border:2px dashed #93c5fd;
+    border:1px dashed #94a3b8;
+    border-radius:12px;
     padding:20px;
-    border-radius:15px;
     margin-top:20px;
+    display:none;
+}
+
+.appointment-preview div{
+    margin-bottom:8px;
 }
 
 .appointment-card{
-    padding:20px;
     border:1px solid #e2e8f0;
-    border-radius:15px;
+    border-radius:12px;
+    padding:18px;
     margin-bottom:12px;
-    transition:.3s;
+    background:white;
 }
 
-.appointment-card:hover{
-    transform:translateX(5px);
-    box-shadow:0 10px 25px rgba(0,0,0,.06);
-}
-
-.appointment-card strong{
-    font-size:17px;
-}
-
-.appointment-card p{
-    margin-top:7px;
-    color:#64748b;
-}
-
-.status{
+.status-booked{
     display:inline-block;
-    margin-top:10px;
-    padding:5px 10px;
+    padding:5px 9px;
     border-radius:20px;
     background:#dcfce7;
     color:#166534;
@@ -736,165 +491,90 @@ textarea{
     font-weight:bold;
 }
 
+/* ================= TABLE ================= */
 
-/* =====================================================
-   VOICE
-===================================================== */
-
-.voice-box{
-    padding:18px;
-    background:#eff6ff;
-    border:1px solid #bfdbfe;
-    border-radius:15px;
-    margin-bottom:20px;
+.table-wrapper{
+    overflow-x:auto;
 }
 
-.voice-input{
-    display:flex;
-    gap:10px;
+table{
+    width:100%;
+    border-collapse:collapse;
 }
 
-.voice-input textarea{
-    flex:1;
+th,td{
+    padding:13px;
+    text-align:left;
+    border-bottom:1px solid #e2e8f0;
 }
 
-.mic{
-    width:52px;
-    height:52px;
-    border:0;
-    border-radius:50%;
-    background:#ef4444;
-    color:white;
-    font-size:21px;
-    align-self:flex-start;
-}
-
-.mic.listening{
-    animation:micPulse 1s infinite;
-}
-
-@keyframes micPulse{
-    0%{
-        box-shadow:0 0 0 0 rgba(239,68,68,.5);
-    }
-
-    70%{
-        box-shadow:0 0 0 18px rgba(239,68,68,0);
-    }
-
-    100%{
-        box-shadow:0 0 0 0 rgba(239,68,68,0);
-    }
-}
-
-.voice-status{
-    color:#64748b;
-    font-size:13px;
-    margin-top:8px;
-}
-
-
-/* =====================================================
-   CASE SUMMARY
-===================================================== */
-
-.summary{
+th{
     background:#f8fafc;
-    padding:20px;
-    border-left:5px solid #2563eb;
-    border-radius:10px;
-    white-space:pre-wrap;
-    line-height:1.7;
 }
 
+/* ================= SUMMARY ================= */
 
-/* =====================================================
-   PROFILE
-===================================================== */
+.summary-box{
+    background:#f8fafc;
+    border-left:5px solid #2563eb;
+    padding:20px;
+    border-radius:10px;
+    line-height:1.7;
+    white-space:pre-wrap;
+}
 
-.profile{
+/* ================= PROFILE ================= */
+
+.profile-card{
     display:flex;
-    gap:20px;
     align-items:center;
+    gap:20px;
 }
 
 .avatar{
-    width:85px;
-    height:85px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#dbeafe;
+    width:80px;
+    height:80px;
     border-radius:50%;
-    font-size:40px;
+    background:#dbeafe;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
 }
 
+/* ================= TOAST ================= */
 
-/* =====================================================
-   TOAST
-===================================================== */
-
-#toast{
+.toast{
     position:fixed;
     right:25px;
     bottom:25px;
     background:#0f172a;
     color:white;
     padding:15px 20px;
-    border-radius:12px;
-    box-shadow:0 15px 35px rgba(0,0,0,.2);
-    transform:translateY(100px);
-    opacity:0;
-    transition:.3s;
-    z-index:9999;
+    border-radius:10px;
+    display:none;
+    z-index:5000;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
-#toast.show{
-    transform:translateY(0);
-    opacity:1;
-}
+/* ================= RESPONSIVE ================= */
 
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media(max-width:1100px){
-
-    .feature-grid{
+@media(max-width:1000px){
+    .cards{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .stats{
+    .grid-3,
+    .grid-4{
         grid-template-columns:repeat(2,1fr);
     }
-
-    .hero{
-        grid-template-columns:1fr;
-    }
-
 }
 
 @media(max-width:768px){
 
-    .nav-links{
-        display:none;
-    }
-
-    .hero{
-        padding:40px 5%;
-    }
-
-    .hero h1{
-        font-size:45px;
-    }
-
-    .doctor-illustration{
-        min-height:350px;
-    }
-
     .sidebar{
         transform:translateX(-100%);
+        transition:.3s;
     }
 
     .sidebar.open{
@@ -905,584 +585,357 @@ textarea{
         margin-left:0;
     }
 
-    .menu{
+    .menu-toggle{
         display:block;
-    }
-
-    .content{
-        padding:15px;
-    }
-
-    .selection-grid,
-    .quick,
-    .stats,
-    .feature-grid{
-        grid-template-columns:1fr;
     }
 
     .topbar{
         padding:0 15px;
     }
 
-    .floating-card{
-        display:none;
+    .content{
+        padding:15px;
     }
 
-}
+    .role-container,
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .cards{
+        grid-template-columns:1fr;
+    }
 
+    .landing-box{
+        padding:25px 18px;
+    }
+
+    .logo{
+        font-size:36px;
+    }
+}
 </style>
 </head>
 
-
 <body>
 
-<div class="bg-circle bg1"></div>
-<div class="bg-circle bg2"></div>
+<!-- =========================================================
+     LANDING PAGE
+========================================================= -->
 
+<div id="landing" class="landing">
 
-<!-- =====================================================
-     LANDING
-===================================================== -->
+    <div class="landing-box">
 
-<div id="landing">
-
-<nav class="navbar">
-
-    <div class="logo">
-        Care<span>Flow</span>
-    </div>
-
-    <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-    </div>
-
-    <button class="btn primary"
-            onclick="openLogin('patient')">
-        Get Started
-    </button>
-
-</nav>
-
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <span class="hero-badge">
-            ✨ Smart Healthcare Platform
-        </span>
-
-        <h1>
-            Healthcare that
-            <span>Flows Better.</span>
-        </h1>
-
-        <p>
-            CareFlow connects patients, hospitals and doctors
-            through one simple digital healthcare experience.
-            Create patient cases, use voice input, discover
-            hospitals and book appointments easily.
-        </p>
-
-        <div class="hero-buttons">
-
-            <button class="btn primary"
-                    onclick="openLogin('patient')">
-                👤 Patient Dashboard
-            </button>
-
-            <button class="btn white"
-                    onclick="openLogin('doctor')">
-                👨‍⚕️ Doctor Dashboard
-            </button>
-
+        <div class="logo">
+            Care<span>Flow</span>
         </div>
 
-    </div>
+        <div class="subtitle">
+            Smart Patient Case-Taking & Healthcare Management System
+        </div>
 
+        <div class="role-container">
 
-    <div class="hero-visual">
-
-        <div class="doctor-illustration">
-
-            <div class="doctor-circle">
-                👨‍⚕️
+            <div class="role-card" onclick="openLogin('patient')">
+                <div class="role-icon">👤</div>
+                <h2>Patient Dashboard</h2>
+                <p>
+                    Manage cases, hospitals, doctors and appointments.
+                </p>
             </div>
 
-            <div class="floating-card card1">
-                🏥 <strong>Hospital</strong>
-                <br>
-                <small>Find nearby care</small>
-            </div>
-
-            <div class="floating-card card2">
-                📅 <strong>Appointment</strong>
-                <br>
-                <small>Booked successfully ✓</small>
+            <div class="role-card" onclick="openLogin('doctor')">
+                <div class="role-icon">👨‍⚕️</div>
+                <h2>Doctor Dashboard</h2>
+                <p>
+                    Manage appointments, patient cases and clinical notes.
+                </p>
             </div>
 
         </div>
 
     </div>
-
-</section>
-
-
-<section id="features" class="features">
-
-    <div class="section-title">
-
-        <h2>Everything in One Place</h2>
-
-        <p>
-            Designed to make healthcare simpler and smarter.
-        </p>
-
-    </div>
-
-
-    <div class="feature-grid">
-
-        <div class="feature">
-
-            <div class="feature-icon">🏥</div>
-
-            <h3>Hospital Finder</h3>
-
-            <p>
-                Select city, hospital and medical department
-                in a simple interactive interface.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="feature-icon">📅</div>
-
-            <h3>Doctor Appointment</h3>
-
-            <p>
-                Choose your doctor, date and available time
-                and book an appointment.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="feature-icon">🎤</div>
-
-            <h3>Voice Case Taking</h3>
-
-            <p>
-                Enter patient information using multilingual
-                voice recognition.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="feature-icon">📊</div>
-
-            <h3>Smart Dashboard</h3>
-
-            <p>
-                View appointments, cases, reports and
-                healthcare information.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
 </div>
 
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
+<!-- =========================================================
+     LOGIN SCREEN
+========================================================= -->
 
-<div id="login">
+<div id="loginScreen" class="login-screen">
 
-    <div class="login-card">
+    <div class="login-box">
 
-        <button class="btn gray"
-                onclick="backHome()">
+        <button class="btn btn-secondary back-btn"
+                onclick="backToLanding()">
             ← Back
         </button>
 
-        <div class="login-icon" id="loginIcon">
-            👤
-        </div>
+        <h2 id="loginTitle">Patient Login</h2>
 
-        <h2 id="loginTitle">
-            Patient Login
-        </h2>
-
-        <p id="loginText">
-            Access your CareFlow healthcare dashboard.
+        <p id="loginDescription">
+            Enter your details to access CareFlow.
         </p>
 
-
-        <div id="patientFields">
+        <div id="patientLoginFields">
 
             <div class="form-group">
-
                 <label>Patient Name</label>
-
-                <input id="patientLoginName"
-                       placeholder="Enter your name">
-
+                <input id="loginPatientName"
+                       type="text"
+                       placeholder="Enter patient name">
             </div>
 
-
             <div class="form-group">
-
                 <label>Mobile Number</label>
-
-                <input id="patientLoginMobile"
-                       placeholder="Enter mobile number"
-                       type="tel">
-
+                <input id="loginMobile"
+                       type="tel"
+                       placeholder="Enter mobile number">
             </div>
 
         </div>
 
-
-        <div id="doctorFields"
-             class="hidden">
+        <div id="doctorLoginFields" style="display:none">
 
             <div class="form-group">
-
                 <label>Email</label>
-
-                <input id="doctorEmail"
+                <input id="loginEmail"
                        type="email"
                        placeholder="doctor@example.com">
-
             </div>
 
-
             <div class="form-group">
-
                 <label>Password</label>
-
-                <input id="doctorPassword"
+                <input id="loginPassword"
                        type="password"
                        placeholder="Enter password">
-
             </div>
 
         </div>
 
-
-        <button class="btn primary"
-                style="width:100%"
-                onclick="login()">
-
-            Continue to CareFlow →
-
+        <button class="btn btn-primary btn-block"
+                onclick="performLogin()">
+            Login
         </button>
+
+        <p style="margin-top:15px;font-size:13px;">
+            Demo mode: any valid-looking values can be used.
+        </p>
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
-     APP
-===================================================== -->
+<!-- =========================================================
+     MAIN APPLICATION
+========================================================= -->
 
-<div id="app">
+<div id="app" class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside id="sidebar" class="sidebar">
+
+        <div class="brand">
+            Care<span>Flow</span>
+        </div>
+
+        <div class="user-box">
+            <strong id="sidebarUserName">User</strong>
+            <br>
+            <small id="sidebarRole">Patient</small>
+        </div>
+
+        <!-- PATIENT NAVIGATION -->
+
+        <div id="patientNav" class="nav">
+
+            <button class="nav-btn active"
+                    onclick="showPage('patientOverview',this)">
+                🏠 Overview
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('newCase',this)">
+                📝 New Case
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('patientAppointments',this)">
+                📅 Appointments
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('patientHospital',this)">
+                🏥 Find Hospital & Book Appointment
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('patientHistory',this)">
+                🩺 Medical History
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('patientReports',this)">
+                📊 Reports
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('patientMessages',this)">
+                💬 Messages
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('patientProfile',this)">
+                👤 My Profile
+            </button>
+
+        </div>
 
 
-<aside class="sidebar"
-       id="sidebar">
+        <!-- DOCTOR NAVIGATION -->
 
-    <div class="sidebar-brand">
-        Care<span>Flow</span>
-    </div>
+        <div id="doctorNav" class="nav" style="display:none">
 
+            <button class="nav-btn active"
+                    onclick="showPage('doctorOverview',this)">
+                🏠 Overview
+            </button>
 
-    <div class="user">
+            <button class="nav-btn"
+                    onclick="showPage('doctorAppointments',this)">
+                📅 Appointments
+            </button>
 
-        <strong id="sideName">
-            User
-        </strong>
+            <button class="nav-btn"
+                    onclick="showPage('doctorCases',this)">
+                📋 Patient Cases
+            </button>
 
-        <br>
+            <button class="nav-btn"
+                    onclick="showPage('doctorPatients',this)">
+                👥 Patients
+            </button>
 
-        <small id="sideRole">
-            Patient
-        </small>
+            <button class="nav-btn"
+                    onclick="showPage('doctorNotes',this)">
+                📝 Clinical Notes
+            </button>
 
-    </div>
+            <button class="nav-btn"
+                    onclick="showPage('doctorReports',this)">
+                📊 Reports
+            </button>
 
+            <button class="nav-btn"
+                    onclick="showPage('doctorMessages',this)">
+                💬 Messages
+            </button>
 
-    <!-- PATIENT NAV -->
+            <button class="nav-btn"
+                    onclick="showPage('doctorProfile',this)">
+                👨‍⚕️ Doctor Profile
+            </button>
 
-    <div class="nav"
-         id="patientNav">
+        </div>
 
-        <button class="active"
-                onclick="showPage('patientHome',this)">
-            🏠 Overview
+        <button class="btn btn-danger logout-btn"
+                onclick="logout()">
+            Logout
         </button>
 
-        <button onclick="showPage('newCase',this)">
-            📝 New Patient Case
-        </button>
-
-        <button onclick="showPage('hospital',this)">
-            🏥 Find Hospital & Book
-        </button>
-
-        <button onclick="showPage('appointments',this)">
-            📅 My Appointments
-        </button>
-
-        <button onclick="showPage('history',this)">
-            🩺 Medical History
-        </button>
-
-        <button onclick="showPage('reports',this)">
-            📊 Reports
-        </button>
-
-        <button onclick="showPage('messages',this)">
-            💬 Messages
-        </button>
-
-        <button onclick="showPage('profile',this)">
-            👤 My Profile
-        </button>
-
-    </div>
+    </aside>
 
 
-    <!-- DOCTOR NAV -->
+    <!-- MAIN -->
 
-    <div class="nav hidden"
-         id="doctorNav">
+    <main class="main">
 
-        <button class="active"
-                onclick="showPage('doctorHome',this)">
-            🏠 Overview
-        </button>
+        <div class="topbar">
 
-        <button onclick="showPage('doctorAppointments',this)">
-            📅 Appointments
-        </button>
+            <button class="menu-toggle"
+                    onclick="toggleSidebar()">
+                ☰
+            </button>
 
-        <button onclick="showPage('doctorCases',this)">
-            📋 Patient Cases
-        </button>
+            <h2 id="pageTitle">Dashboard</h2>
 
-        <button onclick="showPage('doctorPatients',this)">
-            👥 Patients
-        </button>
+            <div>
+                <span id="topUserName">User</span>
+            </div>
 
-        <button onclick="showPage('doctorNotes',this)">
-            📝 Clinical Notes
-        </button>
+        </div>
 
-        <button onclick="showPage('doctorReports',this)">
-            📊 Reports
-        </button>
-
-        <button onclick="showPage('doctorProfile',this)">
-            👨‍⚕️ Profile
-        </button>
-
-    </div>
+        <div class="content">
 
 
-    <button class="btn red"
-            style="margin:20px;width:calc(100% - 40px)"
-            onclick="logout()">
+<!-- =========================================================
+     PATIENT OVERVIEW
+========================================================= -->
 
-        🚪 Logout
-
-    </button>
-
-</aside>
-
-
-<main class="main">
-
-<header class="topbar">
-
-    <button class="menu"
-            onclick="toggleSidebar()">
-        ☰
-    </button>
-
-    <h2 id="pageTitle">
-        Patient Dashboard
-    </h2>
-
-    <strong id="topName">
-        User
-    </strong>
-
-</header>
-
-
-<div class="content">
-
-
-<!-- =====================================================
-     PATIENT HOME
-===================================================== -->
-
-<section id="patientHome"
-         class="page active">
+<section id="patientOverview" class="page active">
 
     <div class="welcome">
 
         <h1>
-            Good Morning,
-            <span id="welcomeName">
-                Patient
-            </span> 👋
+            Welcome, <span id="patientWelcomeName">Patient</span> 👋
         </h1>
 
         <p>
-            Your healthcare journey is one click away.
+            Manage your healthcare journey using CareFlow.
         </p>
 
     </div>
 
+    <div class="cards">
 
-    <div class="stats">
-
-        <div class="stat">
-
+        <div class="stat-card">
             <div class="stat-icon">📅</div>
-
-            <h3 id="statAppointments">
-                0
-            </h3>
-
-            <p>
-                Appointments
-            </p>
-
+            <h3 id="patientAppointmentCount">0</h3>
+            <p>Appointments</p>
         </div>
 
-
-        <div class="stat">
-
+        <div class="stat-card">
             <div class="stat-icon">📝</div>
-
-            <h3 id="statCases">
-                0
-            </h3>
-
-            <p>
-                Patient Cases
-            </p>
-
+            <h3 id="patientCaseCount">0</h3>
+            <p>Cases</p>
         </div>
 
-
-        <div class="stat">
-
+        <div class="stat-card">
             <div class="stat-icon">🏥</div>
-
             <h3>10+</h3>
-
-            <p>
-                Demo Cities
-            </p>
-
+            <p>Demo Cities</p>
         </div>
 
-
-        <div class="stat">
-
+        <div class="stat-card">
             <div class="stat-icon">🎤</div>
-
             <h3>10</h3>
-
-            <p>
-                Voice Languages
-            </p>
-
+            <p>Voice Languages</p>
         </div>
 
     </div>
 
-
     <div class="panel">
 
-        <h2>
-            ⚡ Quick Actions
-        </h2>
+        <h2>Quick Actions</h2>
 
+        <div class="button-row">
 
-        <div class="quick">
+            <button class="btn btn-primary"
+                    onclick="showPageById('newCase')">
+                📝 Create New Case
+            </button>
 
-            <div class="quick-card"
-                 onclick="showPageById('hospital')">
+            <button class="btn btn-teal"
+                    onclick="showPageById('patientHospital')">
+                🏥 Find Hospital
+            </button>
 
-                <div style="font-size:35px">
-                    🏥
-                </div>
-
-                <strong>
-                    Find a Hospital
-                </strong>
-
-                <span>
-                    Search hospitals and doctors.
-                </span>
-
-            </div>
-
-
-            <div class="quick-card"
-                 onclick="showPageById('newCase')">
-
-                <div style="font-size:35px">
-                    🎤
-                </div>
-
-                <strong>
-                    Create Case
-                </strong>
-
-                <span>
-                    Record patient information.
-                </span>
-
-            </div>
-
-
-            <div class="quick-card"
-                 onclick="showPageById('appointments')">
-
-                <div style="font-size:35px">
-                    📅
-                </div>
-
-                <strong>
-                    My Appointments
-                </strong>
-
-                <span>
-                    View upcoming appointments.
-                </span>
-
-            </div>
+            <button class="btn btn-success"
+                    onclick="showPageById('patientAppointments')">
+                📅 View Appointments
+            </button>
 
         </div>
 
@@ -1491,99 +944,422 @@ textarea{
 </section>
 
 
-<!-- =====================================================
-     HOSPITAL
-===================================================== -->
+<!-- =========================================================
+     NEW PATIENT CASE
+========================================================= -->
 
-<section id="hospital"
-         class="page">
+<section id="newCase" class="page">
 
-    <div class="appointment-banner">
+    <div class="panel">
 
-        <h2>
-            🏥 Find Your Healthcare
-        </h2>
+        <h2>📝 New Patient Case</h2>
 
-        <p>
-            Choose your city, hospital, department and doctor.
-        </p>
+        <div class="voice-panel">
+
+            <strong>🎤 Voice Input</strong>
+
+            <p style="margin:7px 0;color:#64748b;">
+                Select your language and press the microphone button.
+            </p>
+
+            <div class="grid-2">
+
+                <div class="form-group">
+                    <label>Voice Language</label>
+
+                    <select id="voiceLanguage">
+
+                        <option value="en-IN">
+                            English (India)
+                        </option>
+
+                        <option value="ta-IN">
+                            Tamil
+                        </option>
+
+                        <option value="te-IN">
+                            Telugu
+                        </option>
+
+                        <option value="hi-IN">
+                            Hindi
+                        </option>
+
+                        <option value="ml-IN">
+                            Malayalam
+                        </option>
+
+                        <option value="kn-IN">
+                            Kannada
+                        </option>
+
+                        <option value="bn-IN">
+                            Bengali
+                        </option>
+
+                        <option value="mr-IN">
+                            Marathi
+                        </option>
+
+                        <option value="gu-IN">
+                            Gujarati
+                        </option>
+
+                        <option value="pa-IN">
+                            Punjabi
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Microphone Test</label>
+
+                    <button class="btn btn-teal"
+                            onclick="testVoice()">
+                        🎤 Test Microphone
+                    </button>
+
+                    <div id="globalVoiceStatus"
+                         class="voice-status">
+                        Microphone not started.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="grid-2">
+
+            <div class="form-group">
+                <label>Patient Name</label>
+
+                <input id="patientName"
+                       type="text"
+                       placeholder="Patient name">
+            </div>
+
+            <div class="form-group">
+                <label>Mobile Number</label>
+
+                <input id="patientMobile"
+                       type="tel"
+                       placeholder="Mobile number">
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth</label>
+
+                <input id="dob"
+                       type="date">
+            </div>
+
+            <div class="form-group">
+                <label>Age</label>
+
+                <input id="age"
+                       type="number"
+                       placeholder="Age">
+            </div>
+
+            <div class="form-group">
+                <label>Sex</label>
+
+                <select id="sex">
+                    <option value="">Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Blood Group</label>
+
+                <select id="bloodGroup">
+                    <option value="">Select</option>
+                    <option>A+</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B-</option>
+                    <option>AB+</option>
+                    <option>AB-</option>
+                    <option>O+</option>
+                    <option>O-</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Address</label>
+
+            <div class="voice-row">
+
+                <input id="address"
+                       type="text"
+                       placeholder="Address">
+
+                <button class="mic-btn"
+                        data-field="address"
+                        onclick="requestMicrophoneAndStart('address')">
+                    🎤
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="grid-3">
+
+            <div class="form-group">
+                <label>Visit Date</label>
+                <input id="visitDate" type="date">
+            </div>
+
+            <div class="form-group">
+                <label>Temperature (°C)</label>
+                <input id="temperature" type="number">
+            </div>
+
+            <div class="form-group">
+                <label>Weight (kg)</label>
+                <input id="weight" type="number">
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Main Complaint</label>
+
+            <div class="voice-row">
+
+                <textarea id="complaint"
+                          placeholder="Describe main complaint"></textarea>
+
+                <button class="mic-btn"
+                        data-field="complaint"
+                        onclick="requestMicrophoneAndStart('complaint')">
+                    🎤
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Symptoms</label>
+
+            <div class="voice-row">
+
+                <textarea id="symptoms"
+                          placeholder="Enter symptoms"></textarea>
+
+                <button class="mic-btn"
+                        data-field="symptoms"
+                        onclick="requestMicrophoneAndStart('symptoms')">
+                    🎤
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>History of Present Illness</label>
+
+            <div class="voice-row">
+
+                <textarea id="history"
+                          placeholder="Describe history"></textarea>
+
+                <button class="mic-btn"
+                        data-field="history"
+                        onclick="requestMicrophoneAndStart('history')">
+                    🎤
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Previous Medical History</label>
+
+            <div class="voice-row">
+
+                <textarea id="medicalHistory"></textarea>
+
+                <button class="mic-btn"
+                        data-field="medicalHistory"
+                        onclick="requestMicrophoneAndStart('medicalHistory')">
+                    🎤
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Previous Surgery</label>
+
+            <div class="voice-row">
+
+                <textarea id="surgery"></textarea>
+
+                <button class="mic-btn"
+                        data-field="surgery"
+                        onclick="requestMicrophoneAndStart('surgery')">
+                    🎤
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Current Medications</label>
+
+            <div class="voice-row">
+
+                <textarea id="medications"></textarea>
+
+                <button class="mic-btn"
+                        data-field="medications"
+                        onclick="requestMicrophoneAndStart('medications')">
+                    🎤
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Allergies</label>
+
+            <div class="voice-row">
+
+                <textarea id="allergies"></textarea>
+
+                <button class="mic-btn"
+                        data-field="allergies"
+                        onclick="requestMicrophoneAndStart('allergies')">
+                    🎤
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="button-row">
+
+            <button class="btn btn-primary"
+                    onclick="generateCaseSummary()">
+                ✨ Generate Case Summary
+            </button>
+
+            <button class="btn btn-success"
+                    onclick="saveCase()">
+                💾 Save Case
+            </button>
+
+            <button class="btn btn-secondary"
+                    onclick="clearCase()">
+                Clear Form
+            </button>
+
+        </div>
 
     </div>
 
 
-    <div class="panel">
+    <div id="caseSummaryPanel"
+         class="panel"
+         style="display:none">
 
-        <div class="selection-grid">
+        <h2>📄 Case Summary</h2>
+
+        <div id="caseSummary"
+             class="summary-box"></div>
+
+        <div class="button-row">
+
+            <button class="btn btn-primary"
+                    onclick="copySummary()">
+                📋 Copy
+            </button>
+
+            <button class="btn btn-secondary"
+                    onclick="printSummary()">
+                🖨 Print
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-            <div class="step">
+<!-- =========================================================
+     HOSPITAL + APPOINTMENT MODULE
+========================================================= -->
 
-                <label>
-                    <span class="step-number">1</span>
-                    Select City
-                </label>
+<section id="patientHospital" class="page">
 
-                <select id="city"
+    <div class="panel appointment-module">
+
+        <div class="step-title">
+
+            <div class="step-number">1</div>
+
+            <div>
+                <h2 style="margin:0">
+                    Find Hospital & Book Appointment
+                </h2>
+
+                <p style="color:#64748b">
+                    Select city → hospital → department → doctor.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="grid-2">
+
+            <div class="form-group">
+
+                <label>📍 City</label>
+
+                <select id="appointmentCity"
                         onchange="loadHospitals()">
 
                     <option value="">
-                        Choose City
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="step">
-
-                <label>
-                    <span class="step-number">2</span>
-                    Select Hospital
-                </label>
-
-                <select id="hospital"
-                        onchange="loadDepartments()">
-
-                    <option value="">
-                        Choose Hospital
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="step">
-
-                <label>
-                    <span class="step-number">3</span>
-                    Medical Department
-                </label>
-
-                <select id="department"
-                        onchange="loadDoctors()">
-
-                    <option value="">
-                        Choose Department
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="step">
-
-                <label>
-                    <span class="step-number">4</span>
-                    Choose Doctor
-                </label>
-
-                <select id="doctor">
-
-                    <option value="">
-                        Choose Doctor
+                        Select City
                     </option>
 
                 </select>
@@ -1593,9 +1369,54 @@ textarea{
 
             <div class="form-group">
 
-                <label>
-                    📅 Appointment Date
-                </label>
+                <label>🏥 Hospital Name</label>
+
+                <select id="appointmentHospital"
+                        onchange="loadDepartments()">
+
+                    <option value="">
+                        Select Hospital
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>🩺 Medical Department</label>
+
+                <select id="appointmentDepartment"
+                        onchange="loadDoctors()">
+
+                    <option value="">
+                        Select Department
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>👨‍⚕️ Doctor</label>
+
+                <select id="appointmentDoctor">
+
+                    <option value="">
+                        Select Doctor
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>📅 Appointment Date</label>
 
                 <input id="appointmentDate"
                        type="date">
@@ -1605,14 +1426,12 @@ textarea{
 
             <div class="form-group">
 
-                <label>
-                    ⏰ Appointment Time
-                </label>
+                <label>⏰ Appointment Time</label>
 
                 <select id="appointmentTime">
 
                     <option value="">
-                        Choose Time
+                        Select Time
                     </option>
 
                     <option>09:00 AM</option>
@@ -1621,11 +1440,13 @@ textarea{
                     <option>10:30 AM</option>
                     <option>11:00 AM</option>
                     <option>11:30 AM</option>
+                    <option>12:00 PM</option>
                     <option>02:00 PM</option>
                     <option>02:30 PM</option>
                     <option>03:00 PM</option>
                     <option>03:30 PM</option>
                     <option>04:00 PM</option>
+                    <option>04:30 PM</option>
 
                 </select>
 
@@ -1634,115 +1455,51 @@ textarea{
         </div>
 
 
-        <div class="voice-box">
+        <div class="form-group">
 
-            <label>
-                🎤 Reason for Appointment
-            </label>
+            <label>Reason for Appointment</label>
 
+            <div class="voice-row">
 
-            <div class="form-group">
+                <textarea id="appointmentReason"
+                          placeholder="Explain reason for appointment"></textarea>
 
-                <select id="voiceLanguage">
-
-                    <option value="en-IN">
-                        English (India)
-                    </option>
-
-                    <option value="ta-IN">
-                        Tamil
-                    </option>
-
-                    <option value="hi-IN">
-                        Hindi
-                    </option>
-
-                    <option value="te-IN">
-                        Telugu
-                    </option>
-
-                    <option value="ml-IN">
-                        Malayalam
-                    </option>
-
-                    <option value="kn-IN">
-                        Kannada
-                    </option>
-
-                    <option value="bn-IN">
-                        Bengali
-                    </option>
-
-                    <option value="mr-IN">
-                        Marathi
-                    </option>
-
-                    <option value="gu-IN">
-                        Gujarati
-                    </option>
-
-                    <option value="pa-IN">
-                        Punjabi
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="voice-input">
-
-                <textarea id="reason"
-                          placeholder="Type or speak your reason..."></textarea>
-
-                <button class="mic"
-                        onclick="voiceInput('reason')">
+                <button class="mic-btn"
+                        data-field="appointmentReason"
+                        onclick="requestMicrophoneAndStart('appointmentReason')">
                     🎤
                 </button>
 
             </div>
 
-            <div id="voiceStatus"
-                 class="voice-status">
-
-                Microphone ready.
-
-            </div>
-
         </div>
 
 
-        <div>
+        <div class="button-row">
 
-            <button class="btn primary"
+            <button class="btn btn-primary"
                     onclick="previewAppointment()">
-
-                👁 Preview
-
+                👁 Preview Appointment
             </button>
 
-            <button class="btn green"
+            <button class="btn btn-success"
                     onclick="bookAppointment()">
-
                 ✅ Book Appointment
-
             </button>
 
-            <button class="btn gray"
+            <button class="btn btn-secondary"
                     onclick="clearAppointment()">
-
                 Clear
-
             </button>
 
         </div>
 
 
-        <div id="preview"
-             class="preview">
+        <div id="appointmentPreview"
+             class="appointment-preview">
 
-            <h3>
-                📋 Appointment Preview
+            <h3 style="margin-bottom:15px">
+                Appointment Preview
             </h3>
 
             <div id="previewContent"></div>
@@ -1754,252 +1511,58 @@ textarea{
 
     <div class="panel">
 
-        <h2>
-            📅 My Booked Appointments
-        </h2>
+        <h2>📅 My Booked Appointments</h2>
 
-        <div id="appointmentList">
-            No appointments yet.
-        </div>
+        <div id="bookedAppointments">
 
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     NEW CASE
-===================================================== -->
-
-<section id="newCase"
-         class="page">
-
-    <div class="panel">
-
-        <h2>
-            📝 Smart Patient Case
-        </h2>
-
-
-        <div class="voice-box">
-
-            <strong>
-                🎤 Voice Case Taking
-            </strong>
-
-            <p style="color:#64748b;margin:8px 0 15px">
-                Use your microphone to enter symptoms and
-                patient information.
+            <p style="color:#64748b">
+                No appointments booked yet.
             </p>
 
         </div>
 
+    </div>
 
-        <div class="selection-grid">
+</section>
 
-            <div class="form-group">
 
-                <label>
-                    Patient Name
-                </label>
+<!-- =========================================================
+     PATIENT APPOINTMENTS
+========================================================= -->
 
-                <input id="caseName"
-                       placeholder="Patient name">
+<section id="patientAppointments" class="page">
 
-            </div>
+    <div class="panel">
 
+        <h2>📅 Appointments</h2>
 
-            <div class="form-group">
+        <p style="color:#64748b;margin-bottom:20px">
+            View your upcoming appointments.
+        </p>
 
-                <label>
-                    Mobile
-                </label>
-
-                <input id="caseMobile"
-                       placeholder="Mobile number">
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Age
-                </label>
-
-                <input id="caseAge"
-                       type="number">
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Sex
-                </label>
-
-                <select id="caseSex">
-
-                    <option value="">
-                        Select
-                    </option>
-
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Blood Group
-                </label>
-
-                <select id="caseBlood">
-
-                    <option value="">
-                        Select
-                    </option>
-
-                    <option>A+</option>
-                    <option>A-</option>
-                    <option>B+</option>
-                    <option>B-</option>
-                    <option>AB+</option>
-                    <option>AB-</option>
-                    <option>O+</option>
-                    <option>O-</option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Temperature
-                </label>
-
-                <input id="caseTemp"
-                       type="number"
-                       placeholder="°C">
-
-            </div>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Main Complaint
-            </label>
-
-            <div class="voice-input">
-
-                <textarea id="complaint"
-                          placeholder="Describe main complaint"></textarea>
-
-                <button class="mic"
-                        onclick="voiceInput('complaint')">
-                    🎤
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Symptoms
-            </label>
-
-            <div class="voice-input">
-
-                <textarea id="symptoms"
-                          placeholder="Describe symptoms"></textarea>
-
-                <button class="mic"
-                        onclick="voiceInput('symptoms')">
-                    🎤
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Previous Medical History
-            </label>
-
-            <textarea id="previousHistory"
-                      placeholder="Previous medical history"></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Current Medications
-            </label>
-
-            <textarea id="medications"
-                      placeholder="Current medications"></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Allergies
-            </label>
-
-            <textarea id="allergies"
-                      placeholder="Known allergies"></textarea>
-
-        </div>
-
-
-        <button class="btn primary"
-                onclick="generateSummary()">
-
-            ✨ Generate Smart Summary
-
-        </button>
-
-
-        <button class="btn green"
-                onclick="saveCase()">
-
-            💾 Save Case
-
-        </button>
+        <div id="patientAppointmentsList"></div>
 
     </div>
 
+</section>
 
-    <div id="summaryPanel"
-         class="panel hidden">
 
-        <h2>
-            📄 Generated Case Summary
-        </h2>
+<!-- =========================================================
+     PATIENT HISTORY
+========================================================= -->
 
-        <div id="summary"
-             class="summary">
+<section id="patientHistory" class="page">
+
+    <div class="panel">
+
+        <h2>🩺 Medical History</h2>
+
+        <div id="medicalHistoryDisplay">
+
+            <p style="color:#64748b">
+                No saved case history available.
+            </p>
+
         </div>
 
     </div>
@@ -2007,85 +1570,34 @@ textarea{
 </section>
 
 
-<!-- =====================================================
-     APPOINTMENTS
-===================================================== -->
+<!-- =========================================================
+     PATIENT REPORTS
+========================================================= -->
 
-<section id="appointments"
-         class="page">
-
-    <div class="panel">
-
-        <h2>
-            📅 My Appointments
-        </h2>
-
-        <div id="appointmentPageList">
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     HISTORY
-===================================================== -->
-
-<section id="history"
-         class="page">
+<section id="patientReports" class="page">
 
     <div class="panel">
 
-        <h2>
-            🩺 Medical History
-        </h2>
+        <h2>📊 Reports</h2>
 
-        <div id="historyList">
-        </div>
+        <div class="grid-3">
 
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     REPORTS
-===================================================== -->
-
-<section id="reports"
-         class="page">
-
-    <div class="panel">
-
-        <h2>
-            📊 Health Reports
-        </h2>
-
-        <div class="stats">
-
-            <div class="stat">
+            <div class="stat-card">
                 <div class="stat-icon">📝</div>
-                <h3 id="reportCases">0</h3>
-                <p>Cases</p>
+                <h3 id="reportCaseCount">0</h3>
+                <p>Total Cases</p>
             </div>
 
-            <div class="stat">
+            <div class="stat-card">
                 <div class="stat-icon">📅</div>
-                <h3 id="reportAppointments">0</h3>
+                <h3 id="reportAppointmentCount">0</h3>
                 <p>Appointments</p>
             </div>
 
-            <div class="stat">
-                <div class="stat-icon">🏥</div>
-                <h3>10+</h3>
-                <p>Cities</p>
-            </div>
-
-            <div class="stat">
-                <div class="stat-icon">✓</div>
-                <h3>Active</h3>
-                <p>CareFlow</p>
+            <div class="stat-card">
+                <div class="stat-icon">💾</div>
+                <h3>Local</h3>
+                <p>Demo Storage</p>
             </div>
 
         </div>
@@ -2095,27 +1607,23 @@ textarea{
 </section>
 
 
-<!-- =====================================================
-     MESSAGES
-===================================================== -->
+<!-- =========================================================
+     PATIENT MESSAGES
+========================================================= -->
 
-<section id="messages"
-         class="page">
+<section id="patientMessages" class="page">
 
     <div class="panel">
 
-        <h2>
-            💬 Messages
-        </h2>
+        <h2>💬 Messages</h2>
 
         <div class="appointment-card">
 
-            <strong>
-                CareFlow Support
-            </strong>
+            <strong>CareFlow Support</strong>
 
-            <p>
-                Welcome to your CareFlow healthcare dashboard.
+            <p style="margin-top:8px;color:#64748b">
+                Welcome to CareFlow. Your appointment and case
+                information is stored securely in this demo browser.
             </p>
 
         </div>
@@ -2125,20 +1633,17 @@ textarea{
 </section>
 
 
-<!-- =====================================================
-     PROFILE
-===================================================== -->
+<!-- =========================================================
+     PATIENT PROFILE
+========================================================= -->
 
-<section id="profile"
-         class="page">
+<section id="patientProfile" class="page">
 
     <div class="panel">
 
-        <h2>
-            👤 My Profile
-        </h2>
+        <h2>👤 My Profile</h2>
 
-        <div class="profile">
+        <div class="profile-card">
 
             <div class="avatar">
                 👤
@@ -2146,11 +1651,12 @@ textarea{
 
             <div>
 
-                <h2 id="profileName">
+                <h2 id="profilePatientName">
                     Patient
                 </h2>
 
-                <p id="profileMobile">
+                <p id="profilePatientMobile"
+                   style="color:#64748b">
                     Mobile
                 </p>
 
@@ -2163,96 +1669,49 @@ textarea{
 </section>
 
 
-<!-- =====================================================
-     DOCTOR HOME
-===================================================== -->
+<!-- =========================================================
+     DOCTOR OVERVIEW
+========================================================= -->
 
-<section id="doctorHome"
-         class="page">
+<section id="doctorOverview" class="page">
 
     <div class="welcome">
 
         <h1>
-            Welcome Dr.
-            <span id="doctorWelcome">
-                Doctor
-            </span> 👨‍⚕️
+            Welcome, Dr. <span id="doctorWelcomeName">Doctor</span> 👨‍⚕️
         </h1>
 
         <p>
-            Your clinical dashboard is ready.
+            Manage patient appointments and clinical cases.
         </p>
 
     </div>
 
 
-    <div class="stats">
+    <div class="cards">
 
-        <div class="stat">
-
-            <div class="stat-icon">
-                📅
-            </div>
-
-            <h3 id="doctorAppointmentCount">
-                0
-            </h3>
-
-            <p>
-                Appointments
-            </p>
-
+        <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <h3 id="doctorAppointmentCount">0</h3>
+            <p>Appointments</p>
         </div>
 
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                📋
-            </div>
-
-            <h3 id="doctorCaseCount">
-                0
-            </h3>
-
-            <p>
-                Patient Cases
-            </p>
-
+        <div class="stat-card">
+            <div class="stat-icon">📋</div>
+            <h3 id="doctorCaseCount">0</h3>
+            <p>Patient Cases</p>
         </div>
 
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                👥
-            </div>
-
-            <h3>
-                25+
-            </h3>
-
-            <p>
-                Patients
-            </p>
-
+        <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <h3>25+</h3>
+            <p>Demo Patients</p>
         </div>
 
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                💬
-            </div>
-
-            <h3>
-                5
-            </h3>
-
-            <p>
-                Messages
-            </p>
-
+        <div class="stat-card">
+            <div class="stat-icon">💬</div>
+            <h3>5</h3>
+            <p>Messages</p>
         </div>
 
     </div>
@@ -2260,170 +1719,131 @@ textarea{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      DOCTOR APPOINTMENTS
-===================================================== -->
+========================================================= -->
 
-<section id="doctorAppointments"
-         class="page">
+<section id="doctorAppointments" class="page">
 
     <div class="panel">
 
-        <h2>
-            📅 Patient Appointments
-        </h2>
+        <h2>📅 Patient Appointments</h2>
 
-        <div id="doctorAppointmentList">
-        </div>
+        <div id="doctorAppointmentsList"></div>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      DOCTOR CASES
-===================================================== -->
+========================================================= -->
 
-<section id="doctorCases"
-         class="page">
+<section id="doctorCases" class="page">
 
     <div class="panel">
 
-        <h2>
-            📋 Patient Cases
-        </h2>
+        <h2>📋 Patient Cases</h2>
 
-        <div id="doctorCaseList">
-        </div>
+        <div id="doctorCaseList"></div>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      DOCTOR PATIENTS
-===================================================== -->
+========================================================= -->
 
-<section id="doctorPatients"
-         class="page">
+<section id="doctorPatients" class="page">
 
     <div class="panel">
 
-        <h2>
-            👥 Patients
-        </h2>
+        <h2>👥 Patients</h2>
 
-        <input placeholder="🔎 Search patient..."
-               oninput="searchPatients(this.value)">
+        <div class="form-group">
 
-        <div id="patientsList"
-             style="margin-top:20px">
+            <input type="text"
+                   placeholder="Search patient..."
+                   oninput="searchPatients(this.value)">
+
         </div>
+
+        <div id="patientsList"></div>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      DOCTOR NOTES
-===================================================== -->
+========================================================= -->
 
-<section id="doctorNotes"
-         class="page">
+<section id="doctorNotes" class="page">
 
     <div class="panel">
 
-        <h2>
-            📝 Clinical Notes
-        </h2>
+        <h2>📝 Clinical Notes</h2>
 
         <div class="form-group">
 
-            <label>
-                Patient Name
-            </label>
+            <label>Patient</label>
 
-            <input id="notePatient">
+            <input id="clinicalPatient"
+                   placeholder="Patient name">
 
         </div>
-
 
         <div class="form-group">
 
-            <label>
-                Clinical Note
-            </label>
+            <label>Clinical Note</label>
 
-            <textarea id="noteText"></textarea>
+            <textarea id="clinicalNote"
+                      placeholder="Enter clinical note"></textarea>
 
         </div>
 
-
-        <button class="btn green"
-                onclick="saveNote()">
-
-            💾 Save Note
-
+        <button class="btn btn-success"
+                onclick="saveDoctorNote()">
+            💾 Save Clinical Note
         </button>
 
-        <div id="notesList"
-             style="margin-top:20px">
-        </div>
+        <div id="savedClinicalNotes"
+             style="margin-top:20px"></div>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      DOCTOR REPORTS
-===================================================== -->
+========================================================= -->
 
-<section id="doctorReports"
-         class="page">
+<section id="doctorReports" class="page">
 
     <div class="panel">
 
-        <h2>
-            📊 Clinical Reports
-        </h2>
+        <h2>📊 Doctor Reports</h2>
 
-        <div class="stats">
+        <div class="grid-3">
 
-            <div class="stat">
-
-                <div class="stat-icon">
-                    📅
-                </div>
-
-                <h3 id="doctorReportAppointments">
-                    0
-                </h3>
-
-                <p>
-                    Appointments
-                </p>
-
+            <div class="stat-card">
+                <h3 id="doctorReportAppointments">0</h3>
+                <p>Total Appointments</p>
             </div>
 
+            <div class="stat-card">
+                <h3 id="doctorReportCases">0</h3>
+                <p>Total Cases</p>
+            </div>
 
-            <div class="stat">
-
-                <div class="stat-icon">
-                    📋
-                </div>
-
-                <h3 id="doctorReportCases">
-                    0
-                </h3>
-
-                <p>
-                    Cases
-                </p>
-
+            <div class="stat-card">
+                <h3>Active</h3>
+                <p>System Status</p>
             </div>
 
         </div>
@@ -2433,20 +1853,42 @@ textarea{
 </section>
 
 
-<!-- =====================================================
-     DOCTOR PROFILE
-===================================================== -->
+<!-- =========================================================
+     DOCTOR MESSAGES
+========================================================= -->
 
-<section id="doctorProfile"
-         class="page">
+<section id="doctorMessages" class="page">
 
     <div class="panel">
 
-        <h2>
-            👨‍⚕️ Doctor Profile
-        </h2>
+        <h2>💬 Messages</h2>
 
-        <div class="profile">
+        <div class="appointment-card">
+
+            <strong>CareFlow System</strong>
+
+            <p style="margin-top:8px;color:#64748b">
+                No new messages.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     DOCTOR PROFILE
+========================================================= -->
+
+<section id="doctorProfile" class="page">
+
+    <div class="panel">
+
+        <h2>👨‍⚕️ Doctor Profile</h2>
+
+        <div class="profile-card">
 
             <div class="avatar">
                 👨‍⚕️
@@ -2454,11 +1896,11 @@ textarea{
 
             <div>
 
-                <h2 id="doctorProfileName">
+                <h2 id="profileDoctorName">
                     Doctor
                 </h2>
 
-                <p>
+                <p style="color:#64748b">
                     CareFlow Medical Professional
                 </p>
 
@@ -2471,92 +1913,95 @@ textarea{
 </section>
 
 
+        </div>
+
+    </main>
+
 </div>
 
-</main>
 
-</div>
+<!-- TOAST -->
 
-
-<div id="toast"></div>
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-/* =====================================================
-   APPLICATION STATE
-===================================================== */
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
 
-let role="";
-let userName="";
-let recognition=null;
-let listening=false;
+let currentRole = "";
+let currentUser = "";
+let recognition = null;
+let currentVoiceField = null;
+let isListening = false;
 
 
-/* =====================================================
-   HOSPITAL DATABASE
-===================================================== */
+/* =========================================================
+   DEMO HOSPITAL DATABASE
+========================================================= */
 
-const hospitals={
+const hospitalData = {
 
-    Chennai:{
+    "Chennai": {
 
-        "Apollo Hospitals":{
+        "Apollo Hospitals": {
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Arun Kumar",
                 "Dr. Priya Sharma"
             ],
 
-            Neurology:[
+            "Neurology": [
                 "Dr. Ravi Menon",
                 "Dr. Meena Krishnan"
             ],
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Suresh Kumar",
                 "Dr. Anitha Rao"
             ],
 
-            Orthopedics:[
+            "Orthopedics": [
                 "Dr. Karthik Raj",
                 "Dr. Divya Mohan"
             ]
 
         },
 
-        "MIOT International":{
+        "MIOT International": {
 
-            Orthopedics:[
+            "Orthopedics": [
                 "Dr. Vijay Anand",
                 "Dr. Rekha Devi"
             ],
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Sanjay Rao",
                 "Dr. Nandhini Kumar"
             ],
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Prakash",
                 "Dr. Lavanya"
             ]
 
         },
 
-        "Government General Hospital":{
+        "Government General Hospital": {
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Rajesh Kumar",
                 "Dr. Meena"
             ],
 
-            Pediatrics:[
-                "Dr. Kavitha"
+            "Cardiology": [
+                "Dr. Senthil Kumar"
             ],
 
-            Cardiology:[
-                "Dr. Senthil Kumar"
+            "Pediatrics": [
+                "Dr. Kavitha"
             ]
 
         }
@@ -2564,33 +2009,33 @@ const hospitals={
     },
 
 
-    Coimbatore:{
+    "Coimbatore": {
 
-        "Kovai Medical Center":{
+        "Kovai Medical Center": {
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Bala Murugan",
                 "Dr. Priya"
             ],
 
-            Neurology:[
+            "Neurology": [
                 "Dr. Anand"
             ],
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Kumar"
             ]
 
         },
 
-        "Ganga Hospital":{
+        "Ganga Hospital": {
 
-            Orthopedics:[
+            "Orthopedics": [
                 "Dr. Rajiv",
                 "Dr. Swetha"
             ],
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Hari"
             ]
 
@@ -2599,36 +2044,36 @@ const hospitals={
     },
 
 
-    Madurai:{
+    "Madurai": {
 
-        "Apollo Speciality Hospital":{
+        "Apollo Speciality Hospital": {
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Naveen",
                 "Dr. Rekha"
             ],
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Murugan"
             ],
 
-            Neurology:[
+            "Neurology": [
                 "Dr. Siva"
             ]
 
         },
 
-        "Government Rajaji Hospital":{
+        "Government Rajaji Hospital": {
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Kumar"
             ],
 
-            Pediatrics:[
+            "Pediatrics": [
                 "Dr. Priya"
             ],
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Senthil"
             ]
 
@@ -2637,19 +2082,41 @@ const hospitals={
     },
 
 
-    Salem:{
+    "Tiruchirappalli": {
 
-        "SKS Hospital":{
+        "Kauvery Hospital": {
 
-            "General Medicine":[
+            "Cardiology": [
+                "Dr. Ashok",
+                "Dr. Priya"
+            ],
+
+            "General Medicine": [
+                "Dr. Suresh"
+            ],
+
+            "Orthopedics": [
+                "Dr. Mahesh"
+            ]
+
+        }
+
+    },
+
+
+    "Salem": {
+
+        "SKS Hospital": {
+
+            "General Medicine": [
                 "Dr. Ramesh"
             ],
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Anil"
             ],
 
-            Orthopedics:[
+            "Orthopedics": [
                 "Dr. Kannan"
             ]
 
@@ -2658,20 +2125,20 @@ const hospitals={
     },
 
 
-    Bengaluru:{
+    "Bengaluru": {
 
-        "Manipal Hospital":{
+        "Manipal Hospital": {
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Amit",
                 "Dr. Neha"
             ],
 
-            Neurology:[
+            "Neurology": [
                 "Dr. Vikram"
             ],
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Rahul"
             ]
 
@@ -2680,20 +2147,20 @@ const hospitals={
     },
 
 
-    Hyderabad:{
+    "Hyderabad": {
 
-        "Apollo Hospitals Hyderabad":{
+        "Apollo Hospitals Hyderabad": {
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Rakesh",
                 "Dr. Swathi"
             ],
 
-            Neurology:[
+            "Neurology": [
                 "Dr. Vivek"
             ],
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Raj"
             ]
 
@@ -2702,20 +2169,20 @@ const hospitals={
     },
 
 
-    Kochi:{
+    "Kochi": {
 
-        "Amrita Hospital":{
+        "Amrita Hospital": {
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Joseph",
                 "Dr. Maria"
             ],
 
-            Neurology:[
+            "Neurology": [
                 "Dr. Thomas"
             ],
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Anu"
             ]
 
@@ -2724,20 +2191,20 @@ const hospitals={
     },
 
 
-    Mumbai:{
+    "Mumbai": {
 
-        "Kokilaben Hospital":{
+        "Kokilaben Hospital": {
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Amit Shah",
                 "Dr. Pooja"
             ],
 
-            Neurology:[
+            "Neurology": [
                 "Dr. Raj"
             ],
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Mehta"
             ]
 
@@ -2746,20 +2213,20 @@ const hospitals={
     },
 
 
-    "New Delhi":{
+    "New Delhi": {
 
-        "AIIMS New Delhi":{
+        "AIIMS New Delhi": {
 
-            Cardiology:[
+            "Cardiology": [
                 "Dr. Sharma",
                 "Dr. Gupta"
             ],
 
-            Neurology:[
+            "Neurology": [
                 "Dr. Verma"
             ],
 
-            "General Medicine":[
+            "General Medicine": [
                 "Dr. Singh"
             ]
 
@@ -2770,215 +2237,192 @@ const hospitals={
 };
 
 
-/* =====================================================
+/* =========================================================
    LOGIN
-===================================================== */
+========================================================= */
 
-function openLogin(selectedRole){
+function openLogin(role){
 
-    role=selectedRole;
+    currentRole = role;
 
-    document.getElementById("landing")
-        .style.display="none";
+    document.getElementById("landing").style.display = "none";
 
-    document.getElementById("login")
-        .style.display="flex";
+    document.getElementById("loginScreen").style.display = "flex";
 
+    if(role === "patient"){
 
-    if(role==="patient"){
+        document.getElementById("loginTitle").textContent =
+            "Patient Login";
 
-        document.getElementById("loginIcon")
-            .textContent="👤";
+        document.getElementById("loginDescription").textContent =
+            "Enter your patient details to access CareFlow.";
 
-        document.getElementById("loginTitle")
-            .textContent="Patient Login";
+        document.getElementById("patientLoginFields").style.display =
+            "block";
 
-        document.getElementById("loginText")
-            .textContent=
-            "Access your smart healthcare dashboard.";
-
-        document.getElementById("patientFields")
-            .classList.remove("hidden");
-
-        document.getElementById("doctorFields")
-            .classList.add("hidden");
+        document.getElementById("doctorLoginFields").style.display =
+            "none";
 
     }else{
 
-        document.getElementById("loginIcon")
-            .textContent="👨‍⚕️";
+        document.getElementById("loginTitle").textContent =
+            "Doctor Login";
 
-        document.getElementById("loginTitle")
-            .textContent="Doctor Login";
+        document.getElementById("loginDescription").textContent =
+            "Enter your doctor credentials to access CareFlow.";
 
-        document.getElementById("loginText")
-            .textContent=
-            "Access your clinical dashboard.";
+        document.getElementById("patientLoginFields").style.display =
+            "none";
 
-        document.getElementById("patientFields")
-            .classList.add("hidden");
-
-        document.getElementById("doctorFields")
-            .classList.remove("hidden");
-
+        document.getElementById("doctorLoginFields").style.display =
+            "block";
     }
-
 }
 
 
-function backHome(){
+function backToLanding(){
 
-    document.getElementById("login")
-        .style.display="none";
+    document.getElementById("loginScreen").style.display = "none";
 
-    document.getElementById("landing")
-        .style.display="block";
-
+    document.getElementById("landing").style.display = "flex";
 }
 
 
-function login(){
+function performLogin(){
 
-    if(role==="patient"){
+    if(currentRole === "patient"){
 
-        const name=
-            document.getElementById(
-                "patientLoginName"
-            ).value.trim();
+        const name =
+            document.getElementById("loginPatientName").value.trim();
 
-        const mobile=
-            document.getElementById(
-                "patientLoginMobile"
-            ).value.trim();
+        const mobile =
+            document.getElementById("loginMobile").value.trim();
 
+        if(!name || !mobile){
 
-        if(!name||!mobile){
-
-            toast("Please enter your name and mobile.");
+            showToast("Please enter patient name and mobile number.");
 
             return;
         }
 
-
-        userName=name;
+        currentUser = name;
 
         localStorage.setItem(
-            "careflowUser",
+            "careflowPatientName",
             name
         );
 
         localStorage.setItem(
-            "careflowMobile",
+            "careflowPatientMobile",
             mobile
         );
 
+        startApplication("patient");
+
     }else{
 
-        const email=
-            document.getElementById(
-                "doctorEmail"
-            ).value.trim();
+        const email =
+            document.getElementById("loginEmail").value.trim();
 
-        const password=
-            document.getElementById(
-                "doctorPassword"
-            ).value.trim();
+        const password =
+            document.getElementById("loginPassword").value.trim();
 
+        if(!email || !password){
 
-        if(!email||!password){
-
-            toast("Enter doctor credentials.");
+            showToast("Please enter email and password.");
 
             return;
         }
 
-
-        userName=
+        currentUser =
             email.split("@")[0];
 
+        startApplication("doctor");
     }
-
-
-    document.getElementById("login")
-        .style.display="none";
-
-    document.getElementById("app")
-        .style.display="block";
-
-
-    document.getElementById("sideName")
-        .textContent=userName;
-
-    document.getElementById("topName")
-        .textContent=userName;
-
-
-    if(role==="patient"){
-
-        document.getElementById("sideRole")
-            .textContent="Patient";
-
-        document.getElementById("patientNav")
-            .classList.remove("hidden");
-
-        document.getElementById("doctorNav")
-            .classList.add("hidden");
-
-        document.getElementById("welcomeName")
-            .textContent=userName;
-
-        document.getElementById("profileName")
-            .textContent=userName;
-
-        document.getElementById("profileMobile")
-            .textContent=
-            localStorage.getItem(
-                "careflowMobile"
-            )||"";
-
-        showPageById("patientHome");
-
-    }else{
-
-        document.getElementById("sideRole")
-            .textContent="Doctor";
-
-        document.getElementById("patientNav")
-            .classList.add("hidden");
-
-        document.getElementById("doctorNav")
-            .classList.remove("hidden");
-
-        document.getElementById("doctorWelcome")
-            .textContent=userName;
-
-        document.getElementById("doctorProfileName")
-            .textContent=userName;
-
-        showPageById("doctorHome");
-
-    }
-
-
-    refresh();
-
 }
 
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* =========================================================
+   START APPLICATION
+========================================================= */
 
-function showPage(id,button){
+function startApplication(role){
 
-    document.querySelectorAll(".page")
-        .forEach(p=>{
-            p.classList.remove("active");
-        });
+    document.getElementById("landing").style.display =
+        "none";
+
+    document.getElementById("loginScreen").style.display =
+        "none";
+
+    document.getElementById("app").style.display =
+        "block";
+
+    document.getElementById("sidebarUserName").textContent =
+        currentUser;
+
+    document.getElementById("topUserName").textContent =
+        currentUser;
+
+    if(role === "patient"){
+
+        document.getElementById("sidebarRole").textContent =
+            "Patient";
+
+        document.getElementById("patientNav").style.display =
+            "block";
+
+        document.getElementById("doctorNav").style.display =
+            "none";
+
+        document.getElementById("patientWelcomeName").textContent =
+            currentUser;
+
+        document.getElementById("profilePatientName").textContent =
+            currentUser;
+
+        document.getElementById("profilePatientMobile").textContent =
+            localStorage.getItem("careflowPatientMobile") || "";
+
+        showPageById("patientOverview");
+
+    }else{
+
+        document.getElementById("sidebarRole").textContent =
+            "Doctor";
+
+        document.getElementById("patientNav").style.display =
+            "none";
+
+        document.getElementById("doctorNav").style.display =
+            "block";
+
+        document.getElementById("doctorWelcomeName").textContent =
+            currentUser;
+
+        document.getElementById("profileDoctorName").textContent =
+            currentUser;
+
+        showPageById("doctorOverview");
+    }
+
+    refreshAll();
+}
 
 
-    const page=
-        document.getElementById(id);
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function showPage(pageId, button){
+
+    document.querySelectorAll(".page").forEach(page => {
+
+        page.classList.remove("active");
+
+    });
+
+    const page =
+        document.getElementById(pageId);
 
     if(page){
 
@@ -2986,12 +2430,11 @@ function showPage(id,button){
 
     }
 
+    document.querySelectorAll(".nav-btn").forEach(btn => {
 
-    document.querySelectorAll(".nav button")
-        .forEach(b=>{
-            b.classList.remove("active");
-        });
+        btn.classList.remove("active");
 
+    });
 
     if(button){
 
@@ -2999,28 +2442,89 @@ function showPage(id,button){
 
     }
 
+    updatePageTitle(pageId);
 
-    const titles={
+    document.getElementById("sidebar")
+        .classList.remove("open");
 
-        patientHome:"Patient Dashboard",
+    if(pageId === "patientAppointments"){
 
-        newCase:"Smart Patient Case",
+        displayPatientAppointments();
 
-        hospital:"Find Hospital & Book Appointment",
+    }
 
-        appointments:"My Appointments",
+    if(pageId === "patientHospital"){
 
-        history:"Medical History",
+        displayBookedAppointments();
 
-        reports:"Health Reports",
+    }
 
-        messages:"Messages",
+    if(pageId === "patientHistory"){
 
-        profile:"My Profile",
+        displayMedicalHistory();
 
-        doctorHome:"Doctor Dashboard",
+    }
 
-        doctorAppointments:"Patient Appointments",
+    if(pageId === "doctorAppointments"){
+
+        displayDoctorAppointments();
+
+    }
+
+    if(pageId === "doctorCases"){
+
+        displayDoctorCases();
+
+    }
+
+    if(pageId === "doctorPatients"){
+
+        displayPatients();
+
+    }
+
+    if(pageId === "doctorNotes"){
+
+        displayDoctorNotes();
+
+    }
+}
+
+
+function showPageById(pageId){
+
+    const button =
+        document.querySelector(
+            `.nav-btn[onclick*="'${pageId}'"]`
+        );
+
+    showPage(pageId,button);
+}
+
+
+function updatePageTitle(pageId){
+
+    const titles = {
+
+        patientOverview:"Patient Dashboard",
+
+        newCase:"New Patient Case",
+
+        patientAppointments:"Appointments",
+
+        patientHospital:"Find Hospital & Book Appointment",
+
+        patientHistory:"Medical History",
+
+        patientReports:"Reports",
+
+        patientMessages:"Messages",
+
+        patientProfile:"My Profile",
+
+        doctorOverview:"Doctor Dashboard",
+
+        doctorAppointments:"Appointments",
 
         doctorCases:"Patient Cases",
 
@@ -3028,930 +2532,570 @@ function showPage(id,button){
 
         doctorNotes:"Clinical Notes",
 
-        doctorReports:"Clinical Reports",
+        doctorReports:"Reports",
+
+        doctorMessages:"Messages",
 
         doctorProfile:"Doctor Profile"
 
     };
 
-
-    document.getElementById("pageTitle")
-        .textContent=
-        titles[id]||"CareFlow";
-
-
-    document.getElementById("sidebar")
-        .classList.remove("open");
-
-
-    if(id==="hospital"){
-
-        displayAppointments();
-
-    }
-
-    if(id==="appointments"){
-
-        displayAppointments();
-
-    }
-
-    if(id==="history"){
-
-        displayHistory();
-
-    }
-
-    if(id==="doctorAppointments"){
-
-        displayDoctorAppointments();
-
-    }
-
-    if(id==="doctorCases"){
-
-        displayDoctorCases();
-
-    }
-
-    if(id==="doctorPatients"){
-
-        displayPatients();
-
-    }
-
-    if(id==="doctorNotes"){
-
-        displayNotes();
-
-    }
-
+    document.getElementById("pageTitle").textContent =
+        titles[pageId] || "CareFlow";
 }
 
 
-function showPageById(id){
-
-    const button=
-        document.querySelector(
-            `[onclick*="'${id}'"]`
-        );
-
-    showPage(id,button);
-
-}
-
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 function toggleSidebar(){
 
     document.getElementById("sidebar")
         .classList.toggle("open");
-
 }
 
 
-/* =====================================================
-   CITY / HOSPITAL / DEPARTMENT / DOCTOR
-===================================================== */
+/* =========================================================
+   MICROPHONE / SPEECH RECOGNITION
+========================================================= */
 
-function initializeCities(){
+function getSpeechRecognition(){
 
-    const city=
-        document.getElementById("city");
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
 
-    Object.keys(hospitals)
-        .forEach(c=>{
-
-            const option=
-                document.createElement("option");
-
-            option.value=c;
-            option.textContent=c;
-
-            city.appendChild(option);
-
-        });
-
+    return SpeechRecognition;
 }
 
 
-function loadHospitals(){
-
-    const selectedCity=
-        document.getElementById("city").value;
-
-    const hospital=
-        document.getElementById("hospital");
-
-    const department=
-        document.getElementById("department");
-
-    const doctor=
-        document.getElementById("doctor");
-
-
-    hospital.innerHTML=
-        `<option value="">
-            Choose Hospital
-        </option>`;
-
-    department.innerHTML=
-        `<option value="">
-            Choose Department
-        </option>`;
-
-    doctor.innerHTML=
-        `<option value="">
-            Choose Doctor
-        </option>`;
-
-
-    if(!selectedCity)return;
-
-
-    Object.keys(hospitals[selectedCity])
-        .forEach(h=>{
-
-            const option=
-                document.createElement("option");
-
-            option.value=h;
-            option.textContent=h;
-
-            hospital.appendChild(option);
-
-        });
-
-}
-
-
-function loadDepartments(){
-
-    const c=
-        document.getElementById("city").value;
-
-    const h=
-        document.getElementById("hospital").value;
-
-
-    const department=
-        document.getElementById("department");
-
-    const doctor=
-        document.getElementById("doctor");
-
-
-    department.innerHTML=
-        `<option value="">
-            Choose Department
-        </option>`;
-
-    doctor.innerHTML=
-        `<option value="">
-            Choose Doctor
-        </option>`;
-
-
-    if(!c||!h)return;
-
-
-    Object.keys(hospitals[c][h])
-        .forEach(d=>{
-
-            const option=
-                document.createElement("option");
-
-            option.value=d;
-            option.textContent=d;
-
-            department.appendChild(option);
-
-        });
-
-}
-
-
-function loadDoctors(){
-
-    const c=
-        document.getElementById("city").value;
-
-    const h=
-        document.getElementById("hospital").value;
-
-    const d=
-        document.getElementById("department").value;
-
-
-    const doctor=
-        document.getElementById("doctor");
-
-
-    doctor.innerHTML=
-        `<option value="">
-            Choose Doctor
-        </option>`;
-
-
-    if(!c||!h||!d)return;
-
-
-    hospitals[c][h][d]
-        .forEach(name=>{
-
-            const option=
-                document.createElement("option");
-
-            option.value=name;
-            option.textContent=name;
-
-            doctor.appendChild(option);
-
-        });
-
-}
-
-
-/* =====================================================
-   APPOINTMENT
-===================================================== */
-
-function getAppointment(){
-
-    return {
-
-        city:
-            document.getElementById("city").value,
-
-        hospital:
-            document.getElementById("hospital").value,
-
-        department:
-            document.getElementById("department").value,
-
-        doctor:
-            document.getElementById("doctor").value,
-
-        date:
-            document.getElementById("appointmentDate").value,
-
-        time:
-            document.getElementById("appointmentTime").value,
-
-        reason:
-            document.getElementById("reason").value
-
-    };
-
-}
-
-
-function validateAppointment(a){
-
-    if(!a.city){
-
-        toast("Select a city.");
-        return false;
-
-    }
-
-    if(!a.hospital){
-
-        toast("Select a hospital.");
-        return false;
-
-    }
-
-    if(!a.department){
-
-        toast("Select a department.");
-        return false;
-
-    }
-
-    if(!a.doctor){
-
-        toast("Select a doctor.");
-        return false;
-
-    }
-
-    if(!a.date){
-
-        toast("Select appointment date.");
-        return false;
-
-    }
-
-    if(!a.time){
-
-        toast("Select appointment time.");
-        return false;
-
-    }
-
-    return true;
-
-}
-
-
-function previewAppointment(){
-
-    const a=getAppointment();
-
-    if(!validateAppointment(a))
-        return;
-
-
-    document.getElementById("preview")
-        .style.display="block";
-
-
-    document.getElementById(
-        "previewContent"
-    ).innerHTML=`
-
-        <p><strong>👤 Patient:</strong>
-        ${safe(userName)}</p>
-
-        <p><strong>📍 City:</strong>
-        ${safe(a.city)}</p>
-
-        <p><strong>🏥 Hospital:</strong>
-        ${safe(a.hospital)}</p>
-
-        <p><strong>🩺 Department:</strong>
-        ${safe(a.department)}</p>
-
-        <p><strong>👨‍⚕️ Doctor:</strong>
-        ${safe(a.doctor)}</p>
-
-        <p><strong>📅 Date:</strong>
-        ${safe(a.date)}</p>
-
-        <p><strong>⏰ Time:</strong>
-        ${safe(a.time)}</p>
-
-        <p><strong>💬 Reason:</strong>
-        ${safe(a.reason||"Not provided")}</p>
-
-    `;
-
-}
-
-
-function bookAppointment(){
-
-    const a=getAppointment();
-
-    if(!validateAppointment(a))
-        return;
-
-
-    const appointments=
-        JSON.parse(
-            localStorage.getItem(
-                "careflowAppointments"
-            )||"[]"
-        );
-
-
-    appointments.push({
-
-        id:Date.now(),
-
-        patient:userName,
-
-        ...a,
-
-        status:"Confirmed",
-
-        bookedAt:
-            new Date().toLocaleString()
-
-    });
-
-
-    localStorage.setItem(
-        "careflowAppointments",
-        JSON.stringify(appointments)
-    );
-
-
-    toast(
-        "🎉 Appointment booked successfully!"
-    );
-
-
-    displayAppointments();
-
-    refresh();
-
-}
-
-
-function displayAppointments(){
-
-    const list=
-        document.getElementById(
-            "appointmentList"
-        );
-
-    const pageList=
-        document.getElementById(
-            "appointmentPageList"
-        );
-
-
-    let appointments=
-        JSON.parse(
-            localStorage.getItem(
-                "careflowAppointments"
-            )||"[]"
-        );
-
-
-    appointments=
-        appointments.filter(
-            a=>a.patient===userName
-        );
-
-
-    const html=
-        appointments.length?
-
-        appointments
-        .slice()
-        .reverse()
-        .map(a=>`
-
-            <div class="appointment-card">
-
-                <strong>
-                    🏥 ${safe(a.hospital)}
-                </strong>
-
-                <p>
-                    📍 ${safe(a.city)}
-                </p>
-
-                <p>
-                    🩺 ${safe(a.department)}
-                </p>
-
-                <p>
-                    👨‍⚕️ ${safe(a.doctor)}
-                </p>
-
-                <p>
-                    📅 ${safe(a.date)}
-                    &nbsp;&nbsp;
-                    ⏰ ${safe(a.time)}
-                </p>
-
-                <span class="status">
-                    ✓ ${safe(a.status)}
-                </span>
-
-            </div>
-
-        `).join("")
-
-        :
-
-        `<p style="color:#64748b">
-            No appointments booked yet.
-        </p>`;
-
-
-    if(list)
-        list.innerHTML=html;
-
-    if(pageList)
-        pageList.innerHTML=html;
-
-}
-
-
-function clearAppointment(){
-
-    document.getElementById("city")
-        .selectedIndex=0;
-
-    document.getElementById("hospital")
-        .innerHTML=
-        `<option value="">
-            Choose Hospital
-        </option>`;
-
-    document.getElementById("department")
-        .innerHTML=
-        `<option value="">
-            Choose Department
-        </option>`;
-
-    document.getElementById("doctor")
-        .innerHTML=
-        `<option value="">
-            Choose Doctor
-        </option>`;
-
-    document.getElementById("appointmentDate")
-        .value="";
-
-    document.getElementById("appointmentTime")
-        .selectedIndex=0;
-
-    document.getElementById("reason")
-        .value="";
-
-    document.getElementById("preview")
-        .style.display="none";
-
-}
-
-
-/* =====================================================
-   VOICE INPUT
-===================================================== */
-
-async function getMicPermission(){
+async function requestMicrophonePermission(){
 
     if(!navigator.mediaDevices ||
        !navigator.mediaDevices.getUserMedia){
 
         throw new Error(
-            "Microphone API not supported."
+            "Microphone API is not supported by this browser."
         );
-
     }
 
-
-    const stream=
-        await navigator.mediaDevices
-        .getUserMedia({
+    const stream =
+        await navigator.mediaDevices.getUserMedia({
             audio:true
         });
 
+    /*
+       Stop the temporary stream.
 
-    stream.getTracks()
-        .forEach(track=>track.stop());
+       SpeechRecognition will request/use
+       the microphone itself after permission
+       has been granted.
+    */
 
+    stream.getTracks().forEach(
+        track => track.stop()
+    );
 }
 
 
-async function voiceInput(fieldId){
+async function requestMicrophoneAndStart(fieldId){
 
-    const SpeechRecognition=
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
+    const SpeechRecognition =
+        getSpeechRecognition();
 
     if(!SpeechRecognition){
 
-        toast(
-            "Use Google Chrome or Microsoft Edge for voice input."
+        showToast(
+            "Speech recognition is not supported. Please use Chrome or Edge."
         );
 
         return;
-
     }
-
 
     try{
 
-        document.getElementById("voiceStatus")
-            .textContent=
-            "🎤 Requesting microphone permission...";
+        setVoiceStatus(
+            "Requesting microphone permission..."
+        );
 
+        await requestMicrophonePermission();
 
-        await getMicPermission();
-
-
-        if(listening){
-
-            recognition.stop();
-
-            return;
-
-        }
-
-
-        recognition=
-            new SpeechRecognition();
-
-
-        recognition.lang=
-            document.getElementById(
-                "voiceLanguage"
-            ).value;
-
-
-        recognition.continuous=false;
-
-        recognition.interimResults=true;
-
-        listening=true;
-
-
-        document.querySelectorAll(".mic")
-            .forEach(btn=>{
-                btn.classList.add("listening");
-            });
-
-
-        document.getElementById("voiceStatus")
-            .textContent=
-            "🎤 Listening... Speak now.";
-
-
-        recognition.onresult=function(event){
-
-            let finalText="";
-
-            for(
-                let i=event.resultIndex;
-                i<event.results.length;
-                i++
-            ){
-
-                const text=
-                    event.results[i][0].transcript;
-
-
-                if(event.results[i].isFinal){
-
-                    finalText+=text;
-
-                }
-
-            }
-
-
-            if(finalText){
-
-                const field=
-                    document.getElementById(fieldId);
-
-                if(field.value){
-
-                    field.value+=" "+finalText;
-
-                }else{
-
-                    field.value=finalText;
-
-                }
-
-            }
-
-        };
-
-
-        recognition.onerror=function(event){
-
-            console.log(event.error);
-
-
-            if(event.error==="not-allowed"){
-
-                document.getElementById(
-                    "voiceStatus"
-                ).textContent=
-                "❌ Microphone permission denied.";
-
-                toast(
-                    "Please allow microphone permission."
-                );
-
-            }else if(event.error==="no-speech"){
-
-                document.getElementById(
-                    "voiceStatus"
-                ).textContent=
-                "No speech detected. Try again.";
-
-            }else{
-
-                document.getElementById(
-                    "voiceStatus"
-                ).textContent=
-                "Voice error: "+event.error;
-
-            }
-
-        };
-
-
-        recognition.onend=function(){
-
-            listening=false;
-
-            document.querySelectorAll(".mic")
-                .forEach(btn=>{
-                    btn.classList.remove("listening");
-                });
-
-
-            document.getElementById(
-                "voiceStatus"
-            ).textContent=
-            "✓ Voice input completed.";
-
-        };
-
-
-        recognition.start();
-
+        startVoice(fieldId);
 
     }catch(error){
 
         console.error(error);
 
-        document.getElementById(
-            "voiceStatus"
-        ).textContent=
-        "❌ Microphone access failed.";
+        if(error.name === "NotAllowedError"){
 
-        toast(
-            "Allow microphone access in browser settings."
+            setVoiceStatus(
+                "Microphone permission denied. Allow microphone access in browser settings."
+            );
+
+            showToast(
+                "Please allow microphone permission."
+            );
+
+        }else if(error.name === "NotFoundError"){
+
+            setVoiceStatus(
+                "No microphone was found."
+            );
+
+        }else{
+
+            setVoiceStatus(
+                "Microphone error: " +
+                error.message
+            );
+        }
+    }
+}
+
+
+function startVoice(fieldId){
+
+    const SpeechRecognition =
+        getSpeechRecognition();
+
+    if(!SpeechRecognition){
+
+        showToast(
+            "Speech recognition is not supported."
         );
 
-        listening=false;
+        return;
+    }
+
+    if(isListening){
+
+        if(currentVoiceField === fieldId){
+
+            stopVoice();
+
+            return;
+        }
+
+        stopVoice();
+    }
+
+    currentVoiceField = fieldId;
+
+    recognition =
+        new SpeechRecognition();
+
+    recognition.lang =
+        document.getElementById("voiceLanguage").value ||
+        "en-IN";
+
+    recognition.continuous = false;
+
+    recognition.interimResults = true;
+
+    recognition.maxAlternatives = 1;
+
+
+    recognition.onstart = function(){
+
+        isListening = true;
+
+        setVoiceStatus(
+            "🎤 Listening... Please speak now."
+        );
+
+        updateMicButtons(true);
+
+    };
+
+
+    recognition.onresult = function(event){
+
+        let finalText = "";
+        let interimText = "";
+
+        for(
+            let i = event.resultIndex;
+            i < event.results.length;
+            i++
+        ){
+
+            const transcript =
+                event.results[i][0].transcript;
+
+            if(event.results[i].isFinal){
+
+                finalText += transcript;
+
+            }else{
+
+                interimText += transcript;
+
+            }
+        }
+
+        const field =
+            document.getElementById(fieldId);
+
+        if(field){
+
+            if(finalText){
+
+                if(field.value.trim()){
+
+                    field.value +=
+                        " " + finalText.trim();
+
+                }else{
+
+                    field.value =
+                        finalText.trim();
+
+                }
+
+            }
+
+            if(interimText){
+
+                setVoiceStatus(
+                    "🎤 " + interimText
+                );
+
+            }
+        }
+
+    };
+
+
+    recognition.onerror = function(event){
+
+        console.error(
+            "Speech recognition error:",
+            event.error
+        );
+
+        let message =
+            "Voice error: " +
+            event.error;
+
+        if(event.error === "not-allowed"){
+
+            message =
+                "Microphone permission denied. Allow microphone access.";
+
+        }else if(event.error === "no-speech"){
+
+            message =
+                "No speech detected. Please try again.";
+
+        }else if(event.error === "audio-capture"){
+
+            message =
+                "Microphone could not be accessed.";
+
+        }else if(event.error === "network"){
+
+            message =
+                "Network error. Speech recognition may require internet.";
+
+        }
+
+        setVoiceStatus(message);
+
+    };
+
+
+    recognition.onend = function(){
+
+        isListening = false;
+
+        updateMicButtons(false);
+
+        if(currentVoiceField){
+
+            setVoiceStatus(
+                "Voice input finished."
+            );
+
+        }
+
+        currentVoiceField = null;
+
+    };
+
+
+    try{
+
+        recognition.start();
+
+    }catch(error){
+
+        console.error(error);
+
+        isListening = false;
+
+        updateMicButtons(false);
+
+        setVoiceStatus(
+            "Unable to start microphone."
+        );
 
     }
 
 }
 
 
-/* =====================================================
+function stopVoice(){
+
+    if(recognition){
+
+        try{
+
+            recognition.stop();
+
+        }catch(error){
+
+            console.log(error);
+
+        }
+    }
+
+    isListening = false;
+
+    updateMicButtons(false);
+}
+
+
+function updateMicButtons(listening){
+
+    document.querySelectorAll(".mic-btn")
+        .forEach(btn => {
+
+            btn.classList.toggle(
+                "listening",
+                listening
+            );
+
+        });
+}
+
+
+function setVoiceStatus(message){
+
+    const status =
+        document.getElementById(
+            "globalVoiceStatus"
+        );
+
+    if(status){
+
+        status.textContent = message;
+
+    }
+}
+
+
+async function testVoice(){
+
+    try{
+
+        setVoiceStatus(
+            "Requesting microphone..."
+        );
+
+        await requestMicrophonePermission();
+
+        setVoiceStatus(
+            "✅ Microphone permission is working."
+        );
+
+        showToast(
+            "Microphone access granted."
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        setVoiceStatus(
+            "❌ Microphone access failed."
+        );
+
+        showToast(
+            "Microphone permission failed."
+        );
+    }
+}
+
+
+/* =========================================================
    CASE SUMMARY
-===================================================== */
+========================================================= */
 
-function generateSummary(){
+function generateCaseSummary(){
 
-    const name=
-        document.getElementById("caseName").value;
+    const name =
+        document.getElementById("patientName").value;
 
-    const complaint=
+    const complaint =
         document.getElementById("complaint").value;
 
-    const symptoms=
+    const symptoms =
         document.getElementById("symptoms").value;
 
-    const history=
-        document.getElementById(
-            "previousHistory"
-        ).value;
+    const history =
+        document.getElementById("history").value;
 
-    const medication=
-        document.getElementById(
-            "medications"
-        ).value;
+    const medicalHistory =
+        document.getElementById("medicalHistory").value;
 
-    const allergies=
-        document.getElementById(
-            "allergies"
-        ).value;
+    const surgery =
+        document.getElementById("surgery").value;
 
-    const summary=
-`CARE FLOW PATIENT CASE
+    const medications =
+        document.getElementById("medications").value;
 
-Patient:
-${name||"Not provided"}
+    const allergies =
+        document.getElementById("allergies").value;
 
-Age:
-${document.getElementById("caseAge").value||"Not provided"}
+    const temperature =
+        document.getElementById("temperature").value;
 
-Sex:
-${document.getElementById("caseSex").value||"Not provided"}
+    const weight =
+        document.getElementById("weight").value;
 
-Blood Group:
-${document.getElementById("caseBlood").value||"Not provided"}
 
-Temperature:
-${document.getElementById("caseTemp").value||"Not recorded"} °C
+    const summary =
+`PATIENT CASE SUMMARY
+
+Patient Name:
+${name || "Not provided"}
 
 Main Complaint:
-${complaint||"Not provided"}
+${complaint || "Not provided"}
 
 Symptoms:
-${symptoms||"Not provided"}
+${symptoms || "Not provided"}
+
+History of Present Illness:
+${history || "Not provided"}
 
 Previous Medical History:
-${history||"None reported"}
+${medicalHistory || "None reported"}
+
+Previous Surgery:
+${surgery || "None reported"}
 
 Current Medications:
-${medication||"None reported"}
+${medications || "None reported"}
 
 Allergies:
-${allergies||"None reported"}
+${allergies || "None reported"}
 
-Generated:
-${new Date().toLocaleString()}
+Vitals:
+Temperature: ${temperature || "Not recorded"} °C
+Weight: ${weight || "Not recorded"} kg
 `;
 
 
-    document.getElementById("summary")
-        .textContent=summary;
+    document.getElementById(
+        "caseSummary"
+    ).textContent = summary;
 
-    document.getElementById("summaryPanel")
-        .classList.remove("hidden");
+    document.getElementById(
+        "caseSummaryPanel"
+    ).style.display = "block";
 
-
-    toast(
-        "✨ Smart case summary generated!"
+    showToast(
+        "Case summary generated."
     );
-
 }
 
 
 function saveCase(){
 
-    const name=
-        document.getElementById(
-            "caseName"
-        ).value.trim();
-
+    const name =
+        document.getElementById("patientName").value.trim();
 
     if(!name){
 
-        toast(
-            "Enter patient name."
+        showToast(
+            "Please enter patient name."
         );
 
         return;
-
     }
 
 
-    const cases=
-        JSON.parse(
-            localStorage.getItem(
-                "careflowCases"
-            )||"[]"
-        );
-
-
-    cases.push({
+    const caseData = {
 
         id:Date.now(),
 
         name:name,
 
         mobile:
-            document.getElementById(
-                "caseMobile"
-            ).value,
+            document.getElementById("patientMobile").value,
+
+        dob:
+            document.getElementById("dob").value,
 
         age:
-            document.getElementById(
-                "caseAge"
-            ).value,
+            document.getElementById("age").value,
 
         sex:
-            document.getElementById(
-                "caseSex"
-            ).value,
+            document.getElementById("sex").value,
 
-        blood:
-            document.getElementById(
-                "caseBlood"
-            ).value,
+        bloodGroup:
+            document.getElementById("bloodGroup").value,
+
+        address:
+            document.getElementById("address").value,
+
+        visitDate:
+            document.getElementById("visitDate").value,
 
         temperature:
-            document.getElementById(
-                "caseTemp"
-            ).value,
+            document.getElementById("temperature").value,
+
+        weight:
+            document.getElementById("weight").value,
 
         complaint:
-            document.getElementById(
-                "complaint"
-            ).value,
+            document.getElementById("complaint").value,
 
         symptoms:
-            document.getElementById(
-                "symptoms"
-            ).value,
+            document.getElementById("symptoms").value,
 
         history:
-            document.getElementById(
-                "previousHistory"
-            ).value,
+            document.getElementById("history").value,
+
+        medicalHistory:
+            document.getElementById("medicalHistory").value,
+
+        surgery:
+            document.getElementById("surgery").value,
 
         medications:
-            document.getElementById(
-                "medications"
-            ).value,
+            document.getElementById("medications").value,
 
         allergies:
-            document.getElementById(
-                "allergies"
-            ).value,
+            document.getElementById("allergies").value,
 
-        date:
+        createdAt:
             new Date().toLocaleString()
 
-    });
+    };
+
+
+    let cases =
+        JSON.parse(
+            localStorage.getItem(
+                "careflowCases"
+            ) || "[]"
+        );
+
+
+    cases.push(caseData);
 
 
     localStorage.setItem(
@@ -3960,145 +3104,677 @@ function saveCase(){
     );
 
 
-    toast(
-        "✓ Patient case saved successfully!"
+    showToast(
+        "Patient case saved successfully."
     );
 
+    refreshAll();
+}
 
-    refresh();
+
+function clearCase(){
+
+    document.querySelectorAll(
+        "#newCase input, #newCase textarea"
+    ).forEach(element => {
+
+        element.value = "";
+
+    });
+
+    document.querySelectorAll(
+        "#newCase select"
+    ).forEach(element => {
+
+        element.selectedIndex = 0;
+
+    });
+
+    document.getElementById(
+        "caseSummaryPanel"
+    ).style.display = "none";
 
 }
 
 
-/* =====================================================
-   HISTORY
-===================================================== */
+function copySummary(){
 
-function displayHistory(){
-
-    const container=
+    const text =
         document.getElementById(
-            "historyList"
+            "caseSummary"
+        ).textContent;
+
+    navigator.clipboard.writeText(text)
+        .then(() => {
+
+            showToast(
+                "Summary copied."
+            );
+
+        })
+        .catch(() => {
+
+            showToast(
+                "Copy failed."
+            );
+
+        });
+}
+
+
+function printSummary(){
+
+    const text =
+        document.getElementById(
+            "caseSummary"
+        ).textContent;
+
+    const win =
+        window.open(
+            "",
+            "_blank"
+        );
+
+    win.document.write(
+        "<pre style='font-family:Arial;white-space:pre-wrap;padding:30px'>" +
+        escapeHTML(text) +
+        "</pre>"
+    );
+
+    win.document.close();
+
+    win.print();
+}
+
+
+/* =========================================================
+   HOSPITAL MODULE
+========================================================= */
+
+function initializeCities(){
+
+    const citySelect =
+        document.getElementById(
+            "appointmentCity"
+        );
+
+    if(!citySelect) return;
+
+    citySelect.innerHTML =
+        '<option value="">Select City</option>';
+
+    Object.keys(hospitalData)
+        .forEach(city => {
+
+            const option =
+                document.createElement("option");
+
+            option.value = city;
+
+            option.textContent = city;
+
+            citySelect.appendChild(option);
+
+        });
+}
+
+
+function loadHospitals(){
+
+    const city =
+        document.getElementById(
+            "appointmentCity"
+        ).value;
+
+    const hospitalSelect =
+        document.getElementById(
+            "appointmentHospital"
+        );
+
+    const departmentSelect =
+        document.getElementById(
+            "appointmentDepartment"
+        );
+
+    const doctorSelect =
+        document.getElementById(
+            "appointmentDoctor"
         );
 
 
-    const cases=
-        JSON.parse(
-            localStorage.getItem(
-                "careflowCases"
-            )||"[]"
+    hospitalSelect.innerHTML =
+        '<option value="">Select Hospital</option>';
+
+    departmentSelect.innerHTML =
+        '<option value="">Select Department</option>';
+
+    doctorSelect.innerHTML =
+        '<option value="">Select Doctor</option>';
+
+
+    if(!city) return;
+
+
+    Object.keys(
+        hospitalData[city]
+    ).forEach(hospital => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = hospital;
+
+        option.textContent = hospital;
+
+        hospitalSelect.appendChild(option);
+
+    });
+
+}
+
+
+function loadDepartments(){
+
+    const city =
+        document.getElementById(
+            "appointmentCity"
+        ).value;
+
+    const hospital =
+        document.getElementById(
+            "appointmentHospital"
+        ).value;
+
+    const departmentSelect =
+        document.getElementById(
+            "appointmentDepartment"
+        );
+
+    const doctorSelect =
+        document.getElementById(
+            "appointmentDoctor"
         );
 
 
-    if(!cases.length){
+    departmentSelect.innerHTML =
+        '<option value="">Select Department</option>';
 
-        container.innerHTML=
-        `<p style="color:#64748b">
-            No medical history available.
-        </p>`;
+    doctorSelect.innerHTML =
+        '<option value="">Select Doctor</option>';
+
+
+    if(!city || !hospital) return;
+
+
+    Object.keys(
+        hospitalData[city][hospital]
+    ).forEach(department => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = department;
+
+        option.textContent = department;
+
+        departmentSelect.appendChild(option);
+
+    });
+
+}
+
+
+function loadDoctors(){
+
+    const city =
+        document.getElementById(
+            "appointmentCity"
+        ).value;
+
+    const hospital =
+        document.getElementById(
+            "appointmentHospital"
+        ).value;
+
+    const department =
+        document.getElementById(
+            "appointmentDepartment"
+        ).value;
+
+    const doctorSelect =
+        document.getElementById(
+            "appointmentDoctor"
+        );
+
+
+    doctorSelect.innerHTML =
+        '<option value="">Select Doctor</option>';
+
+
+    if(
+        !city ||
+        !hospital ||
+        !department
+    ){
 
         return;
-
     }
 
 
-    container.innerHTML=
-        cases.slice().reverse()
-        .map(c=>`
+    hospitalData[city][hospital][department]
+        .forEach(doctor => {
 
-            <div class="appointment-card">
+            const option =
+                document.createElement("option");
 
-                <strong>
-                    📝 ${safe(c.name)}
-                </strong>
+            option.value = doctor;
 
-                <p>
-                    Complaint:
-                    ${safe(c.complaint||"None")}
-                </p>
+            option.textContent = doctor;
 
-                <p>
-                    Symptoms:
-                    ${safe(c.symptoms||"None")}
-                </p>
+            doctorSelect.appendChild(option);
 
-                <p>
-                    Allergies:
-                    ${safe(c.allergies||"None")}
-                </p>
-
-                <small>
-                    ${safe(c.date)}
-                </small>
-
-            </div>
-
-        `).join("");
+        });
 
 }
 
 
-/* =====================================================
-   DOCTOR
-===================================================== */
+function getAppointmentFormData(){
 
-function displayDoctorAppointments(){
+    return {
 
-    const container=
+        city:
+            document.getElementById(
+                "appointmentCity"
+            ).value,
+
+        hospital:
+            document.getElementById(
+                "appointmentHospital"
+            ).value,
+
+        department:
+            document.getElementById(
+                "appointmentDepartment"
+            ).value,
+
+        doctor:
+            document.getElementById(
+                "appointmentDoctor"
+            ).value,
+
+        date:
+            document.getElementById(
+                "appointmentDate"
+            ).value,
+
+        time:
+            document.getElementById(
+                "appointmentTime"
+            ).value,
+
+        reason:
+            document.getElementById(
+                "appointmentReason"
+            ).value
+
+    };
+
+}
+
+
+function validateAppointment(data){
+
+    if(!data.city){
+
+        showToast("Please select a city.");
+
+        return false;
+
+    }
+
+    if(!data.hospital){
+
+        showToast("Please select a hospital.");
+
+        return false;
+
+    }
+
+    if(!data.department){
+
+        showToast("Please select a medical department.");
+
+        return false;
+
+    }
+
+    if(!data.doctor){
+
+        showToast("Please select a doctor.");
+
+        return false;
+
+    }
+
+    if(!data.date){
+
+        showToast("Please select appointment date.");
+
+        return false;
+
+    }
+
+    if(!data.time){
+
+        showToast("Please select appointment time.");
+
+        return false;
+
+    }
+
+    return true;
+}
+
+
+function previewAppointment(){
+
+    const data =
+        getAppointmentFormData();
+
+    if(!validateAppointment(data)){
+
+        return;
+    }
+
+
+    const preview =
         document.getElementById(
-            "doctorAppointmentList"
+            "appointmentPreview"
+        );
+
+    const content =
+        document.getElementById(
+            "previewContent"
         );
 
 
-    const appointments=
+    content.innerHTML = `
+
+        <div><strong>Patient:</strong>
+            ${escapeHTML(currentUser)}
+        </div>
+
+        <div><strong>City:</strong>
+            ${escapeHTML(data.city)}
+        </div>
+
+        <div><strong>Hospital:</strong>
+            ${escapeHTML(data.hospital)}
+        </div>
+
+        <div><strong>Department:</strong>
+            ${escapeHTML(data.department)}
+        </div>
+
+        <div><strong>Doctor:</strong>
+            ${escapeHTML(data.doctor)}
+        </div>
+
+        <div><strong>Date:</strong>
+            ${escapeHTML(data.date)}
+        </div>
+
+        <div><strong>Time:</strong>
+            ${escapeHTML(data.time)}
+        </div>
+
+        <div><strong>Reason:</strong>
+            ${escapeHTML(data.reason || "Not provided")}
+        </div>
+    `;
+
+
+    preview.style.display =
+        "block";
+}
+
+
+function bookAppointment(){
+
+    const data =
+        getAppointmentFormData();
+
+    if(!validateAppointment(data)){
+
+        return;
+    }
+
+
+    const appointment = {
+
+        id:Date.now(),
+
+        patient:
+            currentUser,
+
+        ...data,
+
+        status:"Booked",
+
+        bookedAt:
+            new Date().toLocaleString()
+
+    };
+
+
+    let appointments =
         JSON.parse(
             localStorage.getItem(
                 "careflowAppointments"
-            )||"[]"
+            ) || "[]"
+        );
+
+
+    appointments.push(
+        appointment
+    );
+
+
+    localStorage.setItem(
+        "careflowAppointments",
+        JSON.stringify(appointments)
+    );
+
+
+    showToast(
+        "Appointment booked successfully."
+    );
+
+
+    displayBookedAppointments();
+
+    refreshAll();
+
+}
+
+
+function displayBookedAppointments(){
+
+    const container =
+        document.getElementById(
+            "bookedAppointments"
+        );
+
+    if(!container) return;
+
+
+    let appointments =
+        JSON.parse(
+            localStorage.getItem(
+                "careflowAppointments"
+            ) || "[]"
+        );
+
+
+    appointments =
+        appointments.filter(
+            appointment =>
+                appointment.patient === currentUser
+        );
+
+
+    if(appointments.length === 0){
+
+        container.innerHTML =
+            `<p style="color:#64748b">
+                No appointments booked yet.
+            </p>`;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        appointments
+        .slice()
+        .reverse()
+        .map(appointment => `
+
+            <div class="appointment-card">
+
+                <div style="display:flex;
+                            justify-content:space-between;
+                            gap:10px;
+                            flex-wrap:wrap">
+
+                    <strong>
+                        🏥 ${escapeHTML(
+                            appointment.hospital
+                        )}
+                    </strong>
+
+                    <span class="status-booked">
+                        ${escapeHTML(
+                            appointment.status
+                        )}
+                    </span>
+
+                </div>
+
+                <p style="margin-top:10px">
+                    📍 ${escapeHTML(
+                        appointment.city
+                    )}
+                </p>
+
+                <p>
+                    🩺 ${escapeHTML(
+                        appointment.department
+                    )}
+                </p>
+
+                <p>
+                    👨‍⚕️ ${escapeHTML(
+                        appointment.doctor
+                    )}
+                </p>
+
+                <p>
+                    📅 ${escapeHTML(
+                        appointment.date
+                    )}
+                    &nbsp;
+                    ⏰ ${escapeHTML(
+                        appointment.time
+                    )}
+                </p>
+
+                <p style="color:#64748b">
+                    Reason:
+                    ${escapeHTML(
+                        appointment.reason ||
+                        "Not provided"
+                    )}
+                </p>
+
+                <button
+                    class="btn btn-danger"
+                    style="margin-top:10px"
+                    onclick="cancelAppointment(${appointment.id})">
+
+                    Cancel Appointment
+
+                </button>
+
+            </div>
+
+        `)
+        .join("");
+
+}
+
+
+function displayPatientAppointments(){
+
+    const container =
+        document.getElementById(
+            "patientAppointmentsList"
+        );
+
+    if(!container) return;
+
+
+    let appointments =
+        JSON.parse(
+            localStorage.getItem(
+                "careflowAppointments"
+            ) || "[]"
+        );
+
+
+    appointments =
+        appointments.filter(
+            a =>
+                a.patient === currentUser
         );
 
 
     if(!appointments.length){
 
-        container.innerHTML=
-        `<p style="color:#64748b">
-            No appointments available.
-        </p>`;
+        container.innerHTML =
+            `<p style="color:#64748b">
+                No appointments found.
+            </p>`;
 
         return;
-
     }
 
 
-    container.innerHTML=
-        appointments.slice().reverse()
-        .map(a=>`
+    container.innerHTML =
+        appointments.map(a => `
 
             <div class="appointment-card">
 
                 <strong>
-                    👤 ${safe(a.patient)}
+                    ${escapeHTML(a.doctor)}
                 </strong>
 
                 <p>
-                    🏥 ${safe(a.hospital)}
+                    ${escapeHTML(a.department)}
                 </p>
 
                 <p>
-                    🩺 ${safe(a.department)}
+                    🏥 ${escapeHTML(a.hospital)},
+                    ${escapeHTML(a.city)}
                 </p>
 
                 <p>
-                    👨‍⚕️ ${safe(a.doctor)}
+                    📅 ${escapeHTML(a.date)}
+                    ⏰ ${escapeHTML(a.time)}
                 </p>
 
-                <p>
-                    📅 ${safe(a.date)}
-                    ⏰ ${safe(a.time)}
-                </p>
-
-                <span class="status">
-                    ${safe(a.status)}
+                <span class="status-booked">
+                    ${escapeHTML(a.status)}
                 </span>
 
             </div>
@@ -4108,120 +3784,365 @@ function displayDoctorAppointments(){
 }
 
 
-function displayDoctorCases(){
+function cancelAppointment(id){
 
-    const container=
-        document.getElementById(
-            "doctorCaseList"
+    let appointments =
+        JSON.parse(
+            localStorage.getItem(
+                "careflowAppointments"
+            ) || "[]"
         );
 
 
-    const cases=
+    appointments =
+        appointments.filter(
+            appointment =>
+                appointment.id !== id
+        );
+
+
+    localStorage.setItem(
+        "careflowAppointments",
+        JSON.stringify(appointments)
+    );
+
+
+    showToast(
+        "Appointment cancelled."
+    );
+
+
+    displayBookedAppointments();
+
+    displayPatientAppointments();
+
+    refreshAll();
+
+}
+
+
+function clearAppointment(){
+
+    document.getElementById(
+        "appointmentCity"
+    ).selectedIndex = 0;
+
+    document.getElementById(
+        "appointmentHospital"
+    ).innerHTML =
+        '<option value="">Select Hospital</option>';
+
+    document.getElementById(
+        "appointmentDepartment"
+    ).innerHTML =
+        '<option value="">Select Department</option>';
+
+    document.getElementById(
+        "appointmentDoctor"
+    ).innerHTML =
+        '<option value="">Select Doctor</option>';
+
+    document.getElementById(
+        "appointmentDate"
+    ).value = "";
+
+    document.getElementById(
+        "appointmentTime"
+    ).selectedIndex = 0;
+
+    document.getElementById(
+        "appointmentReason"
+    ).value = "";
+
+    document.getElementById(
+        "appointmentPreview"
+    ).style.display = "none";
+
+}
+
+
+/* =========================================================
+   MEDICAL HISTORY
+========================================================= */
+
+function displayMedicalHistory(){
+
+    const container =
+        document.getElementById(
+            "medicalHistoryDisplay"
+        );
+
+    if(!container) return;
+
+
+    let cases =
         JSON.parse(
             localStorage.getItem(
                 "careflowCases"
-            )||"[]"
+            ) || "[]"
         );
 
 
     if(!cases.length){
 
-        container.innerHTML=
-        `<p style="color:#64748b">
-            No patient cases.
-        </p>`;
+        container.innerHTML =
+            `<p style="color:#64748b">
+                No saved case history available.
+            </p>`;
 
         return;
-
     }
 
 
-    container.innerHTML=
+    container.innerHTML =
         cases.slice().reverse()
-        .map(c=>`
+        .map(c => `
 
             <div class="appointment-card">
 
                 <strong>
-                    👤 ${safe(c.name)}
+                    ${escapeHTML(c.name)}
                 </strong>
 
                 <p>
-                    📞 ${safe(c.mobile||"-")}
+                    Visit Date:
+                    ${escapeHTML(
+                        c.visitDate || "Not recorded"
+                    )}
                 </p>
 
                 <p>
-                    Main Complaint:
-                    ${safe(c.complaint||"-")}
+                    Complaint:
+                    ${escapeHTML(
+                        c.complaint || "None"
+                    )}
                 </p>
 
                 <p>
                     Symptoms:
-                    ${safe(c.symptoms||"-")}
+                    ${escapeHTML(
+                        c.symptoms || "None"
+                    )}
                 </p>
 
                 <p>
                     Allergies:
-                    ${safe(c.allergies||"-")}
+                    ${escapeHTML(
+                        c.allergies || "None"
+                    )}
                 </p>
 
             </div>
 
-        `).join("");
+        `)
+        .join("");
+
+}
+
+
+/* =========================================================
+   DOCTOR FUNCTIONS
+========================================================= */
+
+function displayDoctorAppointments(){
+
+    const container =
+        document.getElementById(
+            "doctorAppointmentsList"
+        );
+
+    if(!container) return;
+
+
+    const appointments =
+        JSON.parse(
+            localStorage.getItem(
+                "careflowAppointments"
+            ) || "[]"
+        );
+
+
+    if(!appointments.length){
+
+        container.innerHTML =
+            `<p style="color:#64748b">
+                No appointments available.
+            </p>`;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        appointments.slice().reverse()
+        .map(a => `
+
+            <div class="appointment-card">
+
+                <strong>
+                    👤 ${escapeHTML(a.patient)}
+                </strong>
+
+                <p>
+                    🏥 ${escapeHTML(a.hospital)}
+                </p>
+
+                <p>
+                    📍 ${escapeHTML(a.city)}
+                </p>
+
+                <p>
+                    🩺 ${escapeHTML(a.department)}
+                </p>
+
+                <p>
+                    👨‍⚕️ ${escapeHTML(a.doctor)}
+                </p>
+
+                <p>
+                    📅 ${escapeHTML(a.date)}
+                    ⏰ ${escapeHTML(a.time)}
+                </p>
+
+                <span class="status-booked">
+                    ${escapeHTML(a.status)}
+                </span>
+
+            </div>
+
+        `)
+        .join("");
+
+}
+
+
+function displayDoctorCases(){
+
+    const container =
+        document.getElementById(
+            "doctorCaseList"
+        );
+
+    if(!container) return;
+
+
+    const cases =
+        JSON.parse(
+            localStorage.getItem(
+                "careflowCases"
+            ) || "[]"
+        );
+
+
+    if(!cases.length){
+
+        container.innerHTML =
+            `<p style="color:#64748b">
+                No patient cases available.
+            </p>`;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        cases.slice().reverse()
+        .map(c => `
+
+            <div class="appointment-card">
+
+                <strong>
+                    👤 ${escapeHTML(c.name)}
+                </strong>
+
+                <p>
+                    Mobile:
+                    ${escapeHTML(c.mobile || "-")}
+                </p>
+
+                <p>
+                    Complaint:
+                    ${escapeHTML(c.complaint || "-")}
+                </p>
+
+                <p>
+                    Symptoms:
+                    ${escapeHTML(c.symptoms || "-")}
+                </p>
+
+                <p>
+                    Medical History:
+                    ${escapeHTML(c.medicalHistory || "-")}
+                </p>
+
+                <p>
+                    Medications:
+                    ${escapeHTML(c.medications || "-")}
+                </p>
+
+                <p>
+                    Allergies:
+                    ${escapeHTML(c.allergies || "-")}
+                </p>
+
+            </div>
+
+        `)
+        .join("");
 
 }
 
 
 function displayPatients(){
 
-    const container=
+    const container =
         document.getElementById(
             "patientsList"
         );
 
+    if(!container) return;
 
-    const cases=
+
+    const cases =
         JSON.parse(
             localStorage.getItem(
                 "careflowCases"
-            )||"[]"
+            ) || "[]"
         );
 
 
-    if(!cases.length){
+    const names = [];
 
-        container.innerHTML=
-        `<p style="color:#64748b">
-            No patients found.
-        </p>`;
+    cases.forEach(c => {
 
-        return;
+        if(!names.includes(c.name)){
 
-    }
-
-
-    const unique=[];
-
-
-    cases.forEach(c=>{
-
-        if(!unique.includes(c.name)){
-
-            unique.push(c.name);
+            names.push(c.name);
 
         }
 
     });
 
 
-    container.innerHTML=
-        unique.map(name=>`
+    if(!names.length){
+
+        container.innerHTML =
+            `<p style="color:#64748b">
+                No patients found.
+            </p>`;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        names.map(name => `
 
             <div class="appointment-card">
 
                 👤
                 <strong>
-                    ${safe(name)}
+                    ${escapeHTML(name)}
                 </strong>
 
             </div>
@@ -4233,288 +4154,281 @@ function displayPatients(){
 
 function searchPatients(value){
 
-    const cases=
+    const query =
+        value.toLowerCase().trim();
+
+    const cases =
         JSON.parse(
             localStorage.getItem(
                 "careflowCases"
-            )||"[]"
+            ) || "[]"
         );
 
 
-    const result=
-        cases.filter(c=>
-            c.name
-            .toLowerCase()
-            .includes(
-                value.toLowerCase()
-            )
+    const filtered =
+        cases.filter(c =>
+            c.name.toLowerCase()
+                .includes(query)
         );
 
 
-    const container=
+    const container =
         document.getElementById(
             "patientsList"
         );
 
 
-    container.innerHTML=
-        result.length?
+    if(!filtered.length){
 
-        result.map(c=>`
+        container.innerHTML =
+            `<p style="color:#64748b">
+                No matching patients.
+            </p>`;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        filtered.map(c => `
 
             <div class="appointment-card">
 
                 👤
                 <strong>
-                    ${safe(c.name)}
+                    ${escapeHTML(c.name)}
                 </strong>
 
                 <p>
-                    ${safe(c.mobile||"")}
+                    ${escapeHTML(
+                        c.mobile || ""
+                    )}
                 </p>
 
             </div>
 
-        `).join("")
-
-        :
-
-        `<p>
-            No matching patients.
-        </p>`;
+        `).join("");
 
 }
 
 
-function saveNote(){
+function saveDoctorNote(){
 
-    const patient=
+    const patient =
         document.getElementById(
-            "notePatient"
+            "clinicalPatient"
         ).value.trim();
 
-    const note=
+    const note =
         document.getElementById(
-            "noteText"
+            "clinicalNote"
         ).value.trim();
 
 
-    if(!patient||!note){
+    if(!patient || !note){
 
-        toast(
+        showToast(
             "Enter patient and clinical note."
         );
 
         return;
-
     }
 
 
-    const notes=
-        JSON.parse(
-            localStorage.getItem(
-                "careflowNotes"
-            )||"[]"
-        );
+    const clinicalNote = {
 
-
-    notes.push({
+        id:Date.now(),
 
         patient,
 
         note,
 
-        doctor:userName,
+        doctor:currentUser,
 
         date:
             new Date().toLocaleString()
 
-    });
+    };
+
+
+    let notes =
+        JSON.parse(
+            localStorage.getItem(
+                "careflowDoctorNotes"
+            ) || "[]"
+        );
+
+
+    notes.push(
+        clinicalNote
+    );
 
 
     localStorage.setItem(
-        "careflowNotes",
+        "careflowDoctorNotes",
         JSON.stringify(notes)
     );
 
 
     document.getElementById(
-        "notePatient"
-    ).value="";
+        "clinicalPatient"
+    ).value = "";
 
     document.getElementById(
-        "noteText"
-    ).value="";
+        "clinicalNote"
+    ).value = "";
 
 
-    toast(
-        "✓ Clinical note saved."
+    showToast(
+        "Clinical note saved."
     );
 
 
-    displayNotes();
+    displayDoctorNotes();
 
 }
 
 
-function displayNotes(){
+function displayDoctorNotes(){
 
-    const container=
+    const container =
         document.getElementById(
-            "notesList"
+            "savedClinicalNotes"
         );
 
+    if(!container) return;
 
-    const notes=
+
+    const notes =
         JSON.parse(
             localStorage.getItem(
-                "careflowNotes"
-            )||"[]"
+                "careflowDoctorNotes"
+            ) || "[]"
         );
 
 
-    container.innerHTML=
-        notes.length?
+    if(!notes.length){
 
+        container.innerHTML =
+            `<p style="color:#64748b">
+                No clinical notes.
+            </p>`;
+
+        return;
+    }
+
+
+    container.innerHTML =
         notes.slice().reverse()
-        .map(n=>`
+        .map(n => `
 
             <div class="appointment-card">
 
                 <strong>
-                    ${safe(n.patient)}
+                    ${escapeHTML(n.patient)}
                 </strong>
 
                 <p>
-                    ${safe(n.note)}
+                    ${escapeHTML(n.note)}
                 </p>
 
                 <small>
-                    ${safe(n.date)}
+                    ${escapeHTML(n.date)}
                 </small>
 
             </div>
 
-        `).join("")
-
-        :
-
-        `<p style="color:#64748b">
-            No clinical notes.
-        </p>`;
+        `)
+        .join("");
 
 }
 
 
-/* =====================================================
-   REFRESH
-===================================================== */
+/* =========================================================
+   REFRESH DASHBOARD DATA
+========================================================= */
 
-function refresh(){
+function refreshAll(){
 
-    const appointments=
+    const appointments =
         JSON.parse(
             localStorage.getItem(
                 "careflowAppointments"
-            )||"[]"
+            ) || "[]"
         );
 
-
-    const cases=
+    const cases =
         JSON.parse(
             localStorage.getItem(
                 "careflowCases"
-            )||"[]"
+            ) || "[]"
         );
 
 
-    const patientAppointments=
+    const patientAppointments =
         appointments.filter(
-            a=>a.patient===userName
+            a =>
+                a.patient === currentUser
         );
 
 
     document.getElementById(
-        "statAppointments"
-    ).textContent=
+        "patientAppointmentCount"
+    ).textContent =
         patientAppointments.length;
 
 
     document.getElementById(
-        "statCases"
-    ).textContent=
+        "patientCaseCount"
+    ).textContent =
         cases.length;
 
 
     document.getElementById(
-        "reportAppointments"
-    ).textContent=
+        "reportCaseCount"
+    ).textContent =
+        cases.length;
+
+
+    document.getElementById(
+        "reportAppointmentCount"
+    ).textContent =
         patientAppointments.length;
-
-
-    document.getElementById(
-        "reportCases"
-    ).textContent=
-        cases.length;
 
 
     document.getElementById(
         "doctorAppointmentCount"
-    ).textContent=
+    ).textContent =
         appointments.length;
 
 
     document.getElementById(
         "doctorCaseCount"
-    ).textContent=
+    ).textContent =
         cases.length;
 
 
     document.getElementById(
         "doctorReportAppointments"
-    ).textContent=
+    ).textContent =
         appointments.length;
 
 
     document.getElementById(
         "doctorReportCases"
-    ).textContent=
+    ).textContent =
         cases.length;
 
 }
 
 
-/* =====================================================
-   TOAST
-===================================================== */
+/* =========================================================
+   UTILITY
+========================================================= */
 
-function toast(message){
+function escapeHTML(value){
 
-    const element=
-        document.getElementById("toast");
-
-
-    element.textContent=message;
-
-    element.classList.add("show");
-
-
-    setTimeout(()=>{
-
-        element.classList.remove("show");
-
-    },3000);
-
-}
-
-
-/* =====================================================
-   SECURITY
-===================================================== */
-
-function safe(value){
-
-    return String(value??"")
+    return String(value ?? "")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -4524,55 +4438,98 @@ function safe(value){
 }
 
 
-/* =====================================================
-   LOGOUT
-===================================================== */
+function showToast(message){
 
-function logout(){
+    const toast =
+        document.getElementById(
+            "toast"
+        );
 
-    if(recognition){
+    toast.textContent =
+        message;
 
-        try{
-            recognition.stop();
-        }catch(e){}
-
-    }
-
-
-    document.getElementById("app")
-        .style.display="none";
+    toast.style.display =
+        "block";
 
 
-    document.getElementById("landing")
-        .style.display="block";
+    setTimeout(() => {
 
+        toast.style.display =
+            "none";
 
-    role="";
-    userName="";
+    },3000);
 
 }
 
 
-/* =====================================================
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout(){
+
+    stopVoice();
+
+    document.getElementById(
+        "app"
+    ).style.display = "none";
+
+    document.getElementById(
+        "landing"
+    ).style.display = "flex";
+
+    currentRole = "";
+
+    currentUser = "";
+
+}
+
+
+/* =========================================================
    INITIALIZATION
-===================================================== */
+========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
-    ()=>{
+    function(){
 
         initializeCities();
 
+        /*
+           Set minimum appointment date
+           to today.
+        */
 
-        const today=
+        const today =
             new Date()
-            .toISOString()
-            .split("T")[0];
+                .toISOString()
+                .split("T")[0];
 
+        const appointmentDate =
+            document.getElementById(
+                "appointmentDate"
+            );
 
-        document.getElementById(
-            "appointmentDate"
-        ).min=today;
+        const visitDate =
+            document.getElementById(
+                "visitDate"
+            );
+
+        if(appointmentDate){
+
+            appointmentDate.min =
+                today;
+
+        }
+
+        if(visitDate){
+
+            visitDate.value =
+                today;
+
+        }
+
+        refreshAll();
 
     }
 );
