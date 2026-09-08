@@ -1,905 +1,1143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareFlow | Patient Case-Taking System</title>
 
-    <title>AI Patient Case-Taking Software</title>
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+:root{
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --teal:#0f766e;
+    --bg:#f5f7fb;
+    --white:#fff;
+    --text:#172033;
+    --muted:#64748b;
+    --border:#e2e8f0;
+    --danger:#dc2626;
+    --success:#16a34a;
+    --warning:#d97706;
+    --shadow:0 8px 30px rgba(15,23,42,.08);
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #eef6fb;
-            color: #17324d;
-        }
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
 
-        header {
-            background: #075985;
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-        }
+button,input,textarea,select{
+    font-family:inherit;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
+button{
+    cursor:pointer;
+}
 
-        header p {
-            margin: 8px 0 0;
-            font-size: 15px;
-        }
+.hidden{
+    display:none!important;
+}
 
-        .container {
-            max-width: 950px;
-            margin: 25px auto;
-            padding: 0 15px;
-        }
+/* ==============================
+   AUTH / FIRST PAGE
+============================== */
 
-        .card {
-            background: white;
-            border-radius: 14px;
-            padding: 22px;
-            margin-bottom: 22px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
+#authPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    background:
+        radial-gradient(circle at 10% 10%,#dbeafe,transparent 30%),
+        radial-gradient(circle at 90% 90%,#ccfbf1,transparent 30%),
+        #f8fafc;
+}
 
-        .card h2 {
-            margin-top: 0;
-            color: #075985;
-            font-size: 22px;
-        }
+.auth-container{
+    width:100%;
+    max-width:1050px;
+}
 
-        .field {
-            margin-bottom: 18px;
-        }
+.brand{
+    text-align:center;
+    margin-bottom:35px;
+}
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 7px;
-        }
+.brand-icon{
+    width:64px;
+    height:64px;
+    display:grid;
+    place-items:center;
+    margin:auto;
+    border-radius:18px;
+    background:linear-gradient(135deg,#2563eb,#0f766e);
+    color:white;
+    font-size:30px;
+    box-shadow:var(--shadow);
+}
 
-        input,
-        textarea,
-        select {
-            width: 100%;
-            border: 1px solid #b8c9d6;
-            border-radius: 8px;
-            padding: 12px;
-            font-size: 15px;
-            font-family: Arial, sans-serif;
-        }
+.brand h1{
+    margin-top:15px;
+    font-size:36px;
+}
 
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
+.brand p{
+    color:var(--muted);
+    margin-top:7px;
+}
 
-        input:focus,
-        textarea:focus,
-        select:focus {
-            outline: 2px solid #38bdf8;
-            border-color: #0284c7;
-        }
+.role-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
 
-        .voice-row {
-            display: flex;
-            gap: 8px;
-            align-items: stretch;
-        }
+.role-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:35px;
+    box-shadow:var(--shadow);
+    transition:.2s;
+}
 
-        .voice-row input,
-        .voice-row textarea {
-            flex: 1;
-        }
+.role-card:hover{
+    transform:translateY(-4px);
+}
 
-        .mic-btn {
-            border: none;
-            border-radius: 8px;
-            background: #075985;
-            color: white;
-            padding: 0 16px;
-            cursor: pointer;
-            font-size: 20px;
-            min-width: 55px;
-        }
+.role-icon{
+    width:60px;
+    height:60px;
+    border-radius:16px;
+    display:grid;
+    place-items:center;
+    font-size:30px;
+    background:#eff6ff;
+    margin-bottom:20px;
+}
 
-        .mic-btn:hover {
-            background: #0369a1;
-        }
+.role-card h2{
+    margin-bottom:8px;
+}
 
-        .mic-btn.listening {
-            background: #dc2626;
-            animation: pulse 1s infinite;
-        }
+.role-card p{
+    color:var(--muted);
+    min-height:50px;
+}
 
-        @keyframes pulse {
-            50% {
-                opacity: 0.55;
-            }
-        }
+.role-list{
+    list-style:none;
+    margin:20px 0;
+}
 
-        .voice-panel {
-            text-align: center;
-            background: #f0f9ff;
-            border-radius: 12px;
-            padding: 20px;
-        }
+.role-list li{
+    margin:10px 0;
+    color:#475569;
+}
 
-        .voice-controls {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
+.role-list li::before{
+    content:"✓";
+    color:var(--success);
+    font-weight:bold;
+    margin-right:9px;
+}
 
-        button {
-            border: none;
-            border-radius: 8px;
-            padding: 12px 18px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: bold;
-        }
+.btn{
+    border:0;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+}
 
-        .primary {
-            background: #075985;
-            color: white;
-        }
+.btn-primary{
+    background:var(--primary);
+    color:white;
+}
 
-        .primary:hover {
-            background: #0369a1;
-        }
+.btn-primary:hover{
+    background:var(--primary-dark);
+}
 
-        .danger {
-            background: #dc2626;
-            color: white;
-        }
+.btn-secondary{
+    background:#e2e8f0;
+    color:#334155;
+}
 
-        .secondary {
-            background: #64748b;
-            color: white;
-        }
+.btn-success{
+    background:var(--success);
+    color:white;
+}
 
-        .success {
-            background: #15803d;
-            color: white;
-        }
+.btn-danger{
+    background:#fee2e2;
+    color:var(--danger);
+}
 
-        .status {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 8px;
-            background: white;
-            font-weight: bold;
-        }
+.full-btn{
+    width:100%;
+}
 
-        .listening-status {
-            color: #dc2626;
-        }
+/* ==============================
+   LOGIN
+============================== */
 
-        .success-status {
-            color: #15803d;
-        }
+.login-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:#f8fafc;
+}
 
-        .error-status {
-            color: #b91c1c;
-        }
+.login-box{
+    width:100%;
+    max-width:430px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:35px;
+    box-shadow:var(--shadow);
+}
 
-        .summary {
-            background: #f8fafc;
-            border-left: 5px solid #075985;
-            padding: 18px;
-            white-space: pre-wrap;
-            line-height: 1.6;
-            min-height: 100px;
-        }
+.back-btn{
+    background:none;
+    border:0;
+    color:var(--primary);
+    margin-bottom:25px;
+}
 
-        .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+.login-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
 
-        .help {
-            font-size: 13px;
-            color: #64748b;
-            margin-top: 6px;
-        }
+.login-box h2{
+    margin-bottom:7px;
+}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #64748b;
-            font-size: 13px;
-        }
+.login-box>p{
+    color:var(--muted);
+    margin-bottom:25px;
+}
 
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 22px;
-            }
+.input-group{
+    margin-bottom:16px;
+}
 
-            .card {
-                padding: 16px;
-            }
+.input-group label{
+    display:block;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
 
-            .voice-row {
-                flex-direction: column;
-            }
+.input-group input,
+.input-group select{
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    outline:none;
+}
 
-            .mic-btn {
-                padding: 10px;
-            }
+.input-group input:focus,
+.input-group select:focus{
+    border-color:var(--primary);
+}
 
-            .voice-controls,
-            .button-group {
-                flex-direction: column;
-            }
+.demo-note{
+    background:#eff6ff;
+    color:#1e40af;
+    padding:12px;
+    border-radius:9px;
+    font-size:13px;
+    margin-bottom:18px;
+}
 
-            button {
-                width: 100%;
-            }
-        }
-    </style>
+/* ==============================
+   APPLICATION
+============================== */
+
+#app{
+    min-height:100vh;
+}
+
+.sidebar{
+    width:245px;
+    background:#fff;
+    border-right:1px solid var(--border);
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    z-index:100;
+    padding:20px 15px;
+}
+
+.side-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px;
+    margin-bottom:25px;
+}
+
+.side-brand-icon{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#0f766e);
+    border-radius:10px;
+}
+
+.side-brand strong{
+    font-size:18px;
+}
+
+.side-brand small{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+}
+
+.sidebar-nav{
+    display:grid;
+    gap:5px;
+}
+
+.sidebar-nav button{
+    width:100%;
+    text-align:left;
+    padding:12px;
+    border:0;
+    background:transparent;
+    border-radius:9px;
+    color:#475569;
+    font-weight:600;
+}
+
+.sidebar-nav button:hover,
+.sidebar-nav button.active{
+    background:#eff6ff;
+    color:var(--primary);
+}
+
+.logout{
+    position:absolute;
+    bottom:20px;
+    left:15px;
+    right:15px;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:245px;
+    min-height:100vh;
+}
+
+.topbar{
+    height:72px;
+    background:white;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.topbar-title h2{
+    font-size:20px;
+}
+
+.topbar-title span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#dbeafe;
+    color:var(--primary);
+    font-weight:bold;
+}
+
+.content{
+    padding:30px;
+    max-width:1400px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* ==============================
+   DASHBOARD
+============================== */
+
+.welcome{
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+.welcome p{
+    color:var(--muted);
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:17px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 3px 15px rgba(15,23,42,.04);
+}
+
+.stat-icon{
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+.stat h3{
+    font-size:27px;
+}
+
+.stat p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 3px 15px rgba(15,23,42,.04);
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.card-header h3{
+    font-size:17px;
+}
+
+.appointment{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    background:#f8fafc;
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.appointment strong{
+    display:block;
+}
+
+.appointment small{
+    color:var(--muted);
+}
+
+.status{
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.status.green{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.status.blue{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.status.orange{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+/* ==============================
+   CASE FORM
+============================== */
+
+.form-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:25px;
+    box-shadow:var(--shadow);
+}
+
+.form-section{
+    margin-bottom:28px;
+}
+
+.form-section h3{
+    font-size:17px;
+    border-bottom:1px solid var(--border);
+    padding-bottom:10px;
+    margin-bottom:17px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.field label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    outline:none;
+}
+
+.field textarea{
+    min-height:105px;
+    resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:var(--primary);
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.voice-panel{
+    padding:16px;
+    background:#f8fafc;
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin-bottom:25px;
+}
+
+.voice-panel-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+}
+
+.voice-panel select{
+    padding:10px;
+    border:1px solid var(--border);
+    border-radius:8px;
+}
+
+.voice-status{
+    margin-top:10px;
+    font-size:13px;
+    color:var(--muted);
+}
+
+.voice-status.listening{
+    color:var(--danger);
+    font-weight:bold;
+}
+
+.voice-field{
+    position:relative;
+}
+
+.voice-field textarea{
+    padding-right:55px;
+}
+
+.mic{
+    position:absolute;
+    right:9px;
+    top:9px;
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:50%;
+    background:#dbeafe;
+    color:var(--primary);
+    font-size:17px;
+}
+
+.mic.listening{
+    background:#fee2e2;
+    color:var(--danger);
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    50%{transform:scale(1.08);}
+}
+
+.form-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.summary{
+    background:#f8fafc;
+    border:1px solid var(--border);
+    padding:20px;
+    border-radius:12px;
+    margin-top:25px;
+}
+
+.summary pre{
+    white-space:pre-wrap;
+    font-family:Arial;
+    line-height:1.6;
+}
+
+/* ==============================
+   TABLES
+============================== */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:13px;
+    border-bottom:1px solid var(--border);
+    text-align:left;
+    font-size:13px;
+}
+
+th{
+    color:#475569;
+    background:#f8fafc;
+}
+
+/* ==============================
+   SEARCH
+============================== */
+
+.search{
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    margin-bottom:15px;
+}
+
+/* ==============================
+   PROFILE
+============================== */
+
+.profile-card{
+    display:flex;
+    gap:20px;
+    align-items:center;
+}
+
+.large-avatar{
+    width:80px;
+    height:80px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#dbeafe;
+    color:var(--primary);
+    font-size:30px;
+    font-weight:bold;
+}
+
+/* ==============================
+   MOBILE
+============================== */
+
+.mobile-menu{
+    display:none;
+    border:0;
+    background:#eff6ff;
+    color:var(--primary);
+    padding:8px 10px;
+    border-radius:8px;
+}
+
+@media(max-width:1000px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    .role-grid{
+        grid-template-columns:1fr;
+    }
+
+    .brand h1{
+        font-size:29px;
+    }
+
+    .content{
+        padding:20px 15px;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .appointment{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .profile span{
+        display:none;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>🏥 AI Patient Case-Taking Software</h1>
-    <p>Voice-assisted patient information collection</p>
-</header>
 
-<div class="container">
+<!-- =====================================================
+     FIRST PAGE
+===================================================== -->
 
-    <!-- Patient Information -->
-    <div class="card">
-        <h2>👤 Patient Information</h2>
+<section id="authPage">
 
-        <div class="field">
-            <label for="patientName">Patient Name</label>
-            <div class="voice-row">
-                <input id="patientName" type="text"
-                       placeholder="Enter patient name">
-                <button class="mic-btn"
-                        onclick="startFieldVoice('patientName')"
-                        title="Speak patient name">🎤</button>
-            </div>
-        </div>
+    <div class="auth-container">
 
-        <div class="field">
-            <label for="age">Age</label>
-            <div class="voice-row">
-                <input id="age" type="text"
-                       placeholder="Enter age">
-                <button class="mic-btn"
-                        onclick="startFieldVoice('age')"
-                        title="Speak age">🎤</button>
-            </div>
-        </div>
+        <div class="brand">
 
-        <div class="field">
-            <label for="complaint">Main Complaint</label>
-            <div class="voice-row">
-                <textarea id="complaint"
-                          placeholder="Enter main complaint"></textarea>
-                <button class="mic-btn"
-                        onclick="startFieldVoice('complaint')"
-                        title="Speak main complaint">🎤</button>
-            </div>
-        </div>
+            <div class="brand-icon">✚</div>
 
-        <div class="field">
-            <label for="symptoms">Symptoms</label>
-            <div class="voice-row">
-                <textarea id="symptoms"
-                          placeholder="Enter symptoms"></textarea>
-                <button class="mic-btn"
-                        onclick="startFieldVoice('symptoms')"
-                        title="Speak symptoms">🎤</button>
-            </div>
-        </div>
-
-        <div class="field">
-            <label for="history">Previous Medical Conditions</label>
-            <div class="voice-row">
-                <textarea id="history"
-                          placeholder="Enter previous medical conditions"></textarea>
-                <button class="mic-btn"
-                        onclick="startFieldVoice('history')"
-                        title="Speak medical history">🎤</button>
-            </div>
-        </div>
-
-        <div class="field">
-            <label for="medications">Current Medications</label>
-            <div class="voice-row">
-                <textarea id="medications"
-                          placeholder="Enter current medications"></textarea>
-                <button class="mic-btn"
-                        onclick="startFieldVoice('medications')"
-                        title="Speak medications">🎤</button>
-            </div>
-        </div>
-
-        <div class="field">
-            <label for="allergies">Allergies</label>
-            <div class="voice-row">
-                <textarea id="allergies"
-                          placeholder="Enter known allergies"></textarea>
-                <button class="mic-btn"
-                        onclick="startFieldVoice('allergies')"
-                        title="Speak allergies">🎤</button>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Voice Recognition -->
-    <div class="card">
-
-        <h2>🎤 AI Voice Recognition</h2>
-
-        <div class="voice-panel">
+            <h1>CareFlow</h1>
 
             <p>
-                Select a field and speak the patient's information.
+                Smart Patient Case-Taking & Consultation System
             </p>
 
-            <label for="language">Voice Language</label>
-
-            <select id="language">
-                <option value="en-IN">English (India)</option>
-                <option value="en-US">English (US)</option>
-                <option value="en-GB">English (UK)</option>
-            </select>
-
-            <br><br>
-
-            <label for="voiceField">Send voice input to</label>
-
-            <select id="voiceField">
-                <option value="patientName">Patient Name</option>
-                <option value="age">Age</option>
-                <option value="complaint">Main Complaint</option>
-                <option value="symptoms">Symptoms</option>
-                <option value="history">Medical History</option>
-                <option value="medications">Current Medications</option>
-                <option value="allergies">Allergies</option>
-            </select>
-
-            <div class="voice-controls">
-
-                <button class="primary"
-                        onclick="startSelectedVoice()">
-                    🎤 Start Voice Recognition
-                </button>
-
-                <button class="danger"
-                        onclick="stopVoice()">
-                    ⏹ Stop
-                </button>
-
-            </div>
-
-            <div id="voiceStatus" class="status">
-                Ready. Click the microphone and speak.
-            </div>
-
-            <div id="liveTranscript"
-                 class="status"
-                 style="margin-top:10px;">
-                Live transcript will appear here...
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- Case Summary -->
-    <div class="card">
-
-        <h2>📋 Case Summary</h2>
-
-        <div id="summary"
-             class="summary">
-            Your case summary will appear here.
         </div>
 
-        <br>
 
-        <div class="button-group">
+        <div class="role-grid">
 
-            <button class="success"
-                    onclick="generateSummary()">
-                📋 Generate Case Summary
-            </button>
+            <!-- PATIENT -->
 
-            <button class="secondary"
-                    onclick="copySummary()">
-                📄 Copy Summary
-            </button>
+            <div class="role-card">
 
-            <button class="danger"
-                    onclick="clearForm()">
-                🗑 Clear Form
-            </button>
+                <div class="role-icon">👤</div>
+
+                <h2>Patient</h2>
+
+                <p>
+                    Access your appointments, case-taking,
+                    reports and medical information.
+                </p>
+
+                <ul class="role-list">
+
+                    <li>Start digital case-taking</li>
+                    <li>Multilingual voice input</li>
+                    <li>View appointments</li>
+                    <li>View reports and history</li>
+
+                </ul>
+
+                <button
+                    class="btn btn-primary full-btn"
+                    onclick="showLogin('patient')">
+
+                    Continue as Patient →
+
+                </button>
+
+            </div>
+
+
+            <!-- DOCTOR -->
+
+            <div class="role-card">
+
+                <div class="role-icon">👨‍⚕️</div>
+
+                <h2>Doctor</h2>
+
+                <p>
+                    Review patient cases, appointments,
+                    summaries and clinical information.
+                </p>
+
+                <ul class="role-list">
+
+                    <li>View today's appointments</li>
+                    <li>Review patient cases</li>
+                    <li>Read structured summaries</li>
+                    <li>Manage consultation notes</li>
+
+                </ul>
+
+                <button
+                    class="btn btn-primary full-btn"
+                    onclick="showLogin('doctor')">
+
+                    Continue as Doctor →
+
+                </button>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+</section>
 
-<footer>
-    This prototype organizes information entered by the user.
-    It is not a medical diagnosis or a substitute for professional medical advice.
-</footer>
 
+<!-- =====================================================
+     PATIENT LOGIN
+===================================================== -->
 
-<script>
+<section id="patientLogin" class="login-page hidden">
 
-    /*
-     * ==========================================
-     * SPEECH RECOGNITION SETUP
-     * ==========================================
-     */
+    <div class="login-box">
 
-    const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
+        <button class="back-btn"
+                onclick="backToRoles()">
+            ← Back
+        </button>
 
-    let recognition = null;
-    let currentField = null;
-    let isListening = false;
+        <div class="login-icon">👤</div>
 
+        <h2>Patient Login</h2>
 
-    /*
-     * Check browser support
-     */
+        <p>
+            Sign in to access your patient dashboard.
+        </p>
 
-    function checkSpeechSupport() {
+        <div class="demo-note">
+            Demo mode: You can enter any sample name
+            and mobile number.
+        </div>
 
-        if (!SpeechRecognition) {
+        <div class="input-group">
+            <label>Patient Name</label>
+            <input id="pName"
+                   placeholder="Enter patient name">
+        </div>
 
-            setStatus(
-                "❌ Speech recognition is not supported in this browser. Try Google Chrome.",
-                "error-status"
-            );
+        <div class="input-group">
+            <label>Mobile Number</label>
+            <input id="pMobile"
+                   type="tel"
+                   placeholder="Enter mobile number">
+        </div>
 
-            return false;
-        }
+        <button class="btn btn-primary full-btn"
+                onclick="patientLogin()">
+            Login to Patient Dashboard
+        </button>
 
-        return true;
-    }
+    </div>
 
+</section>
 
-    /*
-     * Create speech recognition object
-     */
 
-    function createRecognition() {
+<!-- =====================================================
+     DOCTOR LOGIN
+===================================================== -->
 
-        if (!checkSpeechSupport()) {
-            return null;
-        }
+<section id="doctorLogin" class="login-page hidden">
 
-        const r = new SpeechRecognition();
+    <div class="login-box">
 
-        r.continuous = false;
+        <button class="back-btn"
+                onclick="backToRoles()">
+            ← Back
+        </button>
 
-        r.interimResults = true;
+        <div class="login-icon">👨‍⚕️</div>
 
-        r.maxAlternatives = 3;
+        <h2>Doctor Login</h2>
 
-        r.lang =
-            document.getElementById("language").value;
+        <p>
+            Sign in to access your doctor dashboard.
+        </p>
 
-        return r;
-    }
+        <div class="demo-note">
+            Demo mode: Use any email and password.
+        </div>
 
+        <div class="input-group">
+            <label>Email</label>
+            <input id="dEmail"
+                   type="email"
+                   placeholder="doctor@example.com">
+        </div>
 
-    /*
-     * Start voice for a particular field
-     */
+        <div class="input-group">
+            <label>Password</label>
+            <input id="dPassword"
+                   type="password"
+                   placeholder="Enter password">
+        </div>
 
-    function startFieldVoice(fieldId) {
+        <button class="btn btn-primary full-btn"
+                onclick="doctorLogin()">
+            Login to Doctor Dashboard
+        </button>
 
-        document.getElementById("voiceField").value = fieldId;
+    </div>
 
-        startVoice(fieldId);
-    }
+</section>
 
 
-    /*
-     * Start selected voice
-     */
+<!-- =====================================================
+     MAIN APPLICATION
+===================================================== -->
 
-    function startSelectedVoice() {
+<section id="app" class="hidden">
 
-        const field =
-            document.getElementById("voiceField").value;
 
-        startVoice(field);
-    }
+    <!-- SIDEBAR -->
 
+    <aside id="sidebar" class="sidebar">
 
-    /*
-     * Main voice function
-     */
+        <div class="side-brand">
 
-    function startVoice(fieldId) {
+            <div class="side-brand-icon">✚</div>
 
-        if (!checkSpeechSupport()) {
-            return;
-        }
+            <div>
+                <strong>CareFlow</strong>
+                <small id="sideRole">
+                    Healthcare Portal
+                </small>
+            </div>
 
-        // Stop previous recognition
-        if (recognition && isListening) {
-            try {
-                recognition.stop();
-            } catch (e) {}
-        }
+        </div>
 
-        currentField = fieldId;
 
-        recognition = createRecognition();
+        <nav id="patientNav" class="sidebar-nav hidden">
 
-        if (!recognition) {
-            return;
-        }
+            <button class="active"
+                    onclick="showPage('patientHome',this)">
+                🏠 Overview
+            </button>
 
+            <button onclick="showPage('caseTaking',this)">
+                🎤 New Case
+            </button>
 
-        /*
-         * When recognition starts
-         */
+            <button onclick="showPage('patientAppointments',this)">
+                📅 Appointments
+            </button>
 
-        recognition.onstart = function () {
+            <button onclick="showPage('patientHistory',this)">
+                📋 Medical History
+            </button>
 
-            isListening = true;
+            <button onclick="showPage('patientReports',this)">
+                📄 Reports
+            </button>
 
-            setStatus(
-                "🎤 Listening... Please speak clearly.",
-                "listening-status"
-            );
+            <button onclick="showPage('patientMessages',this)">
+                💬 Messages
+            </button>
 
-            document.getElementById("liveTranscript")
-                .innerText =
-                "Listening...";
-        };
+            <button onclick="showPage('patientProfile',this)">
+                👤 My Profile
+            </button>
 
+        </nav>
 
-        /*
-         * Speech results
-         */
 
-        recognition.onresult = function(event) {
+        <nav id="doctorNav" class="sidebar-nav hidden">
 
-            let finalText = "";
-            let interimText = "";
+            <button class="active"
+                    onclick="showPage('doctorHome',this)">
+                🏠 Overview
+            </button>
 
-            for (
-                let i = event.resultIndex;
-                i < event.results.length;
-                i++
-            ) {
+            <button onclick="showPage('doctorAppointments',this)">
+                📅 Appointments
+            </button>
 
-                const text =
-                    event.results[i][0].transcript;
+            <button onclick="showPage('doctorCases',this)">
+                📋 Patient Cases
+            </button>
 
-                if (event.results[i].isFinal) {
+            <button onclick="showPage('doctorPatients',this)">
+                👥 Patients
+            </button>
 
-                    finalText += text;
+            <button onclick="showPage('doctorNotes',this)">
+                📝 Clinical Notes
+            </button>
 
-                } else {
+            <button onclick="showPage('doctorReports',this)">
+                📄 Reports
+            </button>
 
-                    interimText += text;
-                }
-            }
+            <button onclick="showPage('doctorMessages',this)">
+                💬 Messages
+            </button>
 
+            <button onclick="showPage('doctorProfile',this)">
+                👨‍⚕️ My Profile
+            </button>
 
-            /*
-             * Show live speech
-             */
+        </nav>
 
-            document.getElementById("liveTranscript")
-                .innerText =
-                finalText || interimText;
 
+        <button class="btn btn-danger full-btn logout"
+                onclick="logout()">
+            ↪ Logout
+        </button>
 
-            /*
-             * Insert final speech into field
-             */
+    </aside>
 
-            if (finalText.trim() !== "") {
 
-                const field =
-                    document.getElementById(currentField);
+    <!-- MAIN -->
 
-                if (field) {
+    <div class="main">
 
-                    const oldText =
-                        field.value.trim();
+        <header class="topbar">
 
-                    if (oldText !== "") {
+            <div style="display:flex;align-items:center;gap:12px">
 
-                        field.value =
-                            oldText + " " +
-                            finalText.trim();
+                <button class="mobile-menu"
+                        onclick="toggleSidebar()">
+                    ☰
+                </button>
 
-                    } else {
+                <div class="topbar-title">
 
-                        field.value =
-                            finalText.trim();
-                    }
+                    <h2 id="pageTitle">
+                        Dashboard
+                    </h2>
 
-                    setStatus(
-                        "✅ Speech captured successfully.",
-                        "success-status"
-                    );
-                }
-            }
-        };
+                    <span id="pageSubtitle">
+                        Welcome to CareFlow
+                    </span>
 
+                </div>
 
-        /*
-         * Recognition ends
-         */
+            </div>
 
-        recognition.onend = function() {
 
-            isListening = false;
+            <div class="profile">
 
-            if (
-                document.getElementById("voiceStatus")
-                    .innerText.includes("Listening")
-            ) {
+                <div>
+                    <strong id="userName">
+                        User
+                    </strong>
 
-                setStatus(
-                    "Ready. Click the microphone to speak again.",
-                    ""
-                );
-            }
-        };
+                    <br>
 
+                    <span id="userRole"
+                          style="font-size:11px;color:#64748b">
+                        Patient
+                    </span>
+                </div>
 
-        /*
-         * Recognition errors
-         */
-
-        recognition.onerror = function(event) {
-
-            isListening = false;
-
-            let message = "";
-
-            switch (event.error) {
-
-                case "no-speech":
-
-                    message =
-                        "⚠️ No speech detected. Speak closer to the microphone and try again.";
-
-                    break;
-
-                case "not-allowed":
-
-                    message =
-                        "❌ Microphone permission was blocked. Allow microphone access in Chrome.";
-
-                    break;
-
-                case "audio-capture":
-
-                    message =
-                        "❌ No working microphone was found.";
-
-                    break;
-
-                case "network":
-
-                    message =
-                        "❌ Network error. Check your internet connection.";
-
-                    break;
-
-                case "aborted":
-
-                    message =
-                        "Recognition stopped.";
-
-                    break;
-
-                default:
-
-                    message =
-                        "❌ Voice recognition error: " +
-                        event.error;
-            }
-
-            setStatus(message, "error-status");
-        };
-
-
-        /*
-         * Start recognition
-         */
-
-        try {
-
-            recognition.start();
-
-        } catch (error) {
-
-            setStatus(
-                "❌ Could not start voice recognition. Please try again.",
-                "error-status"
-            );
-        }
-    }
-
-
-    /*
-     * Stop recognition
-     */
-
-    function stopVoice() {
-
-        if (recognition) {
-
-            try {
-                recognition.stop();
-            } catch (error) {}
-
-        }
-
-        isListening = false;
-
-        setStatus(
-            "⏹ Voice recognition stopped.",
-            ""
-        );
-    }
-
-
-    /*
-     * Status message
-     */
-
-    function setStatus(message, className) {
-
-        const status =
-            document.getElementById("voiceStatus");
-
-        status.innerText = message;
-
-        status.className =
-            "status " + className;
-    }
-
-
-    /*
-     * Generate case summary
-     */
-
-    function generateSummary() {
-
-        const name =
-            document.getElementById("patientName").value.trim();
-
-        const age =
-            document.getElementById("age").value.trim();
-
-        const complaint =
-            document.getElementById("complaint").value.trim();
-
-        const symptoms =
-            document.getElementById("symptoms").value.trim();
-
-        const history =
-            document.getElementById("history").value.trim();
-
-        const medications =
-            document.getElementById("medications").value.trim();
-
-        const allergies =
-            document.getElementById("allergies").value.trim();
-
-
-        const summary =
-
-`PATIENT CASE SUMMARY
-
-Patient Name: ${name || "Not provided"}
-
-Age: ${age || "Not provided"}
-
-Main Complaint:
-${complaint || "Not provided"}
-
-Symptoms:
-${symptoms || "Not provided"}
-
-Previous Medical Conditions:
-${history || "Not provided"}
-
-Current Medications:
-${medications || "Not provided"}
-
-Allergies:
-${allergies || "Not provided"}
-
-
-Note:
-This summary organizes the information entered by the user.
-It does not provide a medical diagnosis.`;
-
-
-        document.getElementById("summary")
-            .innerText = summary;
-    }
-
-
-    /*
-     * Copy summary
-     */
-
-    function copySummary() {
-
-        const summary =
-            document.getElementById("summary").innerText;
-
-        if (
-            summary ===
-            "Your case summary will appear here."
-        ) {
-
-            alert("Please generate the case summary first.");
-
-            return;
-        }
-
-        navigator.clipboard.writeText(summary)
-            .then(function() {
-
-                alert("✅ Case summary copied.");
-
-            })
-            .catch(function() {
-
-                alert("Unable to copy the summary.");
-
-            });
-    }
-
-
-    /*
-     * Clear everything
-     */
-
-    function clearForm() {
-
-        stopVoice();
-
-        document.getElementById("patientName").value = "";
-
-        document.getElementById("age").value = "";
-
-        document.getElementById("complaint").value = "";
-
-        document.getElementById("symptoms").value = "";
-
-        document.getElementById("history").value = "";
-
-        document.getElementById("medications").value = "";
-
-        document.getElementById("allergies").value = "";
-
-        document.getElemen
+                <div class="avatar"
+                     id="avatar">
