@@ -3,38 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CareFlow | Patient Case-Taking System</title>
+
+<title>CareFlow | Smart Patient Case-Taking System</title>
 
 <style>
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
-}
-
-:root{
-    --primary:#2563eb;
-    --primary-dark:#1d4ed8;
-    --teal:#0f766e;
-    --bg:#f5f7fb;
-    --white:#fff;
-    --text:#172033;
-    --muted:#64748b;
-    --border:#e2e8f0;
-    --danger:#dc2626;
-    --success:#16a34a;
-    --warning:#d97706;
-    --shadow:0 8px 30px rgba(15,23,42,.08);
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--bg);
-    color:var(--text);
+    background:#f4f7fb;
+    color:#172033;
 }
 
-button,input,textarea,select{
-    font-family:inherit;
+button,input,select,textarea{
+    font:inherit;
 }
 
 button{
@@ -42,315 +28,294 @@ button{
 }
 
 .hidden{
-    display:none!important;
+    display:none !important;
 }
 
-/* ==============================
-   AUTH / FIRST PAGE
-============================== */
+/* ================= LANDING ================= */
 
-#authPage{
+#landing{
     min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:25px;
-    background:
-        radial-gradient(circle at 10% 10%,#dbeafe,transparent 30%),
-        radial-gradient(circle at 90% 90%,#ccfbf1,transparent 30%),
-        #f8fafc;
+    padding:45px 25px;
+    background:linear-gradient(135deg,#eef7ff,#f7fbff,#eefcf8);
 }
 
-.auth-container{
-    width:100%;
-    max-width:1050px;
-}
-
-.brand{
+.logo-area{
     text-align:center;
-    margin-bottom:35px;
+    margin-bottom:45px;
 }
 
-.brand-icon{
-    width:64px;
-    height:64px;
-    display:grid;
-    place-items:center;
+.logo{
+    width:70px;
+    height:70px;
     margin:auto;
-    border-radius:18px;
-    background:linear-gradient(135deg,#2563eb,#0f766e);
+    border-radius:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#087ea4;
     color:white;
-    font-size:30px;
-    box-shadow:var(--shadow);
+    font-size:42px;
+    font-weight:bold;
+    box-shadow:0 12px 30px rgba(8,126,164,.25);
 }
 
-.brand h1{
-    margin-top:15px;
-    font-size:36px;
+.logo-area h1{
+    margin-top:18px;
+    font-size:42px;
 }
 
-.brand p{
-    color:var(--muted);
-    margin-top:7px;
+.logo-area p{
+    color:#64748b;
+    margin-top:8px;
+    font-size:17px;
 }
 
-.role-grid{
+.role-container{
+    max-width:1100px;
+    margin:auto;
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:25px;
+    gap:28px;
 }
 
 .role-card{
     background:white;
-    border:1px solid var(--border);
-    border-radius:20px;
+    border-radius:24px;
     padding:35px;
-    box-shadow:var(--shadow);
-    transition:.2s;
+    box-shadow:0 15px 45px rgba(31,48,74,.12);
+    border:1px solid #e6edf5;
+    transition:.25s;
 }
 
 .role-card:hover{
-    transform:translateY(-4px);
+    transform:translateY(-5px);
+    box-shadow:0 20px 50px rgba(31,48,74,.18);
 }
 
 .role-icon{
     width:60px;
     height:60px;
     border-radius:16px;
-    display:grid;
-    place-items:center;
+    background:#eef6ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     font-size:30px;
-    background:#eff6ff;
-    margin-bottom:20px;
+    margin-bottom:22px;
 }
 
 .role-card h2{
-    margin-bottom:8px;
+    font-size:27px;
+    margin-bottom:10px;
 }
 
 .role-card p{
-    color:var(--muted);
-    min-height:50px;
+    color:#64748b;
+    line-height:1.6;
+    margin-bottom:20px;
 }
 
-.role-list{
+.role-card ul{
     list-style:none;
-    margin:20px 0;
+    margin-bottom:28px;
 }
 
-.role-list li{
-    margin:10px 0;
+.role-card li{
+    margin:13px 0;
     color:#475569;
 }
 
-.role-list li::before{
+.role-card li::before{
     content:"✓";
-    color:var(--success);
+    color:#119b70;
     font-weight:bold;
-    margin-right:9px;
+    margin-right:10px;
 }
 
-.btn{
-    border:0;
-    border-radius:9px;
-    padding:12px 18px;
-    font-weight:bold;
-}
-
-.btn-primary{
-    background:var(--primary);
-    color:white;
-}
-
-.btn-primary:hover{
-    background:var(--primary-dark);
-}
-
-.btn-secondary{
-    background:#e2e8f0;
-    color:#334155;
-}
-
-.btn-success{
-    background:var(--success);
-    color:white;
-}
-
-.btn-danger{
-    background:#fee2e2;
-    color:var(--danger);
-}
-
-.full-btn{
+.primary-btn{
     width:100%;
+    padding:14px 18px;
+    border:none;
+    border-radius:10px;
+    background:#0868d9;
+    color:white;
+    font-weight:bold;
+    transition:.2s;
 }
 
-/* ==============================
-   LOGIN
-============================== */
+.primary-btn:hover{
+    background:#0757b7;
+    transform:translateY(-1px);
+}
 
-.login-page{
+/* ================= LOGIN ================= */
+
+.login-screen{
     min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:20px;
-    background:#f8fafc;
+    padding:25px;
+    background:linear-gradient(135deg,#eef7ff,#f7fbff);
 }
 
 .login-box{
     width:100%;
-    max-width:430px;
+    max-width:460px;
     background:white;
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:35px;
-    box-shadow:var(--shadow);
-}
-
-.back-btn{
-    background:none;
-    border:0;
-    color:var(--primary);
-    margin-bottom:25px;
-}
-
-.login-icon{
-    font-size:40px;
-    margin-bottom:10px;
+    padding:38px;
+    border-radius:22px;
+    box-shadow:0 15px 45px rgba(31,48,74,.13);
 }
 
 .login-box h2{
-    margin-bottom:7px;
+    margin-bottom:8px;
+    font-size:29px;
 }
 
-.login-box>p{
-    color:var(--muted);
-    margin-bottom:25px;
+.login-box .subtitle{
+    color:#64748b;
+    margin-bottom:28px;
 }
 
-.input-group{
-    margin-bottom:16px;
+.form-group{
+    margin-bottom:18px;
 }
 
-.input-group label{
+.form-group label{
     display:block;
     font-size:14px;
     font-weight:bold;
     margin-bottom:7px;
+    color:#334155;
 }
 
-.input-group input,
-.input-group select{
+.form-group input,
+.form-group select,
+.form-group textarea{
     width:100%;
-    padding:13px;
-    border:1px solid var(--border);
+    padding:12px 13px;
+    border:1px solid #d9e2ec;
     border-radius:9px;
     outline:none;
+    background:#fff;
 }
 
-.input-group input:focus,
-.input-group select:focus{
-    border-color:var(--primary);
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:#1688d5;
+    box-shadow:0 0 0 3px rgba(22,136,213,.08);
 }
 
-.demo-note{
-    background:#eff6ff;
-    color:#1e40af;
-    padding:12px;
-    border-radius:9px;
-    font-size:13px;
-    margin-bottom:18px;
+.back-btn{
+    border:none;
+    background:none;
+    color:#0868d9;
+    font-weight:bold;
+    margin-bottom:20px;
 }
 
-/* ==============================
-   APPLICATION
-============================== */
+/* ================= APP ================= */
 
 #app{
     min-height:100vh;
 }
 
 .sidebar{
-    width:245px;
-    background:#fff;
-    border-right:1px solid var(--border);
+    width:255px;
     position:fixed;
     left:0;
     top:0;
     bottom:0;
+    background:#10253d;
+    color:white;
+    padding:24px 15px;
     z-index:100;
-    padding:20px 15px;
 }
 
-.side-brand{
+.side-logo{
     display:flex;
     align-items:center;
     gap:10px;
-    padding:8px;
-    margin-bottom:25px;
+    padding:0 12px 25px;
+    font-size:23px;
+    font-weight:bold;
 }
 
-.side-brand-icon{
+.side-logo span{
     width:38px;
     height:38px;
-    display:grid;
-    place-items:center;
-    color:white;
-    background:linear-gradient(135deg,#2563eb,#0f766e);
-    border-radius:10px;
+    border-radius:11px;
+    background:#087ea4;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.side-brand strong{
-    font-size:18px;
+.user-mini{
+    padding:15px;
+    background:rgba(255,255,255,.07);
+    border-radius:14px;
+    margin-bottom:22px;
 }
 
-.side-brand small{
+.user-mini strong{
     display:block;
-    color:var(--muted);
-    font-size:10px;
+    margin-bottom:5px;
 }
 
-.sidebar-nav{
-    display:grid;
-    gap:5px;
+.user-mini small{
+    color:#b8c5d4;
 }
 
-.sidebar-nav button{
+.nav-title{
+    color:#91a4b8;
+    font-size:11px;
+    text-transform:uppercase;
+    padding:12px;
+    letter-spacing:1px;
+}
+
+.nav-btn{
     width:100%;
     text-align:left;
-    padding:12px;
-    border:0;
+    border:none;
     background:transparent;
+    color:#dce6ef;
+    padding:12px;
     border-radius:9px;
-    color:#475569;
-    font-weight:600;
+    margin:2px 0;
 }
 
-.sidebar-nav button:hover,
-.sidebar-nav button.active{
-    background:#eff6ff;
-    color:var(--primary);
+.nav-btn:hover,
+.nav-btn.active{
+    background:#1c4567;
+    color:white;
 }
 
-.logout{
+.logout-btn{
     position:absolute;
     bottom:20px;
     left:15px;
     right:15px;
+    width:calc(100% - 30px);
+    padding:11px;
+    border:1px solid rgba(255,255,255,.2);
+    background:transparent;
+    color:#fff;
+    border-radius:9px;
 }
 
-/* MAIN */
-
 .main{
-    margin-left:245px;
+    margin-left:255px;
     min-height:100vh;
 }
 
 .topbar{
     height:72px;
     background:white;
-    border-bottom:1px solid var(--border);
+    border-bottom:1px solid #e7edf4;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -360,35 +325,38 @@ button{
     z-index:50;
 }
 
-.topbar-title h2{
+.menu-btn{
+    display:none;
+    border:none;
+    background:#eef5fb;
+    padding:8px 12px;
+    border-radius:8px;
+}
+
+.topbar h3{
     font-size:20px;
 }
 
-.topbar-title span{
-    color:var(--muted);
-    font-size:12px;
-}
-
-.profile{
+.top-profile{
     display:flex;
     align-items:center;
     gap:10px;
 }
 
 .avatar{
-    width:40px;
-    height:40px;
+    width:38px;
+    height:38px;
     border-radius:50%;
-    display:grid;
-    place-items:center;
-    background:#dbeafe;
-    color:var(--primary);
-    font-weight:bold;
+    background:#dcefff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .content{
     padding:30px;
-    max-width:1400px;
+    max-width:1500px;
+    margin:auto;
 }
 
 .page{
@@ -399,266 +367,232 @@ button{
     display:block;
 }
 
-/* ==============================
-   DASHBOARD
-============================== */
-
 .welcome{
     margin-bottom:25px;
 }
 
 .welcome h1{
     font-size:30px;
-    margin-bottom:5px;
+    margin-bottom:7px;
 }
 
-.welcome p{
-    color:var(--muted);
+.muted{
+    color:#64748b;
 }
+
+/* ================= CARDS ================= */
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:17px;
+    gap:18px;
     margin-bottom:25px;
 }
 
-.stat{
+.stat-card{
     background:white;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:20px;
-    box-shadow:0 3px 15px rgba(15,23,42,.04);
+    border:1px solid #e6edf5;
+    border-radius:15px;
+    padding:22px;
+    box-shadow:0 5px 20px rgba(30,50,80,.05);
 }
 
-.stat-icon{
-    font-size:24px;
-    margin-bottom:12px;
+.stat-card .number{
+    font-size:30px;
+    font-weight:bold;
+    margin:8px 0;
 }
 
-.stat h3{
-    font-size:27px;
+.stat-card .label{
+    color:#64748b;
+    font-size:14px;
 }
 
-.stat p{
-    color:var(--muted);
-    font-size:13px;
-}
-
-.dashboard-grid{
+.grid-2{
     display:grid;
-    grid-template-columns:2fr 1fr;
+    grid-template-columns:1.4fr 1fr;
     gap:20px;
 }
 
 .card{
     background:white;
-    border:1px solid var(--border);
-    border-radius:14px;
+    border:1px solid #e6edf5;
+    border-radius:16px;
     padding:22px;
     margin-bottom:20px;
-    box-shadow:0 3px 15px rgba(15,23,42,.04);
+    box-shadow:0 5px 20px rgba(30,50,80,.05);
 }
 
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
-}
-
-.card-header h3{
-    font-size:17px;
-}
-
-.appointment{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px;
-    background:#f8fafc;
-    border:1px solid var(--border);
-    border-radius:10px;
-    margin-bottom:10px;
-}
-
-.appointment strong{
-    display:block;
-}
-
-.appointment small{
-    color:var(--muted);
-}
-
-.status{
-    padding:5px 9px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
-}
-
-.status.green{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.status.blue{
-    background:#dbeafe;
-    color:#1d4ed8;
-}
-
-.status.orange{
-    background:#fef3c7;
-    color:#92400e;
-}
-
-/* ==============================
-   CASE FORM
-============================== */
-
-.form-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:25px;
-    box-shadow:var(--shadow);
-}
-
-.form-section{
-    margin-bottom:28px;
-}
-
-.form-section h3{
-    font-size:17px;
-    border-bottom:1px solid var(--border);
-    padding-bottom:10px;
+.card h2{
+    font-size:19px;
     margin-bottom:17px;
 }
 
-.form-grid{
+.card h3{
+    margin-bottom:10px;
+}
+
+.appointment{
+    padding:16px;
+    border:1px solid #e3eaf2;
+    border-radius:12px;
+    margin-bottom:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:12px;
+    background:#e8f7ef;
+    color:#087a4d;
+    font-weight:bold;
+}
+
+.small-btn{
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    background:#e9f3ff;
+    color:#0763c9;
+    font-weight:bold;
+}
+
+.danger-btn{
+    background:#fff0f0;
+    color:#c53636;
+}
+
+.success-btn{
+    background:#e8f8ef;
+    color:#087a4d;
+}
+
+/* ================= CASE FORM ================= */
+
+.case-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:16px;
-}
-
-.field label{
-    display:block;
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:7px;
-}
-
-.field input,
-.field select,
-.field textarea{
-    width:100%;
-    padding:12px;
-    border:1px solid var(--border);
-    border-radius:9px;
-    outline:none;
-}
-
-.field textarea{
-    min-height:105px;
-    resize:vertical;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-    border-color:var(--primary);
+    gap:15px;
 }
 
 .full{
     grid-column:1/-1;
 }
 
-.voice-panel{
-    padding:16px;
-    background:#f8fafc;
-    border:1px solid var(--border);
-    border-radius:12px;
-    margin-bottom:25px;
+.voice-row{
+    display:flex;
+    gap:8px;
+    align-items:stretch;
 }
 
-.voice-panel-row{
+.voice-row textarea{
+    flex:1;
+    min-height:100px;
+}
+
+.mic-btn{
+    width:48px;
+    height:48px;
+    margin-top:0;
+    border:none;
+    border-radius:9px;
+    background:#e9f5ff;
+    font-size:21px;
+    align-self:flex-start;
+}
+
+.mic-btn:hover{
+    background:#d6ecff;
+}
+
+.mic-btn.listening{
+    background:#ffe6e6;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    50%{transform:scale(1.06);}
+}
+
+.voice-panel{
+    padding:16px;
+    border-radius:13px;
+    background:#f4f9ff;
+    border:1px solid #dbeaf7;
+    margin-bottom:20px;
+}
+
+.voice-controls{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
     align-items:center;
 }
 
-.voice-panel select{
+.voice-controls select{
     padding:10px;
-    border:1px solid var(--border);
     border-radius:8px;
+    border:1px solid #ccd9e6;
 }
 
 .voice-status{
     margin-top:10px;
     font-size:13px;
-    color:var(--muted);
+    color:#64748b;
 }
 
-.voice-status.listening{
-    color:var(--danger);
-    font-weight:bold;
-}
-
-.voice-field{
-    position:relative;
-}
-
-.voice-field textarea{
-    padding-right:55px;
-}
-
-.mic{
-    position:absolute;
-    right:9px;
-    top:9px;
-    width:40px;
-    height:40px;
-    border:0;
-    border-radius:50%;
-    background:#dbeafe;
-    color:var(--primary);
-    font-size:17px;
-}
-
-.mic.listening{
-    background:#fee2e2;
-    color:var(--danger);
-    animation:pulse 1s infinite;
-}
-
-@keyframes pulse{
-    50%{transform:scale(1.08);}
-}
-
-.form-actions{
+.case-actions{
     display:flex;
     gap:10px;
+    margin-top:20px;
     flex-wrap:wrap;
 }
 
-.summary{
-    background:#f8fafc;
-    border:1px solid var(--border);
+.case-actions button{
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+}
+
+.generate-btn{
+    background:#0868d9;
+    color:white;
+}
+
+.save-btn{
+    background:#087a56;
+    color:white;
+}
+
+.clear-btn{
+    background:#edf1f5;
+    color:#334155;
+}
+
+/* ================= SUMMARY ================= */
+
+.summary-box{
+    background:#f8fbff;
+    border:1px solid #dceaf6;
+    border-radius:14px;
     padding:20px;
-    border-radius:12px;
-    margin-top:25px;
-}
-
-.summary pre{
     white-space:pre-wrap;
-    font-family:Arial;
-    line-height:1.6;
+    line-height:1.7;
+    margin-top:20px;
 }
 
-/* ==============================
-   TABLES
-============================== */
+.summary-actions{
+    display:flex;
+    gap:10px;
+    margin-top:12px;
+}
+
+/* ================= TABLE ================= */
 
 .table-wrap{
     overflow-x:auto;
@@ -671,64 +605,40 @@ table{
 
 th,td{
     padding:13px;
-    border-bottom:1px solid var(--border);
+    border-bottom:1px solid #e8edf2;
     text-align:left;
-    font-size:13px;
+    font-size:14px;
 }
 
 th{
-    color:#475569;
     background:#f8fafc;
 }
 
-/* ==============================
-   SEARCH
-============================== */
+/* ================= SEARCH ================= */
 
-.search{
+.search-box{
     width:100%;
-    padding:13px;
-    border:1px solid var(--border);
+    padding:12px;
+    border:1px solid #d8e1eb;
     border-radius:9px;
     margin-bottom:15px;
 }
 
-/* ==============================
-   PROFILE
-============================== */
+/* ================= MOBILE ================= */
 
-.profile-card{
-    display:flex;
-    gap:20px;
-    align-items:center;
-}
+@media(max-width:900px){
 
-.large-avatar{
-    width:80px;
-    height:80px;
-    display:grid;
-    place-items:center;
-    border-radius:50%;
-    background:#dbeafe;
-    color:var(--primary);
-    font-size:30px;
-    font-weight:bold;
-}
+    .role-container{
+        grid-template-columns:1fr;
+    }
 
-/* ==============================
-   MOBILE
-============================== */
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-.mobile-menu{
-    display:none;
-    border:0;
-    background:#eff6ff;
-    color:var(--primary);
-    padding:8px 10px;
-    border-radius:8px;
-}
-
-@media(max-width:1000px){
+    .grid-2{
+        grid-template-columns:1fr;
+    }
 
     .sidebar{
         transform:translateX(-100%);
@@ -743,53 +653,47 @@ th{
         margin-left:0;
     }
 
-    .mobile-menu{
+    .menu-btn{
         display:block;
-    }
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .dashboard-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:700px){
-
-    .role-grid{
-        grid-template-columns:1fr;
-    }
-
-    .brand h1{
-        font-size:29px;
-    }
-
-    .content{
-        padding:20px 15px;
     }
 
     .topbar{
         padding:0 15px;
     }
 
-    .form-grid{
-        grid-template-columns:1fr;
+    .content{
+        padding:18px;
+    }
+}
+
+@media(max-width:600px){
+
+    .logo-area h1{
+        font-size:32px;
+    }
+
+    .role-card{
+        padding:25px;
     }
 
     .stats{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:1fr;
+    }
+
+    .case-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
     }
 
     .appointment{
-        align-items:flex-start;
-        flex-direction:column;
-        gap:10px;
+        display:block;
     }
 
-    .profile span{
-        display:none;
+    .appointment button{
+        margin-top:10px;
     }
 }
 </style>
@@ -797,94 +701,80 @@ th{
 
 <body>
 
+<!-- =========================================================
+     LANDING PAGE
+========================================================= -->
 
-<!-- =====================================================
-     FIRST PAGE
-===================================================== -->
+<section id="landing">
 
-<section id="authPage">
+    <div class="logo-area">
 
-    <div class="auth-container">
+        <div class="logo">+</div>
 
-        <div class="brand">
+        <h1>CareFlow.</h1>
 
-            <div class="brand-icon">✚</div>
+        <p>Smart Patient Case-Taking & Consultation System</p>
 
-            <h1>CareFlow</h1>
+    </div>
+
+    <div class="role-container">
+
+        <!-- PATIENT -->
+
+        <div class="role-card">
+
+            <div class="role-icon">👤</div>
+
+            <h2>Patient</h2>
 
             <p>
-                Smart Patient Case-Taking & Consultation System
+                Access your appointments, digital case-taking,
+                reports and medical information.
             </p>
+
+            <ul>
+                <li>Start digital case-taking</li>
+                <li>Multilingual voice input</li>
+                <li>View appointments</li>
+                <li>View reports and history</li>
+            </ul>
+
+            <button
+                type="button"
+                class="primary-btn"
+                onclick="showPatientLogin()">
+                Continue as Patient →
+            </button>
 
         </div>
 
 
-        <div class="role-grid">
+        <!-- DOCTOR -->
 
-            <!-- PATIENT -->
+        <div class="role-card">
 
-            <div class="role-card">
+            <div class="role-icon">🧑‍⚕️</div>
 
-                <div class="role-icon">👤</div>
+            <h2>Doctor</h2>
 
-                <h2>Patient</h2>
+            <p>
+                Review patient cases, appointments,
+                summaries and clinical information.
+            </p>
 
-                <p>
-                    Access your appointments, case-taking,
-                    reports and medical information.
-                </p>
+            <ul>
+                <li>View today's appointments</li>
+                <li>Review patient cases</li>
+                <li>Read structured summaries</li>
+                <li>Manage consultation notes</li>
+            </ul>
 
-                <ul class="role-list">
-
-                    <li>Start digital case-taking</li>
-                    <li>Multilingual voice input</li>
-                    <li>View appointments</li>
-                    <li>View reports and history</li>
-
-                </ul>
-
-                <button
-                    class="btn btn-primary full-btn"
-                    onclick="showLogin('patient')">
-
-                    Continue as Patient →
-
-                </button>
-
-            </div>
-
-
-            <!-- DOCTOR -->
-
-            <div class="role-card">
-
-                <div class="role-icon">👨‍⚕️</div>
-
-                <h2>Doctor</h2>
-
-                <p>
-                    Review patient cases, appointments,
-                    summaries and clinical information.
-                </p>
-
-                <ul class="role-list">
-
-                    <li>View today's appointments</li>
-                    <li>Review patient cases</li>
-                    <li>Read structured summaries</li>
-                    <li>Manage consultation notes</li>
-
-                </ul>
-
-                <button
-                    class="btn btn-primary full-btn"
-                    onclick="showLogin('doctor')">
-
-                    Continue as Doctor →
-
-                </button>
-
-            </div>
+            <button
+                type="button"
+                class="primary-btn"
+                onclick="showDoctorLogin()">
+                Continue as Doctor →
+            </button>
 
         </div>
 
@@ -893,251 +783,327 @@ th{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      PATIENT LOGIN
-===================================================== -->
+========================================================= -->
 
-<section id="patientLogin" class="login-page hidden">
+<section id="patientLogin" class="login-screen hidden">
 
     <div class="login-box">
 
-        <button class="back-btn"
-                onclick="backToRoles()">
+        <button class="back-btn" onclick="backToRoles()">
             ← Back
         </button>
-
-        <div class="login-icon">👤</div>
 
         <h2>Patient Login</h2>
 
-        <p>
-            Sign in to access your patient dashboard.
+        <p class="subtitle">
+            Enter your details to access your patient dashboard.
         </p>
 
-        <div class="demo-note">
-            Demo mode: You can enter any sample name
-            and mobile number.
-        </div>
-
-        <div class="input-group">
+        <div class="form-group">
             <label>Patient Name</label>
-            <input id="pName"
-                   placeholder="Enter patient name">
+            <input
+                id="patientLoginName"
+                type="text"
+                placeholder="Enter your name">
         </div>
 
-        <div class="input-group">
+        <div class="form-group">
             <label>Mobile Number</label>
-            <input id="pMobile"
-                   type="tel"
-                   placeholder="Enter mobile number">
+            <input
+                id="patientLoginMobile"
+                type="tel"
+                placeholder="Enter mobile number">
         </div>
 
-        <button class="btn btn-primary full-btn"
-                onclick="patientLogin()">
-            Login to Patient Dashboard
+        <button
+            class="primary-btn"
+            onclick="loginPatient()">
+            Login as Patient
         </button>
+
+        <p class="muted" style="margin-top:15px;font-size:13px;">
+            Demo prototype — any sample name and mobile number can be used.
+        </p>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      DOCTOR LOGIN
-===================================================== -->
+========================================================= -->
 
-<section id="doctorLogin" class="login-page hidden">
+<section id="doctorLogin" class="login-screen hidden">
 
     <div class="login-box">
 
-        <button class="back-btn"
-                onclick="backToRoles()">
+        <button class="back-btn" onclick="backToRoles()">
             ← Back
         </button>
 
-        <div class="login-icon">👨‍⚕️</div>
-
         <h2>Doctor Login</h2>
 
-        <p>
-            Sign in to access your doctor dashboard.
+        <p class="subtitle">
+            Access the clinical dashboard.
         </p>
 
-        <div class="demo-note">
-            Demo mode: Use any email and password.
+        <div class="form-group">
+            <label>Doctor Email</label>
+
+            <input
+                id="doctorEmail"
+                type="email"
+                placeholder="doctor@example.com">
         </div>
 
-        <div class="input-group">
-            <label>Email</label>
-            <input id="dEmail"
-                   type="email"
-                   placeholder="doctor@example.com">
-        </div>
-
-        <div class="input-group">
+        <div class="form-group">
             <label>Password</label>
-            <input id="dPassword"
-                   type="password"
-                   placeholder="Enter password">
+
+            <input
+                id="doctorPassword"
+                type="password"
+                placeholder="Enter password">
         </div>
 
-        <button class="btn btn-primary full-btn"
-                onclick="doctorLogin()">
-            Login to Doctor Dashboard
+        <button
+            class="primary-btn"
+            onclick="loginDoctor()">
+            Login as Doctor
         </button>
+
+        <p class="muted" style="margin-top:15px;font-size:13px;">
+            Demo prototype — any email and password can be used.
+        </p>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      MAIN APPLICATION
-===================================================== -->
+========================================================= -->
 
 <section id="app" class="hidden">
 
-
     <!-- SIDEBAR -->
 
-    <aside id="sidebar" class="sidebar">
+    <aside class="sidebar" id="sidebar">
 
-        <div class="side-brand">
+        <div class="side-logo">
+            <span>+</span>
+            CareFlow
+        </div>
 
-            <div class="side-brand-icon">✚</div>
+        <div class="user-mini">
 
-            <div>
-                <strong>CareFlow</strong>
-                <small id="sideRole">
-                    Healthcare Portal
-                </small>
-            </div>
+            <strong id="sideUserName">
+                Demo User
+            </strong>
+
+            <small id="sideUserRole">
+                Patient
+            </small>
 
         </div>
 
 
-        <nav id="patientNav" class="sidebar-nav hidden">
+        <!-- PATIENT NAVIGATION -->
 
-            <button class="active"
-                    onclick="showPage('patientHome',this)">
+        <div id="patientNav">
+
+            <div class="nav-title">Patient</div>
+
+            <button class="nav-btn active"
+                    onclick="showPage('patientOverview',this)">
                 🏠 Overview
             </button>
 
-            <button onclick="showPage('caseTaking',this)">
-                🎤 New Case
+            <button class="nav-btn"
+                    onclick="showPage('newCase',this)">
+                📝 New Case
             </button>
 
-            <button onclick="showPage('patientAppointments',this)">
+            <button class="nav-btn"
+                    onclick="showPage('patientAppointments',this)">
                 📅 Appointments
             </button>
 
-            <button onclick="showPage('patientHistory',this)">
+            <button class="nav-btn"
+                    onclick="showPage('patientHistory',this)">
                 📋 Medical History
             </button>
 
-            <button onclick="showPage('patientReports',this)">
-                📄 Reports
+            <button class="nav-btn"
+                    onclick="showPage('patientReports',this)">
+                📊 Reports
             </button>
 
-            <button onclick="showPage('patientMessages',this)">
+            <button class="nav-btn"
+                    onclick="showPage('patientMessages',this)">
                 💬 Messages
             </button>
 
-            <button onclick="showPage('patientProfile',this)">
+            <button class="nav-btn"
+                    onclick="showPage('patientProfile',this)">
                 👤 My Profile
             </button>
 
-        </nav>
+        </div>
 
 
-        <nav id="doctorNav" class="sidebar-nav hidden">
+        <!-- DOCTOR NAVIGATION -->
 
-            <button class="active"
-                    onclick="showPage('doctorHome',this)">
+        <div id="doctorNav" class="hidden">
+
+            <div class="nav-title">Doctor</div>
+
+            <button class="nav-btn active"
+                    onclick="showPage('doctorOverview',this)">
                 🏠 Overview
             </button>
 
-            <button onclick="showPage('doctorAppointments',this)">
+            <button class="nav-btn"
+                    onclick="showPage('doctorAppointments',this)">
                 📅 Appointments
             </button>
 
-            <button onclick="showPage('doctorCases',this)">
+            <button class="nav-btn"
+                    onclick="showPage('doctorCases',this)">
                 📋 Patient Cases
             </button>
 
-            <button onclick="showPage('doctorPatients',this)">
+            <button class="nav-btn"
+                    onclick="showPage('doctorPatients',this)">
                 👥 Patients
             </button>
 
-            <button onclick="showPage('doctorNotes',this)">
+            <button class="nav-btn"
+                    onclick="showPage('doctorNotes',this)">
                 📝 Clinical Notes
             </button>
 
-            <button onclick="showPage('doctorReports',this)">
-                📄 Reports
+            <button class="nav-btn"
+                    onclick="showPage('doctorReports',this)">
+                📊 Reports
             </button>
 
-            <button onclick="showPage('doctorMessages',this)">
+            <button class="nav-btn"
+                    onclick="showPage('doctorMessages',this)">
                 💬 Messages
             </button>
 
-            <button onclick="showPage('doctorProfile',this)">
-                👨‍⚕️ My Profile
+            <button class="nav-btn"
+                    onclick="showPage('doctorProfile',this)">
+                👨‍⚕️ Doctor Profile
             </button>
 
-        </nav>
+        </div>
 
 
-        <button class="btn btn-danger full-btn logout"
-                onclick="logout()">
-            ↪ Logout
+        <button
+            class="logout-btn"
+            onclick="logout()">
+            ⇥ Logout
         </button>
 
     </aside>
 
 
-    <!-- MAIN -->
+    <!-- MAIN AREA -->
 
-    <div class="main">
+    <main class="main">
 
         <header class="topbar">
 
-            <div style="display:flex;align-items:center;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px;">
 
-                <button class="mobile-menu"
-                        onclick="toggleSidebar()">
+                <button
+                    class="menu-btn"
+                    onclick="toggleSidebar()">
                     ☰
                 </button>
 
-                <div class="topbar-title">
-
-                    <h2 id="pageTitle">
-                        Dashboard
-                    </h2>
-
-                    <span id="pageSubtitle">
-                        Welcome to CareFlow
-                    </span>
-
-                </div>
+                <h3 id="pageTitle">
+                    Dashboard
+                </h3>
 
             </div>
 
+            <div class="top-profile">
 
-            <div class="profile">
-
-                <div>
-                    <strong id="userName">
-                        User
-                    </strong>
-
-                    <br>
-
-                    <span id="userRole"
-                          style="font-size:11px;color:#64748b">
-                        Patient
-                    </span>
+                <div class="avatar" id="topAvatar">
+                    👤
                 </div>
 
-                <div class="avatar"
-                     id="avatar">
+                <span id="topUserName">
+                    Demo User
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <div class="content">
+
+
+<!-- =========================================================
+     PATIENT OVERVIEW
+========================================================= -->
+
+<section id="patientOverview" class="page active">
+
+    <div class="welcome">
+
+        <h1 id="patientWelcome">
+            Welcome back 👋
+        </h1>
+
+        <p class="muted">
+            Manage your case information and appointments.
+        </p>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <div>📅</div>
+            <div class="number">2</div>
+            <div class="label">Upcoming Appointments</div>
+        </div>
+
+        <div class="stat-card">
+            <div>📋</div>
+            <div class="number">4</div>
+            <div class="label">Medical Records</div>
+        </div>
+
+        <div class="stat-card">
+            <div>📊</div>
+            <div class="number">3</div>
+            <div class="label">Reports</div>
+        </div>
+
+        <div class="stat-card">
+            <div>💬</div>
+            <div class="number">1</div>
+            <div class="label">New Message</div>
+        </div>
+
+    </div>
+
+
+    <div class="grid-2">
+
+        <div class="card">
+
+            <h2>Next Appointment</h2>
+
+            <div class="appointment">
+
+                <div>
